@@ -1,11 +1,11 @@
 <% content_for(:title) { "Update Password - Vorla" } %>
 
-<div class="flex min-h-screen items-center justify-center px-4 py-10">
+<main class="flex min-h-screen items-center justify-center px-4 py-10">
   <div class="w-full max-w-sm animate-slide-up">
     <%= render_card(class: "w-full") do %>
       <div class="p-8">
         <div class="mb-8 text-center">
-          <a href="/" class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-extrabold text-xl mb-6">V</a>
+          <a href="/" class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-extrabold text-xl mb-6" aria-label="Vorla home">V</a>
           <h1 class="text-xl font-extrabold tracking-tight">Update your password</h1>
           <p class="mt-1 text-sm text-muted-foreground">Enter your new password below</p>
         </div>
@@ -16,13 +16,13 @@
           <% end %>
 
           <div class="space-y-1.5">
-            <label class="text-sm font-medium">New Password</label>
-            <%= render_input name: "password", type: :password, placeholder: "Enter new password", autocomplete: "new-password", required: true %>
+            <label for="new-password" class="text-sm font-medium">New Password</label>
+            <%= render_input name: "password", id: "new-password", type: :password, placeholder: "Enter new password", autocomplete: "new-password", required: true %>
           </div>
 
           <div class="space-y-1.5">
-            <label class="text-sm font-medium">Confirm Password</label>
-            <%= render_input name: "password_confirmation", type: :password, placeholder: "Repeat new password", autocomplete: "new-password", required: true %>
+            <label for="confirm-password" class="text-sm font-medium">Confirm Password</label>
+            <%= render_input name: "password_confirmation", id: "confirm-password", type: :password, placeholder: "Repeat new password", autocomplete: "new-password", required: true %>
           </div>
 
           <%= render_button "Save →", class: "w-full" %>
@@ -30,4 +30,4 @@
       </div>
     <% end %>
   </div>
-</div>
+</main>

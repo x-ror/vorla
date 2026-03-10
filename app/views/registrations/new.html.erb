@@ -1,11 +1,11 @@
 <% content_for(:title) { "Create Account - Vorla" } %>
 
-<div class="flex min-h-screen items-center justify-center px-4 py-10">
+<main class="flex min-h-screen items-center justify-center px-4 py-10">
   <div class="w-full max-w-sm animate-slide-up">
     <%= render_card(class: "w-full") do %>
       <div class="p-8">
         <div class="mb-8 text-center">
-          <a href="/" class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-extrabold text-xl mb-6">V</a>
+          <a href="/" class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-extrabold text-xl mb-6" aria-label="Vorla home">V</a>
           <h1 class="text-xl font-extrabold tracking-tight">Create your account</h1>
           <p class="mt-1 text-sm text-muted-foreground">Get started with Vorla for free</p>
         </div>
@@ -16,27 +16,27 @@
           <% end %>
 
           <div class="space-y-1.5">
-            <label class="text-sm font-medium">Email</label>
-            <%= render_input name: "email_address", type: :email, placeholder: "you@example.com", autocomplete: "email", required: true %>
+            <label for="signup-email" class="text-sm font-medium">Email</label>
+            <%= render_input name: "email_address", id: "signup-email", type: :email, placeholder: "you@example.com", autocomplete: "email", required: true %>
           </div>
 
           <div class="space-y-1.5">
-            <label class="text-sm font-medium">Password</label>
-            <%= render_input name: "password", type: :password, placeholder: "Create a password", autocomplete: "new-password", required: true %>
+            <label for="signup-password" class="text-sm font-medium">Password</label>
+            <%= render_input name: "password", id: "signup-password", type: :password, placeholder: "Create a password", autocomplete: "new-password", required: true %>
           </div>
 
           <div class="space-y-1.5">
-            <label class="text-sm font-medium">Confirm Password</label>
-            <%= render_input name: "password_confirmation", type: :password, placeholder: "Confirm your password", autocomplete: "new-password", required: true %>
+            <label for="signup-password-confirm" class="text-sm font-medium">Confirm Password</label>
+            <%= render_input name: "password_confirmation", id: "signup-password-confirm", type: :password, placeholder: "Confirm your password", autocomplete: "new-password", required: true %>
           </div>
 
           <%= render_button "Create Account →", class: "w-full" %>
         <% end %>
 
         <div class="mt-6 text-center text-sm text-muted-foreground">
-          Already have an account? <a href="<%= login_path %>" class="font-semibold text-primary hover:underline">Sign in</a>
+          Already have an account? <a href="<%= login_path %>" class="font-semibold text-primary hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Sign in</a>
         </div>
       </div>
     <% end %>
   </div>
-</div>
+</main>

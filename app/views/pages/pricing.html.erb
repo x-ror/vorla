@@ -2,35 +2,35 @@
 
 <%= render "shared/navbar" %>
 
-<div class="flex-1 pb-10" data-controller="pricing">
+<main class="flex-1 pb-10" data-controller="pricing">
   <div class="mx-auto max-w-7xl px-4 pt-16 text-center sm:px-6">
     <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Simple, honest pricing</h1>
     <p class="mt-3 text-muted-foreground">No hidden fees. Cancel anytime. Start free.</p>
 
     <div class="mt-8 inline-flex items-center gap-3 rounded-full border border-border bg-card px-5 py-1.5 text-sm text-muted-foreground">
-      <span data-pricing-target="monthlyLabel" class="active-label">Monthly</span>
-      <button type="button" data-action="click->pricing#toggle" data-pricing-target="toggleSwitch"
-        class="relative h-6 w-11 rounded-full bg-muted border border-border transition-colors [&.active]:bg-primary [&.active]:border-primary">
+      <span data-pricing-target="monthlyLabel" class="active-label" id="billing-monthly">Monthly</span>
+      <button type="button" data-action="click->pricing#toggle" data-pricing-target="toggleSwitch" aria-label="Toggle annual billing"
+        class="relative h-6 w-11 rounded-full bg-muted border border-border transition-colors [&.active]:bg-primary [&.active]:border-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
         <span class="absolute top-0.5 left-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition-transform [.active_&]:translate-x-5"></span>
       </button>
-      <span data-pricing-target="annualLabel">Annual <%= render_badge "Save 17%", variant: :secondary %></span>
+      <span data-pricing-target="annualLabel" id="billing-annual">Annual <%= render_badge "Save 17%", variant: :secondary %></span>
     </div>
   </div>
 
-  <div class="mx-auto mt-10 grid max-w-4xl gap-5 px-4 sm:grid-cols-3 sm:px-6">
+  <section class="mx-auto mt-10 grid max-w-4xl gap-5 px-4 sm:grid-cols-3 sm:px-6" aria-label="Pricing plans">
     <!-- Free -->
     <div class="rounded-lg border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:shadow-md">
       <h3 class="text-sm font-semibold text-muted-foreground">Free</h3>
       <div class="mt-2 text-4xl font-extrabold tracking-tight">Free</div>
-      <ul class="mt-6 space-y-3 text-sm text-muted-foreground">
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Basic quality downloads</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Profile picture download</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Ad-supported experience</li>
-        <li class="flex items-center gap-2 opacity-40"><span>&#10005;</span> Full quality & batch downloads</li>
-        <li class="flex items-center gap-2 opacity-40"><span>&#10005;</span> Stories downloader</li>
-        <li class="flex items-center gap-2 opacity-40"><span>&#10005;</span> Profile analyzer</li>
-        <li class="flex items-center gap-2 opacity-40"><span>&#10005;</span> Influencer search</li>
-        <li class="flex items-center gap-2 opacity-40"><span>&#10005;</span> Hashtag generator</li>
+      <ul class="mt-6 space-y-3 text-sm text-muted-foreground" aria-label="Free plan features">
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Basic quality downloads</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Profile picture download</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Ad-supported experience</li>
+        <li class="flex items-center gap-2 opacity-40"><span aria-hidden="true">&#10005;</span><s> Full quality & batch downloads</s></li>
+        <li class="flex items-center gap-2 opacity-40"><span aria-hidden="true">&#10005;</span><s> Stories downloader</s></li>
+        <li class="flex items-center gap-2 opacity-40"><span aria-hidden="true">&#10005;</span><s> Profile analyzer</s></li>
+        <li class="flex items-center gap-2 opacity-40"><span aria-hidden="true">&#10005;</span><s> Influencer search</s></li>
+        <li class="flex items-center gap-2 opacity-40"><span aria-hidden="true">&#10005;</span><s> Hashtag generator</s></li>
       </ul>
       <div class="mt-8"><%= link_to download_path do %><%= render_button "Start Free →", variant: :outline, class: "w-full" %><% end %></div>
     </div>
@@ -40,16 +40,16 @@
       <div class="absolute -top-3 left-1/2 -translate-x-1/2"><%= render_badge "Most Popular" %></div>
       <h3 class="text-sm font-semibold text-muted-foreground">Basic</h3>
       <div class="mt-2 flex items-baseline gap-1"><span class="text-4xl font-extrabold tracking-tight" data-pricing-target="basicPrice">$4</span><span class="text-muted-foreground">/mo</span></div>
-      <ul class="mt-6 space-y-3 text-sm text-muted-foreground">
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Full quality downloads</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Batch download (carousels)</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Profile picture download</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Stories downloader</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Viewer & tracker</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Profile analyzer</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> No ads</li>
-        <li class="flex items-center gap-2 opacity-40"><span>&#10005;</span> Influencer search</li>
-        <li class="flex items-center gap-2 opacity-40"><span>&#10005;</span> Hashtag generator</li>
+      <ul class="mt-6 space-y-3 text-sm text-muted-foreground" aria-label="Basic plan features">
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Full quality downloads</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Batch download (carousels)</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Profile picture download</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Stories downloader</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Viewer & tracker</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Profile analyzer</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> No ads</li>
+        <li class="flex items-center gap-2 opacity-40"><span aria-hidden="true">&#10005;</span><s> Influencer search</s></li>
+        <li class="flex items-center gap-2 opacity-40"><span aria-hidden="true">&#10005;</span><s> Hashtag generator</s></li>
       </ul>
       <div class="mt-8">
         <% if authenticated? %>
@@ -64,14 +64,14 @@
     <div class="rounded-lg border border-amber-200 dark:border-amber-800/40 bg-card p-8 transition-all hover:-translate-y-1 hover:shadow-md">
       <h3 class="text-sm font-semibold text-muted-foreground">Pro</h3>
       <div class="mt-2 flex items-baseline gap-1"><span class="text-4xl font-extrabold tracking-tight" data-pricing-target="proPrice">$9</span><span class="text-muted-foreground">/mo</span></div>
-      <ul class="mt-6 space-y-3 text-sm text-muted-foreground">
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Everything in Basic</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Influencer search</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Hashtag generator</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Priority processing</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> API access</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> No ads</li>
-        <li class="flex items-center gap-2"><span class="text-success">&#10003;</span> Priority support</li>
+      <ul class="mt-6 space-y-3 text-sm text-muted-foreground" aria-label="Pro plan features">
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Everything in Basic</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Influencer search</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Hashtag generator</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Priority processing</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> API access</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> No ads</li>
+        <li class="flex items-center gap-2"><span class="text-success" aria-hidden="true">&#10003;</span> Priority support</li>
       </ul>
       <div class="mt-8">
         <% if authenticated? %>
@@ -81,12 +81,12 @@
         <% end %>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- FAQ -->
-  <div class="mx-auto mt-20 max-w-2xl px-4">
+  <section class="mx-auto mt-20 max-w-2xl px-4" aria-labelledby="faq-heading">
     <div class="mb-12 text-center">
-      <h2 class="text-2xl font-extrabold tracking-tight">Frequently asked questions</h2>
+      <h2 id="faq-heading" class="text-2xl font-extrabold tracking-tight">Frequently asked questions</h2>
     </div>
     <div class="space-y-2">
       <%= render_accordion(title: "Can I cancel anytime?", description: "Yes, you can cancel your subscription at any time. No questions asked, no hidden fees.") %>
@@ -94,7 +94,7 @@
       <%= render_accordion(title: "What payment methods do you accept?", description: "We accept all major credit cards, PayPal, and Apple Pay through our secure payment partner.") %>
       <%= render_accordion(title: "Is there a download limit?", description: "Free users have a reasonable fair-use limit. Basic and Pro plans have generous limits that cover normal usage.") %>
     </div>
-  </div>
-</div>
+  </section>
+</main>
 
 <%= render "shared/footer" %>

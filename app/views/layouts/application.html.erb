@@ -2,9 +2,12 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <title><%= content_for(:title) || "Vorla" %></title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="Download Instagram photos, videos, reels, stories and more. The fastest and cleanest Instagram downloader.">
     <meta name="application-name" content="Vorla">
+    <meta name="theme-color" content="hsl(174,58%,39%)" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="hsl(224,71%,4%)" media="(prefers-color-scheme: dark)">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -26,13 +29,17 @@
   </head>
 
   <body class="flex min-h-screen flex-col bg-background text-foreground antialiased" data-controller="theme">
+    <%= yield %>
+
     <% if notice.present? %>
-      <%= render_alert title: "Success", description: notice, variant: :success %>
+      <div class="fixed top-4 left-1/2 z-[60] w-full max-w-md -translate-x-1/2 px-4" role="status">
+        <%= render_alert title: "Success", description: notice, variant: :success %>
+      </div>
     <% end %>
     <% if alert.present? %>
-      <%= render_alert title: "Error", description: alert, variant: :destructive %>
+      <div class="fixed top-4 left-1/2 z-[60] w-full max-w-md -translate-x-1/2 px-4" role="alert">
+        <%= render_alert title: "Error", description: alert, variant: :destructive %>
+      </div>
     <% end %>
-
-    <%= yield %>
   </body>
 </html>

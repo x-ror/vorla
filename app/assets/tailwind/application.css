@@ -148,6 +148,21 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.2);
+    color: hsl(var(--foreground));
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  input:focus-visible,
+  button:focus-visible {
+    outline: none;
+  }
 }
 
 /* --- Stimulus-compatible utility classes (used in JS innerHTML) --- */
@@ -225,8 +240,9 @@
   .media-card:has(.media-checkbox input:checked) {
     @apply border-primary ring-2 ring-primary/20;
   }
-  .media-card .preview { @apply aspect-square bg-muted overflow-hidden relative; }
+  .media-card .preview { @apply aspect-square bg-muted overflow-hidden relative cursor-pointer; }
   .media-card .preview img { @apply w-full h-full object-cover; }
+  .media-card .preview:focus-visible { @apply outline-none ring-2 ring-ring ring-inset; }
   .media-card .type-badge {
     @apply absolute top-1.5 left-1.5 px-2 py-0.5 bg-foreground/70 text-background rounded-full text-[0.65rem] font-semibold uppercase;
   }
@@ -247,7 +263,6 @@
   .media-card .dl-btn {
     @apply flex items-center justify-center gap-1.5 w-full py-2.5 text-xs font-semibold text-primary border-0 bg-transparent cursor-pointer transition-colors hover:bg-primary/10;
   }
-  .media-card .preview { @apply cursor-pointer; }
 
   /* Lightbox */
   .lightbox-overlay {

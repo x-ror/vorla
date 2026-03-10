@@ -2,9 +2,9 @@
 
 <%= render "shared/navbar" %>
 
-<div class="flex-1 pb-10" data-controller="download">
+<main class="flex-1 pb-10" data-controller="download">
   <div class="mx-auto max-w-2xl px-4 pt-16 text-center">
-    <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
+    <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
       <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
     </div>
     <h1 class="text-2xl font-extrabold tracking-tight">Instagram Downloader</h1>
@@ -12,29 +12,30 @@
   </div>
 
   <div class="mx-auto max-w-xl px-4 mt-8">
-    <form data-action="submit->download#process" class="flex w-full items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 mb-5">
-      <span class="pl-3 text-muted-foreground">
+    <form data-action="submit->download#process" aria-label="Download Instagram content" class="flex w-full items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 mb-5">
+      <span class="pl-3 text-muted-foreground" aria-hidden="true">
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
       </span>
-      <input type="text" data-download-target="url" placeholder="Paste Instagram URL here..." autocomplete="off" value="<%= params[:url] %>" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
-      <button type="submit" data-download-target="submitBtn" class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50">
+      <label for="download-url" class="sr-only">Instagram URL</label>
+      <input id="download-url" type="url" data-download-target="url" placeholder="Paste Instagram URL here..." autocomplete="off" value="<%= params[:url] %>" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
+      <button type="submit" data-download-target="submitBtn" class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
         <span data-download-target="submitText">Download</span>
-        <span data-download-target="spinner" class="spinner" style="display:none;"></span>
+        <span data-download-target="spinner" class="spinner" style="display:none;" aria-hidden="true"></span>
       </button>
     </form>
 
-    <div data-download-target="error" style="display:none;"></div>
-    <div data-download-target="result" style="display:none;"></div>
+    <div data-download-target="error" style="display:none;" role="alert"></div>
+    <div data-download-target="result" style="display:none;" role="region" aria-live="polite"></div>
   </div>
 
   <!-- How it works -->
-  <div class="mx-auto max-w-3xl px-4 mt-20">
-    <h2 class="text-center text-xl font-extrabold tracking-tight mb-8">How it works</h2>
+  <section class="mx-auto max-w-3xl px-4 mt-20" aria-labelledby="how-it-works">
+    <h2 id="how-it-works" class="text-center text-xl font-extrabold tracking-tight mb-8">How it works</h2>
     <div class="grid gap-6 sm:grid-cols-3">
       <%= render_card do %>
         <div class="p-6 text-center">
           <%= render_badge "1", class: "mb-3" %>
-          <h4 class="font-semibold">Copy URL</h4>
+          <h3 class="font-semibold">Copy URL</h3>
           <p class="mt-1 text-sm text-muted-foreground">Copy the Instagram post, reel, or carousel URL</p>
         </div>
       <% end %>
@@ -42,7 +43,7 @@
       <%= render_card do %>
         <div class="p-6 text-center">
           <%= render_badge "2", class: "mb-3" %>
-          <h4 class="font-semibold">Paste & Go</h4>
+          <h3 class="font-semibold">Paste & Go</h3>
           <p class="mt-1 text-sm text-muted-foreground">Paste the URL above and click download</p>
         </div>
       <% end %>
@@ -50,12 +51,12 @@
       <%= render_card do %>
         <div class="p-6 text-center">
           <%= render_badge "3", class: "mb-3" %>
-          <h4 class="font-semibold">Download</h4>
+          <h3 class="font-semibold">Download</h3>
           <p class="mt-1 text-sm text-muted-foreground">Click download and save to your device</p>
         </div>
       <% end %>
     </div>
-  </div>
-</div>
+  </section>
+</main>
 
 <%= render "shared/footer" %>
