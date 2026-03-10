@@ -22,7 +22,7 @@ class Api::StoriesController < Api::BaseController
     end
 
     if result[:url]
-      return render json: { stories: [{ type: "video", url: proxy_url(result[:url]), thumbnail: nil }] }
+      return render json: { stories: [ { type: "video", url: proxy_url(result[:url]), thumbnail: nil } ] }
     end
 
     render json: { message: "No stories found", stories: [] }

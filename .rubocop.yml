@@ -1,0 +1,18 @@
+# Omakase Ruby styling for Rails
+# Includes rubocop-rails + rubocop-performance defaults
+inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+
+plugins:
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - '**/tmp/**/*'
+    - '**/vendor/**/*'
+    - '**/node_modules/**/*'
+    - 'db/schema.rb'
+
+# Enable all Performance cops (replaces fasterer)
+Performance:
+  Enabled: true

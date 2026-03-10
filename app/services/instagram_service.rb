@@ -239,7 +239,7 @@ class InstagramService
 
     video_match = html.match(/"video_url":"([^"]+)"/)
     image_match = html.match(/"display_url":"([^"]+)"/) || html.match(/class="EmbeddedMediaImage"[^>]*src="([^"]+)"/)
-    sidecar_match = html.match(/"edge_sidecar_to_children"/)
+    sidecar_match = html.include?('"edge_sidecar_to_children"')
 
     if sidecar_match
       script_match = html.match(/window\.__additionalDataLoaded\s*\(\s*'[^']*'\s*,\s*({.+?})\s*\)/m) ||
@@ -256,12 +256,12 @@ class InstagramService
     end
 
     if video_match
-      video_url = video_match[1].gsub(/\\u0026/, "&").gsub("\\", "")
+      video_url = video_match[1].gsub(/\\u0026/, "&").delete("\\")
       return { type: "video", url: video_url }
     end
 
     if image_match
-      image_url = image_match[1].gsub(/\\u0026/, "&").gsub("\\", "")
+      image_url = image_match[1].gsub(/\\u0026/, "&").delete("\\")
       return { type: "photo", url: image_url }
     end
 
