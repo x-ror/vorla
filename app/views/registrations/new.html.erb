@@ -1,0 +1,57 @@
+<% content_for(:title) { "Create Account - Vorla" } %>
+
+<div class="auth-page">
+  <div class="auth-card animate-slide-up">
+    <div class="auth-header">
+      <a href="/">
+        <div class="logo-icon">V</div>
+      </a>
+      <h1>Create your account</h1>
+      <p>Get started with Vorla for free</p>
+    </div>
+
+    <%= form_with url: signup_path, class: "auth-form" do |f| %>
+      <% if flash[:alert] %>
+        <div class="alert alert-error" style="max-width:100%;"><%= flash[:alert] %></div>
+      <% end %>
+
+      <div class="field">
+        <label for="email_address">Email</label>
+        <div class="input-wrap">
+          <span class="icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </span>
+          <%= f.email_field :email_address, placeholder: "you@example.com", autocomplete: "email", required: true %>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="input-wrap">
+          <span class="icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
+          <%= f.password_field :password, placeholder: "Create a password", autocomplete: "new-password", required: true %>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password_confirmation">Confirm Password</label>
+        <div class="input-wrap">
+          <span class="icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
+          <%= f.password_field :password_confirmation, placeholder: "Confirm your password", autocomplete: "new-password", required: true %>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        Create Account &rarr;
+      </button>
+    <% end %>
+
+    <div class="auth-footer">
+      <p>Already have an account? <a href="<%= login_path %>">Sign in</a></p>
+    </div>
+  </div>
+</div>

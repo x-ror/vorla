@@ -1,0 +1,26 @@
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="/" class="navbar-logo">
+      <span class="logo-mark">V</span>
+      Vorla
+    </a>
+
+    <div class="navbar-nav">
+      <%= link_to "Download", download_path, class: "#{request.path == '/download' ? 'active' : ''}" %>
+      <%= link_to "Stories", stories_path, class: "#{request.path == '/stories' ? 'active' : ''}" %>
+      <%= link_to "Profile Pic", profile_picture_path, class: "#{request.path == '/profile-picture' ? 'active' : ''}" %>
+      <%= link_to "Analyzer", analyzer_path, class: "#{request.path == '/analyzer' ? 'active' : ''}" %>
+      <%= link_to "Pricing", pricing_path, class: "#{request.path == '/pricing' ? 'active' : ''}" %>
+    </div>
+
+    <div class="navbar-actions">
+      <% if authenticated? %>
+        <span class="btn-ghost"><%= Current.user&.email_address&.split("@")&.first %></span>
+        <%= button_to "Sign out", session_path, method: :delete, class: "btn btn-secondary" %>
+      <% else %>
+        <%= link_to "Sign in", login_path, class: "btn btn-ghost" %>
+        <%= link_to "Get Started", signup_path, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</nav>

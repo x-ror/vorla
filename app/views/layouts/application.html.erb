@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= content_for(:title) || "Vorla" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Download Instagram photos, videos, reels, stories and more. The fastest and cleanest Instagram downloader.">
+    <meta name="application-name" content="Vorla">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <%# Web Awesome %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.3.1/dist-cdn/styles/themes/default.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.3.1/dist-cdn/webawesome.loader.js"></script>
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <% if notice.present? %>
+      <wa-alert variant="success" open closable style="margin-bottom: 0;">
+        <%= notice %>
+      </wa-alert>
+    <% end %>
+    <% if alert.present? %>
+      <wa-alert variant="danger" open closable style="margin-bottom: 0;">
+        <%= alert %>
+      </wa-alert>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

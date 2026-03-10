@@ -1,0 +1,56 @@
+<% content_for(:title) { "Download Instagram Content - Vorla" } %>
+
+<%= render "shared/navbar" %>
+
+<div class="page-body" data-controller="download">
+  <div class="page-header container-sm">
+    <div class="page-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    </div>
+    <h1>Instagram Downloader</h1>
+    <p>Paste any Instagram post, reel, or carousel URL to download</p>
+  </div>
+
+  <div class="container-sm content-center">
+    <form data-action="submit->download#process" class="url-input-wrap">
+      <span class="input-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </span>
+      <input type="text" data-download-target="url" placeholder="Paste Instagram URL here..." autocomplete="off" value="<%= params[:url] %>">
+      <button type="submit" class="submit-btn" data-download-target="submitBtn">
+        <span data-download-target="submitText">Download</span>
+        <span data-download-target="spinner" class="spinner" style="display:none;"></span>
+      </button>
+    </form>
+
+    <div data-download-target="error" style="display:none;" class="alert alert-error"></div>
+
+    <div data-download-target="result" style="display:none;"></div>
+  </div>
+
+  <!-- How it works -->
+  <div class="container-sm" style="margin-top:80px;">
+    <div class="section-header">
+      <h2>How it works</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <span class="step-num">1</span>
+        <h4>Copy URL</h4>
+        <p>Copy the Instagram post, reel, or carousel URL</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">2</span>
+        <h4>Paste & Go</h4>
+        <p>Paste the URL above and click download</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">3</span>
+        <h4>Download</h4>
+        <p>Click download and save to your device</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/footer" %>

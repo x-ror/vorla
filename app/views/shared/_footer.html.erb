@@ -1,0 +1,16 @@
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <span class="logo-mark" style="width:28px;height:28px;font-size:0.8rem;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;background:var(--teal);color:white;font-weight:800;">V</span>
+      Vorla
+    </div>
+    <div class="footer-links">
+      <%= link_to "Download", download_path %>
+      <%= link_to "Stories", stories_path %>
+      <%= link_to "Pricing", pricing_path %>
+    </div>
+    <div class="footer-copy">
+      &copy; <%= Date.current.year %> Vorla. All rights reserved.
+    </div>
+  </div>
+</footer>
