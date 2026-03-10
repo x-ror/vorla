@@ -3,194 +3,204 @@
 <%= render "shared/navbar" %>
 
 <!-- Hero -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="container" style="position:relative;">
-    <div class="hero-badge animate-fade-in">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      <span>Fast & reliable downloads</span>
-    </div>
+<section class="relative overflow-hidden border-b border-border bg-gradient-to-b from-primary/5 to-background py-20 lg:py-32">
+  <div class="mx-auto max-w-4xl px-4 text-center">
+    <%= render_badge "Fast & reliable downloads", class: "mb-6 animate-fade-in" %>
 
-    <h1 class="hero-title animate-slide-up">
-      Download Instagram<br>content <span class="highlight">instantly</span>
+    <h1 class="animate-slide-up text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+      Download Instagram<br>content <span class="text-primary">instantly</span>
     </h1>
 
-    <p class="hero-subtitle animate-slide-up">
+    <p class="mx-auto mt-6 max-w-2xl animate-slide-up text-lg text-muted-foreground">
       Photos, videos, reels, stories and more. No login required.<br>
       The fastest and cleanest Instagram downloader on the web.
     </p>
 
-    <div class="animate-slide-up">
-      <form action="<%= download_path %>" method="get" class="url-input-wrap">
-        <span class="input-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    <div class="mx-auto mt-10 max-w-xl animate-slide-up">
+      <form action="<%= download_path %>" method="get" class="flex w-full items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
+        <span class="pl-3 text-muted-foreground">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
         </span>
-        <input type="text" name="url" placeholder="Paste Instagram URL here..." autocomplete="off">
-        <button type="submit" class="submit-btn">Download</button>
+        <input type="text" name="url" placeholder="Paste Instagram URL here..." autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
+        <%= render_button "Download", type: "submit" %>
       </form>
     </div>
 
-    <div class="hero-stats animate-fade-in">
-      <div class="hero-stat">
-        <span class="hero-stat-value">2M+</span>
-        <span class="hero-stat-label">Downloads</span>
+    <div class="mx-auto mt-12 grid max-w-lg grid-cols-2 gap-6 animate-fade-in sm:grid-cols-4">
+      <div class="text-center">
+        <div class="text-2xl font-extrabold">2M+</div>
+        <div class="text-sm text-muted-foreground">Downloads</div>
       </div>
-      <div class="hero-stat">
-        <span class="hero-stat-value">150K+</span>
-        <span class="hero-stat-label">Users</span>
+      <div class="text-center">
+        <div class="text-2xl font-extrabold">150K+</div>
+        <div class="text-sm text-muted-foreground">Users</div>
       </div>
-      <div class="hero-stat">
-        <span class="hero-stat-value">99.9%</span>
-        <span class="hero-stat-label">Uptime</span>
+      <div class="text-center">
+        <div class="text-2xl font-extrabold">99.9%</div>
+        <div class="text-sm text-muted-foreground">Uptime</div>
       </div>
-      <div class="hero-stat">
-        <span class="hero-stat-value">&lt;2s</span>
-        <span class="hero-stat-label">Avg Speed</span>
+      <div class="text-center">
+        <div class="text-2xl font-extrabold">&lt;2s</div>
+        <div class="text-sm text-muted-foreground">Avg Speed</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Features -->
-<section class="section section-sage" id="features">
-  <div class="container">
-    <div class="section-header">
-      <h2>Everything you need</h2>
-      <p>One platform for all your Instagram download and analysis needs</p>
+<section class="py-20" id="features">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight">Everything you need</h2>
+      <p class="mt-2 text-muted-foreground">One platform for all your Instagram download and analysis needs</p>
     </div>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <%= render_card(class: "text-center") do %>
+        <div class="p-6">
+          <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold">Photo & Video</h3>
+          <p class="mt-1 text-sm text-muted-foreground">Download posts, reels, carousels in full quality</p>
         </div>
-        <h3>Photo & Video</h3>
-        <p>Download posts, reels, carousels in full quality</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <% end %>
+
+      <%= render_card(class: "text-center") do %>
+        <div class="p-6">
+          <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold">Profile Pictures</h3>
+          <p class="mt-1 text-sm text-muted-foreground">Get full-size profile pictures instantly</p>
         </div>
-        <h3>Profile Pictures</h3>
-        <p>Get full-size profile pictures instantly</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      <% end %>
+
+      <%= render_card(class: "text-center") do %>
+        <div class="p-6">
+          <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold">Stories</h3>
+          <p class="mt-1 text-sm text-muted-foreground">Save stories before they disappear</p>
         </div>
-        <h3>Stories</h3>
-        <p>Save stories before they disappear</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <% end %>
+
+      <%= render_card(class: "text-center") do %>
+        <div class="p-6">
+          <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold">Profile Analyzer</h3>
+          <p class="mt-1 text-sm text-muted-foreground">Get detailed insights on any public profile</p>
         </div>
-        <h3>Profile Analyzer</h3>
-        <p>Get detailed insights on any public profile</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:var(--sand-soft);color:#B8860B;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v12M6 12h12"/><circle cx="12" cy="12" r="10"/></svg>
+      <% end %>
+
+      <%= render_card(class: "text-center") do %>
+        <div class="p-6">
+          <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v12M6 12h12"/><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold">Influencer Search</h3>
+          <p class="mt-1 text-sm text-muted-foreground">Find influencers by niche and engagement</p>
         </div>
-        <h3>Influencer Search</h3>
-        <p>Find influencers by niche and engagement</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:var(--sand-soft);color:#B8860B;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+      <% end %>
+
+      <%= render_card(class: "text-center") do %>
+        <div class="p-6">
+          <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold">Hashtag Generator</h3>
+          <p class="mt-1 text-sm text-muted-foreground">AI-powered hashtags for maximum reach</p>
         </div>
-        <h3>Hashtag Generator</h3>
-        <p>AI-powered hashtags for maximum reach</p>
-      </div>
+      <% end %>
     </div>
   </div>
 </section>
 
-<!-- Pricing -->
-<section class="section" id="pricing">
-  <div class="container">
-    <div class="section-header">
-      <h2>Simple, honest pricing</h2>
-      <p>No hidden fees. Cancel anytime. Start free.</p>
+<!-- Pricing preview -->
+<section class="border-t border-border bg-muted/30 py-20" id="pricing">
+  <div class="mx-auto max-w-5xl px-4">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight">Simple, honest pricing</h2>
+      <p class="mt-2 text-muted-foreground">No hidden fees. Cancel anytime. Start free.</p>
     </div>
 
-    <div class="pricing-grid">
+    <div class="mt-12 grid gap-6 sm:grid-cols-3">
       <!-- Free -->
-      <div class="pricing-card">
-        <div class="plan-header">
-          <h3>Free</h3>
-          <div class="plan-price">
-            <span class="price">Free</span>
+      <%= render_card do %>
+        <div class="p-6">
+          <h3 class="text-lg font-semibold">Free</h3>
+          <div class="mt-2 text-3xl font-extrabold">Free</div>
+          <ul class="mt-6 space-y-3 text-sm text-muted-foreground">
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> Basic quality downloads</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> Profile picture download</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> Ad-supported</li>
+            <li class="flex items-center gap-2 opacity-40"><span>&#10005;</span> Full quality & batch</li>
+            <li class="flex items-center gap-2 opacity-40"><span>&#10005;</span> Stories downloader</li>
+            <li class="flex items-center gap-2 opacity-40"><span>&#10005;</span> Profile analyzer</li>
+          </ul>
+          <div class="mt-6">
+            <%= render_button "Start Free", as: :a, href: download_path, variant: :outline, class: "w-full justify-center" %>
           </div>
         </div>
-        <ul class="plan-features">
-          <li><span class="icon-check">&#10003;</span> Basic quality downloads</li>
-          <li><span class="icon-check">&#10003;</span> Profile picture download</li>
-          <li><span class="icon-check">&#10003;</span> Ad-supported</li>
-          <li class="disabled"><span class="icon-x">&#10005;</span> Full quality & batch</li>
-          <li class="disabled"><span class="icon-x">&#10005;</span> Stories downloader</li>
-          <li class="disabled"><span class="icon-x">&#10005;</span> Profile analyzer</li>
-        </ul>
-        <a href="<%= download_path %>" class="plan-cta">Start Free &rarr;</a>
-      </div>
+      <% end %>
 
       <!-- Basic -->
-      <div class="pricing-card popular">
-        <div class="popular-badge">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          Most Popular
-        </div>
-        <div class="plan-header">
-          <h3>Basic</h3>
-          <div class="plan-price">
-            <span class="price">$4</span>
-            <span class="period">/mo</span>
+      <%= render_card(class: "relative border-primary") do %>
+        <div class="p-6">
+          <%= render_badge "Most Popular", class: "absolute -top-3 left-1/2 -translate-x-1/2" %>
+          <h3 class="text-lg font-semibold">Basic</h3>
+          <div class="mt-2"><span class="text-3xl font-extrabold">$4</span><span class="text-muted-foreground">/mo</span></div>
+          <ul class="mt-6 space-y-3 text-sm text-muted-foreground">
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> Full quality downloads</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> Batch download</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> Profile pictures</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> Stories downloader</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> Profile analyzer</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> No ads</li>
+          </ul>
+          <div class="mt-6">
+            <%= render_button "Get Started", as: :a, href: pricing_path, class: "w-full justify-center" %>
           </div>
         </div>
-        <ul class="plan-features">
-          <li><span class="icon-check">&#10003;</span> Full quality downloads</li>
-          <li><span class="icon-check">&#10003;</span> Batch download</li>
-          <li><span class="icon-check">&#10003;</span> Profile pictures</li>
-          <li><span class="icon-check">&#10003;</span> Stories downloader</li>
-          <li><span class="icon-check">&#10003;</span> Profile analyzer</li>
-          <li><span class="icon-check">&#10003;</span> No ads</li>
-        </ul>
-        <a href="<%= pricing_path %>" class="plan-cta primary">Get Started &rarr;</a>
-      </div>
+      <% end %>
 
       <!-- Pro -->
-      <div class="pricing-card gold">
-        <div class="plan-header">
-          <h3>Pro</h3>
-          <div class="plan-price">
-            <span class="price">$9</span>
-            <span class="period">/mo</span>
+      <%= render_card do %>
+        <div class="p-6">
+          <h3 class="text-lg font-semibold">Pro</h3>
+          <div class="mt-2"><span class="text-3xl font-extrabold">$9</span><span class="text-muted-foreground">/mo</span></div>
+          <ul class="mt-6 space-y-3 text-sm text-muted-foreground">
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> Everything in Basic</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> Influencer search</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> Hashtag generator</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> Priority processing</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> API access</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#10003;</span> No ads</li>
+          </ul>
+          <div class="mt-6">
+            <%= render_button "Get Started", as: :a, href: pricing_path, variant: :outline, class: "w-full justify-center" %>
           </div>
         </div>
-        <ul class="plan-features">
-          <li><span class="icon-check">&#10003;</span> Everything in Basic</li>
-          <li><span class="icon-check">&#10003;</span> Influencer search</li>
-          <li><span class="icon-check">&#10003;</span> Hashtag generator</li>
-          <li><span class="icon-check">&#10003;</span> Priority processing</li>
-          <li><span class="icon-check">&#10003;</span> API access</li>
-          <li><span class="icon-check">&#10003;</span> No ads</li>
-        </ul>
-        <a href="<%= pricing_path %>" class="plan-cta">Get Started &rarr;</a>
-      </div>
+      <% end %>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-card">
-      <h2>Ready to download?</h2>
-      <p>Start downloading Instagram content for free. No sign-up required.</p>
-      <a href="<%= download_path %>" class="cta-btn">
-        Start Downloading &rarr;
-      </a>
-    </div>
+<section class="py-20">
+  <div class="mx-auto max-w-3xl px-4 text-center">
+    <%= render_card(class: "bg-primary/5 border-primary/20") do %>
+      <div class="p-10">
+        <h2 class="text-2xl font-extrabold tracking-tight">Ready to download?</h2>
+        <p class="mt-2 text-muted-foreground">Start downloading Instagram content for free. No sign-up required.</p>
+        <div class="mt-6">
+          <%= render_button "Start Downloading", as: :a, href: download_path, size: :lg %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </section>
 

@@ -1,8 +1,32 @@
-<h1>Forgot your password?</h1>
+<% content_for(:title) { "Forgot Password - Vorla" } %>
 
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+<div class="flex min-h-screen items-center justify-center px-4 py-10">
+  <div class="w-full max-w-sm animate-slide-up">
+    <%= render_card(class: "w-full") do %>
+      <div class="p-8">
+        <div class="mb-8 text-center">
+          <a href="/" class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-extrabold text-xl mb-6">V</a>
+          <h1 class="text-xl font-extrabold tracking-tight">Forgot your password?</h1>
+          <p class="mt-1 text-sm text-muted-foreground">Enter your email and we'll send reset instructions</p>
+        </div>
 
-<%= form_with url: passwords_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.submit "Email reset instructions" %>
-<% end %>
+        <%= form_with url: passwords_path, class: "space-y-5" do |form| %>
+          <% if flash[:alert] %>
+            <%= render_alert title: "Error", description: flash[:alert], variant: :destructive %>
+          <% end %>
+
+          <div class="space-y-1.5">
+            <label class="text-sm font-medium">Email</label>
+            <%= render_input name: "email_address", type: :email, placeholder: "you@example.com", autocomplete: "username", required: true, value: params[:email_address] %>
+          </div>
+
+          <%= render_button "Email reset instructions →", class: "w-full" %>
+        <% end %>
+
+        <div class="mt-6 text-center text-sm text-muted-foreground">
+          Remember your password? <a href="<%= login_path %>" class="font-semibold text-primary hover:underline">Sign in</a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

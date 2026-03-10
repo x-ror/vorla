@@ -2,7 +2,7 @@ require "net/http"
 
 class Api::ProxyController < Api::BaseController
   def show
-    target_url = params[:url]
+    target_url = params[:url]&.gsub("&amp;", "&")
     return head :bad_request unless target_url.present?
     return head :forbidden unless InstagramService.allowed_proxy_domain?(target_url)
 

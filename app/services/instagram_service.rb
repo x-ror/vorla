@@ -451,7 +451,19 @@ class InstagramService
       end
     end
 
-    # Try embed scraping
+    # Try GraphQL first (best for carousels — returns all items)
+    gql_data = fetch_graphql(post_id)
+    gql_result = extract_old_post(gql_data, post_id)
+    return gql_result if gql_result
+
+    # Try GraphQL with cookie
+    if @cookie.present?
+      gql_data2 = fetch_graphql(post_id, use_cookie: true)
+      gql_result2 = extract_old_post(gql_data2, post_id)
+      return gql_result2 if gql_result2
+    end
+
+    # Fallback to embed scraping
     embed_result = fetch_embed(post_id)
     if embed_result
       if embed_result[:type] == "embed_json"
@@ -466,7 +478,7 @@ class InstagramService
       end
     end
 
-    # Try embed with cookie
+    # Fallback to embed with cookie
     if @cookie.present?
       embed_result2 = fetch_embed(post_id, use_cookie: true)
       if embed_result2
@@ -481,18 +493,6 @@ class InstagramService
           }
         end
       end
-    end
-
-    # Try GraphQL
-    gql_data = fetch_graphql(post_id)
-    gql_result = extract_old_post(gql_data, post_id)
-    return gql_result if gql_result
-
-    # Try GraphQL with cookie
-    if @cookie.present?
-      gql_data2 = fetch_graphql(post_id, use_cookie: true)
-      gql_result2 = extract_old_post(gql_data2, post_id)
-      return gql_result2 if gql_result2
     end
 
     error_result("fetch.fail", "Could not fetch this content. Please try again.")

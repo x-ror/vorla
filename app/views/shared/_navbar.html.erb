@@ -1,25 +1,64 @@
-<nav class="navbar">
-  <div class="navbar-inner">
-    <a href="/" class="navbar-logo">
-      <span class="logo-mark">V</span>
+<nav class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md" data-controller="theme">
+  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+    <a href="/" class="flex items-center gap-2 font-extrabold tracking-tight">
+      <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-extrabold">V</span>
       Vorla
     </a>
 
-    <div class="navbar-nav">
-      <%= link_to "Download", download_path, class: "#{request.path == '/download' ? 'active' : ''}" %>
-      <%= link_to "Stories", stories_path, class: "#{request.path == '/stories' ? 'active' : ''}" %>
-      <%= link_to "Profile Pic", profile_picture_path, class: "#{request.path == '/profile-picture' ? 'active' : ''}" %>
-      <%= link_to "Analyzer", analyzer_path, class: "#{request.path == '/analyzer' ? 'active' : ''}" %>
-      <%= link_to "Pricing", pricing_path, class: "#{request.path == '/pricing' ? 'active' : ''}" %>
+    <!-- Desktop nav -->
+    <div class="hidden items-center gap-1 md:flex">
+      <%= link_to "Download", download_path, class: "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground #{request.path == '/download' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}" %>
+      <%= link_to "Stories", stories_path, class: "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground #{request.path == '/stories' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}" %>
+      <%= link_to "Profile Pic", profile_picture_path, class: "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground #{request.path == '/profile-picture' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}" %>
+      <%= link_to "Analyzer", analyzer_path, class: "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground #{request.path == '/analyzer' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}" %>
+      <%= link_to "Pricing", pricing_path, class: "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground #{request.path == '/pricing' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}" %>
     </div>
 
-    <div class="navbar-actions">
+    <!-- Desktop actions -->
+    <div class="hidden items-center gap-2 md:flex">
+      <button data-action="click->theme#toggle" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-input bg-background text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
+        <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+
       <% if authenticated? %>
-        <span class="btn-ghost"><%= Current.user&.email_address&.split("@")&.first %></span>
-        <%= button_to "Sign out", session_path, method: :delete, class: "btn btn-secondary" %>
+        <span class="px-3 py-2 text-sm text-muted-foreground"><%= Current.user&.email_address&.split("@")&.first %></span>
+        <%= button_to "Sign out", session_path, method: :delete, class: "inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground" %>
       <% else %>
-        <%= link_to "Sign in", login_path, class: "btn btn-ghost" %>
-        <%= link_to "Get Started", signup_path, class: "btn btn-primary" %>
+        <%= link_to "Sign in", login_path, class: "inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground" %>
+        <%= render_button "Get Started", as: :a, href: signup_path, size: :sm %>
+      <% end %>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-input bg-background text-muted-foreground md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden border-t border-border bg-background px-4 pb-4 md:hidden">
+    <div class="flex flex-col gap-1 pt-2">
+      <%= link_to "Download", download_path, class: "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent #{request.path == '/download' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}" %>
+      <%= link_to "Stories", stories_path, class: "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent #{request.path == '/stories' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}" %>
+      <%= link_to "Profile Pic", profile_picture_path, class: "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent #{request.path == '/profile-picture' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}" %>
+      <%= link_to "Analyzer", analyzer_path, class: "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent #{request.path == '/analyzer' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}" %>
+      <%= link_to "Pricing", pricing_path, class: "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent #{request.path == '/pricing' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}" %>
+    </div>
+
+    <div class="mt-3 flex flex-col gap-2 border-t border-border pt-3">
+      <button data-action="click->theme#toggle" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent">
+        <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        Toggle theme
+      </button>
+
+      <% if authenticated? %>
+        <span class="px-3 py-2 text-sm text-muted-foreground"><%= Current.user&.email_address&.split("@")&.first %></span>
+        <%= button_to "Sign out", session_path, method: :delete, class: "rounded-md border border-input bg-background px-3 py-2 text-sm font-medium text-center transition-colors hover:bg-accent" %>
+      <% else %>
+        <%= link_to "Sign in", login_path, class: "rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" %>
+        <%= render_button "Get Started", as: :a, href: signup_path, class: "w-full justify-center" %>
       <% end %>
     </div>
   </div>

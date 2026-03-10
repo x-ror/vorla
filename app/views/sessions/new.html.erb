@@ -1,47 +1,37 @@
 <% content_for(:title) { "Sign In - Vorla" } %>
 
-<div class="auth-page">
-  <div class="auth-card animate-slide-up">
-    <div class="auth-header">
-      <a href="/">
-        <div class="logo-icon">V</div>
-      </a>
-      <h1>Welcome back</h1>
-      <p>Sign in to access your account</p>
-    </div>
+<div class="flex min-h-screen items-center justify-center px-4 py-10">
+  <div class="w-full max-w-sm animate-slide-up">
+    <%= render_card(class: "w-full") do %>
+      <div class="p-8">
+        <div class="mb-8 text-center">
+          <a href="/" class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-extrabold text-xl mb-6">V</a>
+          <h1 class="text-xl font-extrabold tracking-tight">Welcome back</h1>
+          <p class="mt-1 text-sm text-muted-foreground">Sign in to access your account</p>
+        </div>
 
-    <%= form_with url: session_path, class: "auth-form" do |f| %>
-      <% if flash[:alert] %>
-        <div class="alert alert-error" style="max-width:100%;"><%= flash[:alert] %></div>
-      <% end %>
+        <%= form_with url: session_path, class: "space-y-5" do |f| %>
+          <% if flash[:alert] %>
+            <%= render_alert title: "Error", description: flash[:alert], variant: :destructive %>
+          <% end %>
 
-      <div class="field">
-        <label for="email_address">Email</label>
-        <div class="input-wrap">
-          <span class="icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          </span>
-          <%= f.email_field :email_address, placeholder: "you@example.com", autocomplete: "email", required: true %>
+          <div class="space-y-1.5">
+            <label class="text-sm font-medium">Email</label>
+            <%= render_input name: "email_address", type: :email, placeholder: "you@example.com", autocomplete: "email", required: true %>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-sm font-medium">Password</label>
+            <%= render_input name: "password", type: :password, placeholder: "Your password", autocomplete: "current-password", required: true %>
+          </div>
+
+          <%= render_button "Sign In →", class: "w-full" %>
+        <% end %>
+
+        <div class="mt-6 text-center text-sm text-muted-foreground">
+          Don't have an account? <a href="<%= signup_path %>" class="font-semibold text-primary hover:underline">Sign up</a>
         </div>
       </div>
-
-      <div class="field">
-        <label for="password">Password</label>
-        <div class="input-wrap">
-          <span class="icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </span>
-          <%= f.password_field :password, placeholder: "Your password", autocomplete: "current-password", required: true %>
-        </div>
-      </div>
-
-      <button type="submit" class="submit-btn">
-        Sign In &rarr;
-      </button>
     <% end %>
-
-    <div class="auth-footer">
-      <p>Don't have an account? <a href="<%= signup_path %>">Sign up</a></p>
-    </div>
   </div>
 </div>

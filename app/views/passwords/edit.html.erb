@@ -1,9 +1,33 @@
-<h1>Update your password</h1>
+<% content_for(:title) { "Update Password - Vorla" } %>
 
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+<div class="flex min-h-screen items-center justify-center px-4 py-10">
+  <div class="w-full max-w-sm animate-slide-up">
+    <%= render_card(class: "w-full") do %>
+      <div class="p-8">
+        <div class="mb-8 text-center">
+          <a href="/" class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-extrabold text-xl mb-6">V</a>
+          <h1 class="text-xl font-extrabold tracking-tight">Update your password</h1>
+          <p class="mt-1 text-sm text-muted-foreground">Enter your new password below</p>
+        </div>
 
-<%= form_with url: password_path(params[:token]), method: :put do |form| %>
-  <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: "Enter new password", maxlength: 72 %><br>
-  <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Repeat new password", maxlength: 72 %><br>
-  <%= form.submit "Save" %>
-<% end %>
+        <%= form_with url: password_path(params[:token]), method: :put, class: "space-y-5" do |form| %>
+          <% if flash[:alert] %>
+            <%= render_alert title: "Error", description: flash[:alert], variant: :destructive %>
+          <% end %>
+
+          <div class="space-y-1.5">
+            <label class="text-sm font-medium">New Password</label>
+            <%= render_input name: "password", type: :password, placeholder: "Enter new password", autocomplete: "new-password", required: true %>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-sm font-medium">Confirm Password</label>
+            <%= render_input name: "password_confirmation", type: :password, placeholder: "Repeat new password", autocomplete: "new-password", required: true %>
+          </div>
+
+          <%= render_button "Save →", class: "w-full" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

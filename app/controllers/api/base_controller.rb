@@ -10,6 +10,7 @@ class Api::BaseController < ApplicationController
 
   def proxy_url(url)
     return url unless url
-    "#{request.base_url}/api/proxy?url=#{CGI.escape(url)}"
+    clean_url = url.gsub("&amp;", "&")
+    "#{request.base_url}/api/proxy?url=#{CGI.escape(clean_url)}"
   end
 end

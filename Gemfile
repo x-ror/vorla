@@ -63,3 +63,5 @@ end
 gem "tailwindcss-rails", "~> 4.4"
 
 gem "shadcn-ui", "~> 0.0.5"
+
+gem "tailwind_merge", "~> 1.4"
