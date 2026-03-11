@@ -33,6 +33,12 @@ Rails.application.routes.draw do
     delete :disconnect_instagram
   end
 
+  # Bookmarks
+  resources :bookmarks, only: %i[index create destroy]
+
+  # History
+  get "history", to: "history#index"
+
   # Pages
   root "pages#home"
   get "download",        to: "pages#download"

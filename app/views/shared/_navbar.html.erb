@@ -44,6 +44,14 @@
               <%= lucide_icon("user", class: "h-4 w-4") %>
               Profile
             <% end %>
+            <%= link_to bookmarks_path, class: "flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground" do %>
+              <%= lucide_icon("bookmark", class: "h-4 w-4") %>
+              Bookmarks
+            <% end %>
+            <%= link_to history_path, class: "flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground" do %>
+              <%= lucide_icon("clock", class: "h-4 w-4") %>
+              History
+            <% end %>
             <%# link_to pricing_path, class: "flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground" do %>
               <%#   lucide_icon("credit-card", class: "h-4 w-4") %>
               <%#   Billing %>

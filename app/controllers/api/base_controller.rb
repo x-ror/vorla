@@ -1,7 +1,12 @@
 class Api::BaseController < ApplicationController
   allow_unauthenticated_access
   skip_forgery_protection
+  before_action :set_current_session
   include UsageTracking
+
+  def set_current_session
+    resume_session
+  end
 
   private
 
