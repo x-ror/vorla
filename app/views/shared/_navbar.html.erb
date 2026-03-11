@@ -4,14 +4,12 @@
     class: "relative px-3 py-2 text-sm font-medium transition-colors hover:text-foreground #{active ? 'text-foreground after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:rounded-full after:bg-primary' : 'text-muted-foreground'}",
     aria: active ? { current: "page" } : {}
 } %>
-
 <header class="sticky top-0 z-50 border-b border-border/50 bg-background/80 shadow-sm backdrop-blur-md">
   <nav class="mx-auto flex h-14 max-w-6xl items-center gap-8 px-4" aria-label="Main navigation">
     <a href="/" class="flex items-center gap-2 font-extrabold tracking-tight" aria-label="X-ROR home">
       <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-extrabold" aria-hidden="true">X</span>
       X-ROR
     </a>
-
     <!-- Desktop nav -->
     <div class="hidden items-center gap-0.5 md:flex">
       <%= nav_link.("Download", download_path) %>
@@ -20,14 +18,12 @@
       <%= nav_link.("Analyzer", analyzer_path) %>
       <%# nav_link.("Pricing", pricing_path) %>
     </div>
-
     <!-- Desktop actions -->
     <div class="hidden items-center gap-1.5 md:flex ml-auto">
       <button type="button" data-action="click->theme#toggle" aria-label="Toggle dark mode" class="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-        <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <%= lucide_icon("sun", class: "h-4 w-4 dark:hidden", aria_hidden: true) %>
+        <%= lucide_icon("moon", class: "hidden h-4 w-4 dark:block", aria_hidden: true) %>
       </button>
-
       <% if authenticated? %>
         <div class="relative border-l border-border/50 pl-3 ml-1" data-controller="dropdown">
           <button type="button" data-action="click->dropdown#toggle" class="inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
@@ -37,69 +33,64 @@
               <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-semibold text-muted-foreground"><%= Current.user&.email_address&.first&.upcase %></span>
             <% end %>
             <%= Current.user&.email_address&.split("@")&.first %>
-            <svg class="h-3.5 w-3.5 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            <%= lucide_icon("chevron-down", class: "h-3.5 w-3.5 opacity-60", aria_hidden: true) %>
           </button>
-
           <div data-dropdown-target="menu" class="hidden absolute right-0 top-full mt-1.5 w-48 rounded-lg border border-border bg-background p-1 shadow-lg">
             <div class="px-3 py-2 border-b border-border/50 mb-1">
               <p class="text-sm font-medium text-foreground"><%= Current.user&.email_address&.split("@")&.first %></p>
               <p class="text-xs text-muted-foreground truncate"><%= Current.user&.email_address %></p>
             </div>
             <%= link_to profile_path, class: "flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground" do %>
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <%= lucide_icon("user", class: "h-4 w-4") %>
               Profile
             <% end %>
             <%# link_to pricing_path, class: "flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground" do %>
-            <%#   <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> %>
-            <%#   Billing %>
-            <%# end %>
-            <%= link_to active_sessions_path, class: "flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground" do %>
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              Security
-            <% end %>
-            <div class="my-1 border-t border-border/50"></div>
-            <%= button_to session_path, method: :delete, class: "flex w-full items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground" do %>
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-              Sign out
-            <% end %>
+              <%#   lucide_icon("credit-card", class: "h-4 w-4") %>
+              <%#   Billing %>
+              <%# end %>
+              <%= link_to active_sessions_path, class: "flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground" do %>
+                <%= lucide_icon("lock", class: "h-4 w-4") %>
+                Security
+              <% end %>
+              <div class="my-1 border-t border-border/50"></div>
+              <%= button_to session_path, method: :delete, class: "flex w-full items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground" do %>
+                <%= lucide_icon("log-out", class: "h-4 w-4") %>
+                Sign out
+              <% end %>
+            </div>
           </div>
-        </div>
-      <% else %>
-        <%= link_to "Sign in", login_path, class: "inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" %>
-        <%= render_button "Get Started", as: :a, href: signup_path, size: :sm %>
-      <% end %>
-    </div>
-
-    <!-- Mobile hamburger -->
-    <button type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground md:hidden ml-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring hover:bg-accent" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-    </button>
-  </nav>
-
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden border-t border-border bg-background px-4 pb-4 md:hidden">
-    <div class="flex flex-col gap-1 pt-2">
-      <%= nav_link.("Download", download_path) %>
-      <%= nav_link.("Stories", stories_path) %>
-      <%= nav_link.("Profile Pic", profile_picture_path) %>
-      <%= nav_link.("Analyzer", analyzer_path) %>
-      <%# nav_link.("Pricing", pricing_path) %>
-    </div>
-
-    <div class="mt-3 flex flex-col gap-2 border-t border-border pt-3">
-      <button type="button" data-action="click->theme#toggle" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" aria-label="Toggle dark mode">
-        <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        Toggle theme
+        <% else %>
+          <%= link_to "Sign in", login_path, class: "inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" %>
+          <%= render_button "Get Started", as: :a, href: signup_path, size: :sm %>
+        <% end %>
+      </div>
+      <!-- Mobile hamburger -->
+      <button type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground md:hidden ml-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring hover:bg-accent" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <%= lucide_icon("menu", class: "h-5 w-5", aria_hidden: true) %>
       </button>
-
-      <% if authenticated? %>
-        <span class="px-3 py-2 text-sm text-muted-foreground"><%= Current.user&.email_address&.split("@")&.first %></span>
-        <%= button_to "Sign out", session_path, method: :delete, class: "rounded-md border border-input bg-background px-3 py-2 text-sm font-medium text-center transition-colors hover:bg-accent" %>
-      <% else %>
-        <%= link_to "Sign in", login_path, class: "rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" %>
-        <%= render_button "Get Started", as: :a, href: signup_path, class: "w-full justify-center" %>
-      <% end %>
+    </nav>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden border-t border-border bg-background px-4 pb-4 md:hidden">
+      <div class="flex flex-col gap-1 pt-2">
+        <%= nav_link.("Download", download_path) %>
+        <%= nav_link.("Stories", stories_path) %>
+        <%= nav_link.("Profile Pic", profile_picture_path) %>
+        <%= nav_link.("Analyzer", analyzer_path) %>
+        <%# nav_link.("Pricing", pricing_path) %>
+      </div>
+      <div class="mt-3 flex flex-col gap-2 border-t border-border pt-3">
+        <button type="button" data-action="click->theme#toggle" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" aria-label="Toggle dark mode">
+          <%= lucide_icon("sun", class: "h-4 w-4 dark:hidden", aria_hidden: true) %>
+          <%= lucide_icon("moon", class: "hidden h-4 w-4 dark:block", aria_hidden: true) %>
+          Toggle theme
+        </button>
+        <% if authenticated? %>
+          <span class="px-3 py-2 text-sm text-muted-foreground"><%= Current.user&.email_address&.split("@")&.first %></span>
+          <%= button_to "Sign out", session_path, method: :delete, class: "rounded-md border border-input bg-background px-3 py-2 text-sm font-medium text-center transition-colors hover:bg-accent" %>
+        <% else %>
+          <%= link_to "Sign in", login_path, class: "rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent" %>
+          <%= render_button "Get Started", as: :a, href: signup_path, class: "w-full justify-center" %>
+        <% end %>
+      </div>
     </div>
-  </div>
-</header>
+  </header>

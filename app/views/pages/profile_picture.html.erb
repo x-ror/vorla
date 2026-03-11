@@ -1,11 +1,9 @@
 <% content_for(:title) { "Profile Picture Downloader - X-ROR" } %>
-
 <%= render "shared/navbar" %>
-
 <main class="flex-1 pb-10" data-controller="profile-picture">
   <div class="mx-auto max-w-2xl px-4 pt-16 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
-      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <%= lucide_icon("user", class: "h-6 w-6") %>
     </div>
     <h1 class="text-2xl font-extrabold tracking-tight">Profile Picture Downloader</h1>
     <p class="mt-2 text-muted-foreground">Get any Instagram profile picture in full HD resolution</p>
@@ -13,20 +11,17 @@
       <span data-usage-counter-target="count"></span> remaining today
     </p>
   </div>
-
   <div class="mx-auto mt-8 flex max-w-2xl flex-col items-center gap-6 px-4">
     <form data-action="submit->profile-picture#fetch" aria-label="Download profile picture" class="flex w-full max-w-xl items-center gap-2 rounded-lg border-2 border-input bg-card p-1 transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
       <span class="pl-4 font-semibold text-muted-foreground" aria-hidden="true">@</span>
       <label for="pfp-username" class="sr-only">Instagram username or URL</label>
       <input id="pfp-username" type="text" data-profile-picture-target="username" placeholder="username or Instagram URL" autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
       <button type="submit" data-profile-picture-target="submitBtn" aria-label="Fetch" class="flex h-11 w-11 items-center justify-center rounded-md bg-primary text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <%= lucide_icon("search", class: "h-5 w-5", aria_hidden: true) %>
       </button>
     </form>
-
     <div data-profile-picture-target="error" style="display:none;" role="alert"></div>
     <div data-profile-picture-target="result" style="display:none;" role="region" aria-live="polite"></div>
   </div>
 </main>
-
 <%= render "shared/footer" %>

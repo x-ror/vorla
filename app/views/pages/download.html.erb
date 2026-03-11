@@ -1,11 +1,9 @@
 <% content_for(:title) { "Download Instagram Content - X-ROR" } %>
-
 <%= render "shared/navbar" %>
-
 <main class="flex-1 pb-10" data-controller="download lightbox" data-lightbox-index-value="-1">
   <div class="mx-auto max-w-2xl px-4 pt-16 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
-      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <%= lucide_icon("download", class: "h-6 w-6") %>
     </div>
     <h1 class="text-2xl font-extrabold tracking-tight">Instagram Downloader</h1>
     <p class="mt-2 text-muted-foreground">Paste any Instagram post, reel, or carousel URL to download</p>
@@ -13,11 +11,10 @@
       <span data-usage-counter-target="count"></span> remaining today
     </p>
   </div>
-
   <div class="mx-auto max-w-xl px-4 mt-8">
     <form data-action="submit->download#process" aria-label="Download Instagram content" class="flex w-full items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 mb-5">
       <span class="pl-3 text-muted-foreground" aria-hidden="true">
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        <%= lucide_icon("link", class: "h-5 w-5") %>
       </span>
       <label for="download-url" class="sr-only">Instagram URL</label>
       <input id="download-url" type="url" data-download-target="url" placeholder="Paste Instagram URL here..." autocomplete="off" value="<%= params[:url] %>" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
@@ -26,11 +23,9 @@
         <span data-download-target="spinner" class="spinner" style="display:none;" aria-hidden="true"></span>
       </button>
     </form>
-
     <div data-download-target="error" style="display:none;" role="alert"></div>
     <div data-download-target="result" style="display:none;" role="region" aria-live="polite"></div>
   </div>
-
   <!-- How it works -->
   <section class="mx-auto max-w-3xl px-4 mt-20" aria-labelledby="how-it-works">
     <h2 id="how-it-works" class="text-center text-xl font-extrabold tracking-tight mb-8">How it works</h2>
@@ -42,7 +37,6 @@
           <p class="mt-1 text-sm text-muted-foreground">Copy the Instagram post, reel, or carousel URL</p>
         </div>
       <% end %>
-
       <%= render_card do %>
         <div class="p-6 text-center">
           <%= render_badge "2", class: "mb-3" %>
@@ -50,7 +44,6 @@
           <p class="mt-1 text-sm text-muted-foreground">Paste the URL above and click download</p>
         </div>
       <% end %>
-
       <%= render_card do %>
         <div class="p-6 text-center">
           <%= render_badge "3", class: "mb-3" %>
@@ -61,5 +54,4 @@
     </div>
   </section>
 </main>
-
 <%= render "shared/footer" %>

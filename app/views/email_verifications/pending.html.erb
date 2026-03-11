@@ -1,5 +1,4 @@
 <% content_for(:title) { "Verify Your Email - X-ROR" } %>
-
 <main class="flex min-h-screen items-center justify-center px-4 py-10">
   <div class="w-full max-w-sm animate-slide-up">
     <%= render_card(class: "w-full") do %>
@@ -16,19 +15,16 @@
             <% end %>
           </p>
         </div>
-
         <div class="space-y-4">
           <div class="rounded-lg border border-border bg-muted/50 p-4 text-center">
-            <svg class="mx-auto mb-3 h-10 w-10 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <%= lucide_icon("mail", class: "mx-auto mb-3 h-10 w-10 text-muted-foreground", stroke_width: 1.5) %>
             <p class="text-sm text-muted-foreground">Click the link in the email to activate your account. Check your spam folder if you don't see it.</p>
           </div>
-
           <%= form_with url: resend_verification_path, class: "mt-4" do |f| %>
             <input type="hidden" name="email_address" value="<%= @email %>">
             <%= render_button "Resend verification email", variant: :outline, class: "w-full" %>
           <% end %>
         </div>
-
         <div class="mt-6 text-center text-sm text-muted-foreground">
           Already verified? <a href="<%= login_path %>" class="font-semibold text-primary hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Sign in</a>
         </div>

@@ -1,11 +1,9 @@
 <% content_for(:title) { "Hashtag Generator - X-ROR" } %>
-
 <%= render "shared/navbar" %>
-
 <main class="flex-1 pb-10" data-controller="hashtags">
   <div class="mx-auto max-w-2xl px-4 pt-16 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400" aria-hidden="true">
-      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+      <%= lucide_icon("hash", class: "h-6 w-6") %>
     </div>
     <h1 class="text-2xl font-extrabold tracking-tight">Hashtag Generator</h1>
     <p class="mt-2 text-muted-foreground">Generate optimized hashtags for maximum reach and engagement</p>
@@ -13,26 +11,22 @@
       <span data-usage-counter-target="count"></span> remaining today
     </p>
   </div>
-
   <div class="mx-auto mt-8 flex max-w-2xl flex-col items-center gap-6 px-4">
     <form data-action="submit->hashtags#generate" aria-label="Generate hashtags" class="flex w-full max-w-lg items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
       <span class="pl-3 text-muted-foreground" aria-hidden="true">
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+        <%= lucide_icon("sparkles", class: "h-5 w-5") %>
       </span>
       <label for="hashtag-topic" class="sr-only">Topic or keyword</label>
       <input id="hashtag-topic" type="text" data-hashtags-target="topic" placeholder="Enter a topic or keyword..." autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
       <button type="submit" data-hashtags-target="submitBtn" class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">Generate</button>
     </form>
-
     <div class="flex flex-wrap justify-center gap-2 max-w-lg" role="group" aria-label="Quick topic suggestions">
       <% %w[Fashion Food Travel Fitness Photography Tech Beauty Art].each do |t| %>
         <button type="button" class="topic-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-card border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" data-action="click->hashtags#selectTopic" data-topic="<%= t %>"><%= t %></button>
       <% end %>
     </div>
-
     <div data-hashtags-target="error" style="display:none;" role="alert"></div>
     <div data-hashtags-target="result" style="display:none;" role="region" aria-live="polite"></div>
   </div>
 </main>
-
 <%= render "shared/footer" %>

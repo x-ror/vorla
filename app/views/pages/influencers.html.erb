@@ -1,40 +1,34 @@
 <% content_for(:title) { "Influencer Search - X-ROR" } %>
-
 <%= render "shared/navbar" %>
-
 <main class="flex-1 pb-10" data-controller="influencers">
   <div class="mx-auto max-w-2xl px-4 pt-16 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400" aria-hidden="true">
-      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v12M6 12h12"/><circle cx="12" cy="12" r="10"/></svg>
+      <%= lucide_icon("circle-plus", class: "h-6 w-6") %>
     </div>
     <h1 class="text-2xl font-extrabold tracking-tight">Influencer Search</h1>
     <p class="mt-2 text-muted-foreground">Find influencers by niche, engagement rate, and follower count</p>
   </div>
-
   <div class="mx-auto max-w-3xl px-4 mt-8">
     <form data-action="submit->influencers#search" aria-label="Search for influencers" class="flex w-full items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 mb-5">
       <span class="pl-3 text-muted-foreground" aria-hidden="true">
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <%= lucide_icon("search", class: "h-5 w-5") %>
       </span>
       <label for="influencer-query" class="sr-only">Search keyword, niche, or username</label>
       <input id="influencer-query" type="text" data-influencers-target="query" placeholder="Search by keyword, niche, or username..." autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
       <button type="submit" data-influencers-target="submitBtn" class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">Search</button>
     </form>
-
     <div class="flex flex-wrap gap-2 mb-5" role="group" aria-label="Category filters">
       <% %w[All Fashion Fitness Food Travel Tech Beauty Lifestyle].each_with_index do |cat, i| %>
         <button type="button" class="cat-pill <%= 'active' if i == 0 %>" data-action="click->influencers#selectCategory" data-category="<%= cat.downcase %>"><%= cat %></button>
       <% end %>
     </div>
-
     <div data-influencers-target="result" role="region" aria-live="polite">
       <div class="empty-state">
-        <svg class="h-10 w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v12M6 12h12"/><circle cx="12" cy="12" r="10"/></svg>
+        <%= lucide_icon("circle-plus", class: "h-10 w-10", stroke_width: 1.5, aria_hidden: true) %>
         <h3>Search for influencers</h3>
         <p>Enter a keyword or select a category to find relevant influencers</p>
       </div>
     </div>
   </div>
 </main>
-
 <%= render "shared/footer" %>
