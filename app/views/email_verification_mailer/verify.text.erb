@@ -1,0 +1,7 @@
+Welcome to Vorla!
+
+Please verify your email address by visiting the link below:
+
+<%= verify_email_url(token: @user.generate_token_for(:email_verification)) %>
+
+This link will expire in 2 days.

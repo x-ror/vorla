@@ -9,7 +9,7 @@
 /* --- Dark mode via class --- */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* --- shadcn CSS variables --- */
+/* --- CSS variables --- */
 @layer base {
   :root {
     --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
@@ -83,7 +83,7 @@
   }
 }
 
-/* --- Theme extension for shadcn colors --- */
+/* --- Theme extension for colors --- */
 @theme {
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));

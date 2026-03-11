@@ -7,6 +7,30 @@ Rails.application.routes.draw do
   get "signup", to: "registrations#new"
   post "signup", to: "registrations#create"
 
+  # Email verification
+  get "verify_email", to: "email_verifications#show"
+  post "resend_verification", to: "email_verifications#create"
+  get "verification_pending", to: "email_verifications#pending"
+
+  # Active sessions & security
+  resources :active_sessions, only: %i[index destroy]
+  delete "active_sessions", to: "active_sessions#destroy_all", as: :destroy_all_active_sessions
+
+  # Passkeys
+  post "passkeys/register/options", to: "passkey_registrations#options"
+  post "passkeys/register/verify", to: "passkey_registrations#verify"
+  post "passkeys/authenticate/options", to: "passkey_sessions#options"
+  post "passkeys/authenticate/verify", to: "passkey_sessions#verify"
+  delete "passkeys/:id", to: "passkey_registrations#destroy", as: :passkey
+
+  # Profile
+  resource :profile, only: %i[show update] do
+    patch :update_avatar
+    delete :remove_avatar
+    post :connect_instagram
+    delete :disconnect_instagram
+  end
+
   # Pages
   root "pages#home"
   get "download", to: "pages#download"

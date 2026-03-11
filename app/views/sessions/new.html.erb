@@ -11,6 +11,9 @@
         </div>
 
         <%= form_with url: session_path, class: "space-y-5" do |f| %>
+          <% if flash[:notice] %>
+            <%= render_alert title: "Success", description: flash[:notice] %>
+          <% end %>
           <% if flash[:alert] %>
             <%= render_alert title: "Error", description: flash[:alert], variant: :destructive %>
           <% end %>
@@ -21,12 +24,29 @@
           </div>
 
           <div class="space-y-1.5">
-            <label for="login-password" class="text-sm font-medium">Password</label>
+            <div class="flex items-center justify-between">
+              <label for="login-password" class="text-sm font-medium">Password</label>
+              <a href="<%= new_password_path %>" class="text-xs font-medium text-primary hover:underline">Forgot password?</a>
+            </div>
             <%= render_input name: "password", id: "login-password", type: :password, placeholder: "Your password", autocomplete: "current-password", required: true %>
           </div>
 
           <%= render_button "Sign In →", class: "w-full" %>
         <% end %>
+
+        <div class="relative my-6">
+          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-border"></div></div>
+          <div class="relative flex justify-center text-xs"><span class="bg-card px-2 text-muted-foreground">or</span></div>
+        </div>
+
+        <div data-controller="passkey">
+          <button type="button" data-action="click->passkey#authenticate"
+            class="inline-flex w-full items-center justify-center gap-2 rounded-md border border-input bg-background px-4 py-2.5 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10v4"/><path d="M7.5 7.5c.7-.7 1.5-1 2.5-1a3.5 3.5 0 0 1 0 7H9"/><path d="M2 12a10 10 0 1 0 20 0 10 10 0 1 0-20 0"/></svg>
+            Sign in with passkey
+          </button>
+          <p class="mt-2 text-center text-xs text-muted-foreground" data-passkey-target="status"></p>
+        </div>
 
         <div class="mt-6 text-center text-sm text-muted-foreground">
           Don't have an account? <a href="<%= signup_path %>" class="font-semibold text-primary hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Sign up</a>

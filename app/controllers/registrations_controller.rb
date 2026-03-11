@@ -9,8 +9,8 @@ class RegistrationsController < ApplicationController
     user.plan = "free"
 
     if user.save
-      start_new_session_for(user)
-      redirect_to download_path, notice: "Welcome to Vorla!"
+      EmailVerificationMailer.verify(user).deliver_later
+      redirect_to verification_pending_path(email: user.email_address), notice: "Please check your email to verify your account."
     else
       redirect_to signup_path, alert: user.errors.full_messages.join(", ")
     end

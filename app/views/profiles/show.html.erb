@@ -1,0 +1,119 @@
+<% content_for(:title) { "Profile - Vorla" } %>
+
+<%= render "shared/navbar" %>
+
+<main class="flex-1 bg-muted/50 pb-16 dark:bg-background">
+  <div class="mx-auto max-w-3xl px-6 pt-12">
+
+    <p class="text-xs font-medium uppercase tracking-widest text-muted-foreground">Account</p>
+    <h1 class="mt-1 text-3xl font-normal tracking-tight">Profile</h1>
+
+    <%# ══ Card 1 — Identity ══ %>
+    <%= form_with model: @user, url: profile_path, method: :patch, data: { controller: "profile-edit" }, class: "mt-10" do |f| %>
+      <div class="rounded-xl border border-border/80 bg-card shadow-md dark:shadow-none">
+
+        <div class="flex items-center justify-between border-b border-border px-6 py-4">
+          <span class="text-xs font-medium uppercase tracking-widest text-muted-foreground">Identity</span>
+          <div class="flex gap-2">
+            <button type="button" data-action="click->profile-edit#edit" data-profile-edit-target="editBtn" class="rounded-lg bg-primary px-5 py-2 text-xs font-semibold tracking-wide text-primary-foreground transition-colors hover:bg-primary/90">Edit profile</button>
+            <button type="submit" data-profile-edit-target="saveBtn" class="hidden rounded-lg bg-primary px-5 py-2 text-xs font-semibold tracking-wide text-primary-foreground transition-colors hover:bg-primary/90">Save changes</button>
+            <button type="button" data-action="click->profile-edit#cancel" data-profile-edit-target="cancelBtn" class="hidden rounded-lg border border-border px-5 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground">Cancel</button>
+          </div>
+        </div>
+
+        <div class="p-6">
+          <%# Avatar row %>
+          <div class="mb-8 flex items-start gap-6">
+            <%= form_with url: update_avatar_profile_path, method: :patch, multipart: true, data: { controller: "avatar" }, class: "contents" do %>
+              <input type="file" name="avatar" accept="image/*" class="sr-only" data-avatar-target="input" data-action="change->avatar#preview">
+
+              <button type="button" data-action="click->avatar#pick" class="group relative h-24 w-24 shrink-0 cursor-pointer overflow-hidden rounded-full border-2 border-border transition-colors hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                <% if @user.avatar.attached? %>
+                  <%= image_tag @user.avatar, class: "h-full w-full object-cover transition-[filter] duration-200 group-hover:brightness-50", data: { avatar_target: "preview" } %>
+                <% else %>
+                  <img src="" alt="" class="hidden h-full w-full object-cover" data-avatar-target="preview">
+                  <span class="flex h-full w-full items-center justify-center bg-secondary text-2xl font-semibold text-muted-foreground transition-colors duration-200 group-hover:bg-secondary/70" data-avatar-target="placeholder"><%= @user.email_address&.first&.upcase %></span>
+                <% end %>
+                <span class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                  <svg class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </span>
+              </button>
+            <% end %>
+
+            <div class="pt-1">
+              <p class="text-sm leading-relaxed text-muted-foreground">Click the avatar or use the button below to upload a new photo.</p>
+              <div class="mt-3 flex items-center gap-2">
+                <button type="button" data-action="click->avatar#pick" class="rounded-lg border border-border px-3.5 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground">Upload photo</button>
+                <% if @user.avatar.attached? %>
+                  <%= button_to "Remove", remove_avatar_profile_path, method: :delete, class: "py-1.5 px-1 text-xs text-destructive/70 transition-colors hover:text-destructive" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <%# Fields %>
+          <div class="space-y-4">
+            <div>
+              <label for="full_name" class="mb-2 block text-xs font-medium uppercase tracking-wider text-muted-foreground">Full name <span class="normal-case tracking-normal font-light opacity-40">— optional</span></label>
+              <input type="text" name="user[full_name]" id="full_name" value="<%= @user.full_name %>" data-original="<%= @user.full_name %>" data-profile-edit-target="field" placeholder="Full name" disabled class="w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm transition-all placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:cursor-default disabled:border-transparent disabled:bg-transparent disabled:opacity-40">
+            </div>
+            <div>
+              <label for="email" class="mb-2 block text-xs font-medium uppercase tracking-wider text-muted-foreground">Email address</label>
+              <input type="email" id="email" value="<%= @user.email_address %>" disabled class="w-full rounded-lg border-transparent bg-transparent px-3.5 py-2.5 text-sm opacity-40 cursor-default">
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <%# ══ Card 2 — Connected accounts ══ %>
+    <div class="mt-3.5 rounded-xl border border-border/80 bg-card shadow-md dark:shadow-none">
+      <div class="border-b border-border px-6 py-4">
+        <span class="text-xs font-medium uppercase tracking-widest text-muted-foreground">Connected accounts</span>
+      </div>
+
+      <div class="px-6 py-2">
+        <div class="flex items-center gap-4 py-4">
+          <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-background">
+            <svg class="h-4 w-4 text-pink-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+          <div class="min-w-0 flex-1">
+            <p class="text-sm font-medium">Instagram</p>
+            <% if @user.instagram_username.present? %>
+              <p class="text-xs text-muted-foreground">Connected as @<%= @user.instagram_username %></p>
+            <% else %>
+              <p class="text-xs text-muted-foreground">Not connected</p>
+            <% end %>
+          </div>
+          <% if @user.instagram_username.present? %>
+            <span class="rounded bg-green-500/10 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-green-500">Active</span>
+            <%= button_to disconnect_instagram_profile_path, method: :delete, class: "rounded-lg border border-green-500/20 bg-green-500/5 px-3.5 py-1.5 text-xs font-medium text-green-500 transition-colors hover:bg-green-500/10" do %>
+              Disconnect
+            <% end %>
+          <% else %>
+            <span class="rounded bg-muted px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-muted-foreground">Off</span>
+            <button type="button" onclick="document.getElementById('ig-connect-form').classList.toggle('hidden')" class="rounded-lg border border-border px-3.5 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/30 hover:text-primary">Connect</button>
+          <% end %>
+        </div>
+
+        <% unless @user.instagram_username.present? %>
+          <%= form_with url: connect_instagram_profile_path, method: :post, id: "ig-connect-form", class: "hidden border-t border-border py-4" do %>
+            <div class="flex items-end gap-3">
+              <div class="flex-1">
+                <label for="instagram_username" class="mb-2 block text-xs font-medium uppercase tracking-wider text-muted-foreground">Instagram username</label>
+                <div class="flex items-center rounded-lg border border-input bg-background transition-colors focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20">
+                  <span class="pl-3 text-sm text-muted-foreground">@</span>
+                  <input type="text" name="instagram_username" id="instagram_username" placeholder="username" autocomplete="off" class="flex-1 border-0 bg-transparent px-2 py-2.5 text-sm outline-none placeholder:text-muted-foreground">
+                </div>
+              </div>
+              <button type="submit" class="rounded-lg bg-primary px-5 py-2.5 text-xs font-semibold text-primary-foreground transition-colors hover:bg-primary/90">Connect</button>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<%= render "shared/footer" %>

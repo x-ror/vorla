@@ -1,0 +1,11 @@
+<p>Welcome to Vorla!</p>
+
+<p>
+  Please verify your email address by clicking the link below:
+</p>
+
+<p>
+  <%= link_to "Verify my email", verify_email_url(token: @user.generate_token_for(:email_verification)) %>
+</p>
+
+<p>This link will expire in 2 days.</p>
