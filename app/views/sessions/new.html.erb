@@ -11,13 +11,6 @@
         </div>
 
         <%= form_with url: session_path, class: "space-y-5" do |f| %>
-          <% if flash[:notice] %>
-            <%= render_alert title: "Success", description: flash[:notice] %>
-          <% end %>
-          <% if flash[:alert] %>
-            <%= render_alert title: "Error", description: flash[:alert], variant: :destructive %>
-          <% end %>
-
           <div class="space-y-1.5">
             <label for="login-email" class="text-sm font-medium">Email</label>
             <%= render_input name: "email_address", id: "login-email", type: :email, placeholder: "you@example.com", autocomplete: "email", required: true %>
@@ -42,7 +35,7 @@
         <div data-controller="passkey">
           <button type="button" data-action="click->passkey#authenticate"
             class="inline-flex w-full items-center justify-center gap-2 rounded-md border border-input bg-background px-4 py-2.5 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10v4"/><path d="M7.5 7.5c.7-.7 1.5-1 2.5-1a3.5 3.5 0 0 1 0 7H9"/><path d="M2 12a10 10 0 1 0 20 0 10 10 0 1 0-20 0"/></svg>
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></svg>
             Sign in with passkey
           </button>
           <p class="mt-2 text-center text-xs text-muted-foreground" data-passkey-target="status"></p>

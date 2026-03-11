@@ -11,6 +11,13 @@ export default class extends Controller {
         method: "POST",
         headers: { "X-CSRF-Token": this.csrfToken, "Accept": "application/json" }
       })
+
+      if (!optionsResponse.ok) {
+        const error = await optionsResponse.json().catch(() => ({ error: "Server error" }))
+        this.setStatus(`Error: ${error.error || "Could not start registration"}`)
+        return
+      }
+
       const options = await optionsResponse.json()
 
       options.challenge = this.base64urlToBuffer(options.challenge)
@@ -52,6 +59,8 @@ export default class extends Controller {
     } catch (e) {
       if (e.name === "NotAllowedError") {
         this.setStatus("Registration cancelled.")
+      } else if (e.name === "InvalidStateError") {
+        this.setStatus("This passkey is already registered.")
       } else {
         this.setStatus(`Error: ${e.message}`)
       }

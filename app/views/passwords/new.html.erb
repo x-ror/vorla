@@ -11,10 +11,6 @@
         </div>
 
         <%= form_with url: passwords_path, class: "space-y-5" do |form| %>
-          <% if flash[:alert] %>
-            <%= render_alert title: "Error", description: flash[:alert], variant: :destructive %>
-          <% end %>
-
           <div class="space-y-1.5">
             <label for="reset-email" class="text-sm font-medium">Email</label>
             <%= render_input name: "email_address", id: "reset-email", type: :email, placeholder: "you@example.com", autocomplete: "username", required: true, value: params[:email_address] %>

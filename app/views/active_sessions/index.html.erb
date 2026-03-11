@@ -62,7 +62,7 @@
     <%# ══ Quick actions ══ %>
     <div class="mt-8 flex flex-wrap items-center gap-3" data-controller="passkey">
       <button type="button" data-action="click->passkey#register" class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-xs font-medium text-muted-foreground shadow-sm transition-colors hover:text-foreground">
-        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-fingerprint-pattern-icon lucide-fingerprint-pattern"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></svg>
+        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></svg>
         Add a passkey
       </button>
 
@@ -78,14 +78,14 @@
       <div class="mt-4 space-y-2">
         <% @passkey_credentials.each do |cred| %>
           <div class="flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-sm">
-            <svg class="h-4 w-4 shrink-0 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10v4"/><path d="M7.5 7.5c.7-.7 1.5-1 2.5-1a3.5 3.5 0 0 1 0 7H9"/><path d="M2 12a10 10 0 1 0 20 0 10 10 0 1 0-20 0"/></svg>
+            <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-border bg-background">
+              <svg class="h-4 w-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></svg>
+            </div>
             <span class="flex-1 text-sm font-medium"><%= cred.nickname %></span>
-            <span class="text-xs text-muted-foreground"><%= time_ago_in_words(cred.created_at) %> ago</span>
-            <%= button_to passkey_path(cred), method: :delete,
-              class: "text-xs font-medium text-destructive/70 transition-colors hover:text-destructive",
-              data: { turbo_confirm: "Remove this passkey?" } do %>
-              Remove
-            <% end %>
+            <span class="shrink-0 text-xs text-muted-foreground"><%= time_ago_in_words(cred.created_at) %> ago</span>
+            <%= link_to "Remove", passkey_path(cred),
+              class: "shrink-0 text-xs font-medium text-destructive/70 transition-colors hover:text-destructive",
+              data: { turbo_method: :delete, turbo_confirm: "Remove this passkey?" } %>
           </div>
         <% end %>
       </div>

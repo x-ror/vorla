@@ -1,6 +1,8 @@
 class PasskeyRegistrationsController < ApplicationController
   # POST /passkeys/register/options
   def options
+    ensure_webauthn_id!
+
     create_options = WebAuthn::Credential.options_for_create(
       user: {
         id: Current.user.webauthn_id,
@@ -17,14 +19,15 @@ class PasskeyRegistrationsController < ApplicationController
 
   # POST /passkeys/register/verify
   def verify
-    webauthn_credential = WebAuthn::Credential.from_create(credential_params)
+    credential_json = JSON.parse(request.body.read)
+    webauthn_credential = WebAuthn::Credential.from_create(credential_json)
 
     webauthn_credential.verify(session.delete(:webauthn_creation_challenge))
 
     Current.user.passkey_credentials.create!(
       external_id: webauthn_credential.id,
       public_key: webauthn_credential.public_key,
-      nickname: params[:nickname].presence || "Passkey",
+      nickname: "Passkey",
       sign_count: webauthn_credential.sign_count
     )
 
@@ -42,15 +45,9 @@ class PasskeyRegistrationsController < ApplicationController
 
   private
 
-  def credential_params
-    {
-      type: params[:type],
-      id: params[:id],
-      raw_id: params[:rawId],
-      response: {
-        attestation_object: params[:response][:attestationObject],
-        client_data_json: params[:response][:clientDataJSON]
-      }
-    }
+  def ensure_webauthn_id!
+    return if Current.user.webauthn_id.present?
+
+    Current.user.update!(webauthn_id: WebAuthn.generate_user_id)
   end
 end

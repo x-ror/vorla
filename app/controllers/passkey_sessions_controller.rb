@@ -14,7 +14,8 @@ class PasskeySessionsController < ApplicationController
 
   # POST /passkeys/authenticate/verify
   def verify
-    webauthn_credential = WebAuthn::Credential.from_get(credential_params)
+    credential_json = JSON.parse(request.body.read)
+    webauthn_credential = WebAuthn::Credential.from_get(credential_json)
 
     stored_credential = PasskeyCredential.find_by!(external_id: webauthn_credential.id)
 
@@ -30,21 +31,5 @@ class PasskeySessionsController < ApplicationController
     render json: { redirect_to: after_authentication_url }
   rescue WebAuthn::Error, ActiveRecord::RecordNotFound => e
     render json: { error: "Authentication failed. Please try again." }, status: :unprocessable_entity
-  end
-
-  private
-
-  def credential_params
-    {
-      type: params[:type],
-      id: params[:id],
-      raw_id: params[:rawId],
-      response: {
-        authenticator_data: params[:response][:authenticatorData],
-        client_data_json: params[:response][:clientDataJSON],
-        signature: params[:response][:signature],
-        user_handle: params[:response][:userHandle]
-      }
-    }
   end
 end
