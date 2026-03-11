@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["input", "preview", "placeholder", "form"]
+  static targets = ["input", "preview", "placeholder"]
 
   pick() {
     this.inputTarget.click()
@@ -21,6 +21,6 @@ export default class extends Controller {
     }
     reader.readAsDataURL(file)
 
-    this.formTarget.requestSubmit()
+    this.element.requestSubmit()
   }
 }
