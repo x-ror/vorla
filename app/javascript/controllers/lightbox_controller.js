@@ -69,11 +69,13 @@ export default class extends Controller {
 
   _buildVideo(src) {
     const v = document.createElement("video")
+    v.className = "lightbox-media"
     v.src = src; v.controls = true; v.autoplay = true; return v
   }
 
   _buildImg(src) {
     const i = document.createElement("img")
+    i.className = "lightbox-media"
     i.src = src; return i
   }
 

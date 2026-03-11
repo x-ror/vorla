@@ -52,13 +52,10 @@ export default class extends Controller {
       const items = data.picker || []
       if (items.length === 0) return this.showError("No media found.")
 
-      // 10/10: Update the peer Lightbox controller directly
       const lightbox = this.application.getControllerForElementAndIdentifier(this.element, "lightbox")
-      if (lightbox) {
-        lightbox.itemsValue = items
-      }
+      if (lightbox) lightbox.itemsValue = items
 
-      this.pickerItems = items // Keep for multi-download logic
+      this.pickerItems = items
       this.resultTarget.appendChild(this._buildPickerHeader(items.length))
       this.resultTarget.appendChild(this._buildMediaGrid(items))
     } else {
@@ -76,32 +73,40 @@ export default class extends Controller {
 
       const preview = document.createElement("div")
       preview.className = "preview"
-      preview.dataset.action = "click->lightbox#open" // Calls the other controller
-      preview.dataset.index = i
+
+      // Click anywhere on preview opens lightbox, except checkbox
+      preview.addEventListener("click", (e) => {
+        if (e.target.closest(".media-checkbox")) return
+        const lightbox = this.application.getControllerForElementAndIdentifier(this.element, "lightbox")
+        if (lightbox) lightbox.indexValue = i
+      })
 
       const label = document.createElement("label")
       label.className = "media-checkbox"
-      label.onclick = (e) => e.stopPropagation() // Native stop so lightbox doesn't open
+      label.addEventListener("click", (e) => e.stopPropagation())
 
       const cb = document.createElement("input")
       cb.type = "checkbox"
       cb.dataset.action = "change->download#updateSelection"
       cb.dataset.index = i
 
-      label.append(cb, document.createElement("span", { className: "checkmark" }))
-      preview.append(label)
+      const checkmark = document.createElement("span")
+      checkmark.className = "checkmark"
+
+      label.append(cb, checkmark)
+      preview.appendChild(label)
 
       if (item.thumb) {
         const img = document.createElement("img")
         img.src = item.thumb
         img.alt = `Preview ${i + 1}`
-        preview.append(img)
+        preview.appendChild(img)
       }
 
       const badge = document.createElement("span")
       badge.className = "type-badge"
       badge.textContent = item.type
-      preview.append(badge)
+      preview.appendChild(badge)
 
       const dlLink = document.createElement("a")
       dlLink.href = item.url
@@ -111,7 +116,7 @@ export default class extends Controller {
       dlLink.textContent = "Download"
 
       card.append(preview, dlLink)
-      grid.append(card)
+      grid.appendChild(card)
     })
     return grid
   }
@@ -148,11 +153,39 @@ export default class extends Controller {
     return header
   }
 
-  // Same logic as your RedirectResult, but safe
   _buildSingleResult(data) {
     const card = document.createElement("div")
     card.className = "result-card animate-slide-up"
-    // ... (rest of your buildRedirectResult logic here)
+
+    const info = document.createElement("div")
+    info.className = "result-info"
+
+    const meta = document.createElement("div")
+    meta.className = "result-meta"
+
+    const icon = document.createElement("div")
+    icon.className = "result-icon"
+    icon.textContent = "\u2713"
+
+    const textWrap = document.createElement("div")
+    const h3 = document.createElement("h3")
+    h3.textContent = "Ready to download"
+    const filename = document.createElement("p")
+    filename.className = "filename"
+    filename.textContent = data.filename || "media file"
+    textWrap.append(h3, filename)
+
+    meta.append(icon, textWrap)
+
+    const link = document.createElement("a")
+    link.href = data.url
+    link.download = data.filename || ""
+    link.className = "btn btn-primary"
+    link.target = "_blank"
+    link.textContent = "Download"
+
+    info.append(meta, link)
+    card.appendChild(info)
     return card
   }
 
@@ -160,7 +193,7 @@ export default class extends Controller {
 
   updateSelection() {
     if (!this.hasSelectedCountTarget) return
-    const count = this.resultTarget.querySelectorAll('input:checked').length
+    const count = this.resultTarget.querySelectorAll("input:checked").length
     this.selectedCountTarget.textContent = count
     this.dlSelectedBtnTarget.disabled = count === 0
   }
@@ -173,16 +206,17 @@ export default class extends Controller {
   }
 
   async downloadSelected() {
-    const selected = Array.from(this.resultTarget.querySelectorAll('input:checked'))
+    const selected = Array.from(this.resultTarget.querySelectorAll("input:checked"))
     for (const cb of selected) {
       const i = parseInt(cb.dataset.index)
       const item = this.pickerItems[i]
+      if (!item) continue
       const link = document.createElement("a")
       link.href = item.url
       link.download = `vorla-${i + 1}`
       link.target = "_blank"
       link.click()
-      await new Promise(r => setTimeout(r, 600)) // Throttle to help avoid browser blocks
+      await new Promise(r => setTimeout(r, 600))
     }
   }
 
