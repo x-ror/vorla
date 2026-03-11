@@ -20,7 +20,5 @@ export default class extends Controller {
       }
     }
     reader.readAsDataURL(file)
-
-    this.element.requestSubmit()
   }
 }
