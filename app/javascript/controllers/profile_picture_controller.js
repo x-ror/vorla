@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { buildBookmarkBtn } from "helpers/bookmark_button"
 
 export default class extends Controller {
   static targets = ["username", "submitBtn", "error", "result"]
@@ -89,7 +90,8 @@ export default class extends Controller {
     link.className = "btn btn-primary btn-lg pfp-download-btn"
     link.textContent = "Download HD"
 
-    wrapper.append(previewWrap, info, link)
+    const accountUrl = `https://www.instagram.com/${data.username}/`
+    wrapper.append(previewWrap, info, link, buildBookmarkBtn(accountUrl, `@${data.username}`))
     return wrapper
   }
 

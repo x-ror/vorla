@@ -6,31 +6,13 @@
       <%= lucide_icon("bookmark", class: "h-6 w-6") %>
     </div>
     <h1 class="text-2xl font-extrabold tracking-tight">Bookmarks</h1>
-    <p class="mt-2 text-muted-foreground">Save Instagram links and accounts for later</p>
+    <p class="mt-2 text-muted-foreground">Your saved Instagram links and accounts</p>
     <% if @bookmark_limit %>
       <p class="mt-2 text-xs text-muted-foreground"><%= @bookmark_count %>/<%= @bookmark_limit %> bookmarks used</p>
     <% end %>
   </div>
 
   <div class="mx-auto max-w-xl px-4 mt-8">
-    <%= form_with model: @bookmark, url: bookmarks_path, class: "flex w-full items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 mb-5" do |f| %>
-      <span class="pl-3 text-muted-foreground" aria-hidden="true">
-        <%= lucide_icon("link", class: "h-5 w-5") %>
-      </span>
-      <label for="bookmark-url" class="sr-only">Instagram URL or username</label>
-      <%= f.text_field :url, id: "bookmark-url", placeholder: "Paste Instagram URL or @username...", autocomplete: "off", class: "flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground" %>
-      <button type="submit" class="inline-flex items-center justify-center gap-1.5 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50">
-        <%= lucide_icon("plus", class: "h-4 w-4") %>
-        Save
-      </button>
-    <% end %>
-
-    <% if @bookmark.errors.any? %>
-      <div role="alert" class="mb-4 rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-sm text-destructive">
-        <%= @bookmark.errors.full_messages.to_sentence %>
-      </div>
-    <% end %>
-
     <%# Type filter tabs %>
     <div class="flex gap-1 mb-6">
       <%= link_to "All", bookmarks_path, class: "rounded-md px-3 py-1.5 text-xs font-medium transition-colors #{params[:type].blank? ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}" %>
@@ -72,7 +54,7 @@
     <% else %>
       <div class="text-center py-12">
         <%= lucide_icon("bookmark", class: "mx-auto h-10 w-10 text-muted-foreground/30 mb-3") %>
-        <p class="text-sm text-muted-foreground">No bookmarks yet. Paste an Instagram URL above to get started.</p>
+        <p class="text-sm text-muted-foreground">No bookmarks yet. Use the bookmark button on any result to save it here.</p>
       </div>
     <% end %>
   </div>

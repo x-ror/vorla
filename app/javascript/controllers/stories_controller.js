@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { buildBookmarkBtn } from "helpers/bookmark_button"
 
 export default class extends Controller {
   static targets = ["username", "submitBtn", "error", "result"]
@@ -73,6 +74,9 @@ export default class extends Controller {
           preview.appendChild(placeholder)
         }
 
+        const btnRow = document.createElement("div")
+        btnRow.className = "media-card-actions"
+
         const link = document.createElement("a")
         link.href = story.url
         link.download = `story-${i + 1}`
@@ -80,7 +84,9 @@ export default class extends Controller {
         link.className = "dl-btn"
         link.textContent = "Download"
 
-        card.append(preview, link)
+        const storyUrl = `https://www.instagram.com/stories/${username}/`
+        btnRow.append(link, buildBookmarkBtn(storyUrl, `${username} story ${i + 1}`))
+        card.append(preview, btnRow)
         grid.appendChild(card)
       })
 

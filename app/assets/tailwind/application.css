@@ -200,7 +200,10 @@
   .result-card {
     @apply max-w-xl mx-auto mt-4 p-5 bg-card text-card-foreground border border-border rounded-lg;
   }
-  .result-info { @apply flex items-center justify-between gap-4; }
+  .result-info { @apply flex items-center justify-between gap-3; }
+  .result-info .bookmark-btn {
+    @apply px-5 py-2.5 text-sm border border-border rounded-md;
+  }
   .result-meta { @apply flex items-center gap-3.5; }
   .result-icon {
     @apply w-11 h-11 flex items-center justify-center bg-success/10 rounded-md text-success text-lg;
@@ -414,6 +417,38 @@
 
   /* Active label (pricing toggle) */
   .active-label { @apply text-foreground font-semibold; }
+
+  /* Bookmark wrapper (Stimulus scope) */
+  .bookmark-wrap { display: contents; }
+
+  /* Bookmark button */
+  .bookmark-btn {
+    @apply inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-muted-foreground border-0 bg-transparent cursor-pointer transition-colors hover:text-primary hover:bg-primary/10 rounded-md;
+  }
+  .bookmark-btn.bookmarked {
+    @apply text-primary;
+  }
+  .bookmark-btn.bookmark-error {
+    @apply text-destructive text-[0.65rem];
+  }
+  .bookmark-btn svg { @apply shrink-0; }
+
+  /* Media card actions row */
+  .media-card-actions {
+    @apply flex items-center border-t border-border;
+  }
+  .media-card-actions .dl-btn {
+    @apply flex-1;
+  }
+  .media-card-actions .bookmark-btn {
+    @apply py-2.5 px-3 border-l border-border rounded-none;
+  }
+
+  /* Standalone bookmark (profile pic, analyzer) */
+  .pfp-result .bookmark-btn,
+  .profile-result .bookmark-btn {
+    @apply w-full justify-center py-3 border-t border-border rounded-none;
+  }
 
   /* Turbo progress */
   .turbo-progress-bar { @apply bg-primary h-[3px]; }

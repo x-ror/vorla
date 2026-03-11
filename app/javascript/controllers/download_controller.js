@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { buildBookmarkBtn } from "helpers/bookmark_button"
 
 export default class extends Controller {
   static targets = ["url", "submitBtn", "submitText", "spinner", "error", "result", "dlSelectedBtn", "selectedCount"]
@@ -48,6 +49,7 @@ export default class extends Controller {
   render(data) {
     this.resultTarget.style.display = "block"
     this.resultTarget.innerHTML = ""
+    this._sourceUrl = this.urlTarget.value.trim()
 
     if (data.status === "picker") {
       const items = data.picker || []
@@ -109,6 +111,9 @@ export default class extends Controller {
       badge.textContent = item.type
       preview.appendChild(badge)
 
+      const btnRow = document.createElement("div")
+      btnRow.className = "media-card-actions"
+
       const dlLink = document.createElement("a")
       dlLink.href = item.url
       dlLink.download = `x-ror-${i + 1}`
@@ -116,7 +121,8 @@ export default class extends Controller {
       dlLink.className = "dl-btn"
       dlLink.textContent = "Download"
 
-      card.append(preview, dlLink)
+      btnRow.append(dlLink, buildBookmarkBtn(this._sourceUrl, `Item ${i + 1}`))
+      card.append(preview, btnRow)
       grid.appendChild(card)
     })
     return grid
@@ -185,7 +191,7 @@ export default class extends Controller {
     link.target = "_blank"
     link.textContent = "Download"
 
-    info.append(meta, link)
+    info.append(meta, link, buildBookmarkBtn(this._sourceUrl, data.filename || ""))
     card.appendChild(info)
     return card
   }

@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { buildBookmarkBtn } from "helpers/bookmark_button"
 
 export default class extends Controller {
   static targets = ["username", "submitBtn", "error", "result"]
@@ -167,7 +168,8 @@ export default class extends Controller {
       insights.appendChild(item)
     })
 
-    wrapper.append(header, statsGrid, insights)
+    const accountUrl = `https://www.instagram.com/${data.username}/`
+    wrapper.append(header, statsGrid, insights, buildBookmarkBtn(accountUrl, `@${data.username}`))
     return wrapper
   }
 
