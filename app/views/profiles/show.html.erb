@@ -28,19 +28,19 @@
 
             <button type="button" data-action="click->avatar#pick" data-profile-edit-target="avatarBtn" disabled class="group relative h-24 w-24 overflow-hidden rounded-full border-2 border-border transition-colors enabled:cursor-pointer enabled:hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
               <% if @user.avatar.attached? %>
-                <%= image_tag @user.avatar, class: "h-full w-full object-cover transition-[filter] duration-200 group-[:not(:disabled)]:group-hover:brightness-50", data: { avatar_target: "preview" } %>
+                <%= image_tag @user.avatar, class: "h-full w-full object-cover transition-[filter] duration-200 group-[:not(:disabled):hover]:brightness-50", data: { avatar_target: "preview" } %>
               <% else %>
                 <img src="" alt="" class="hidden h-full w-full object-cover" data-avatar-target="preview">
-                <span class="flex h-full w-full items-center justify-center bg-secondary text-2xl font-semibold text-muted-foreground transition-colors duration-200 group-[:not(:disabled)]:group-hover:bg-secondary/70" data-avatar-target="placeholder"><%= @user.email_address&.first&.upcase %></span>
+                <span class="flex h-full w-full items-center justify-center bg-secondary text-2xl font-semibold text-muted-foreground transition-colors duration-200 group-[:not(:disabled):hover]:bg-secondary/70" data-avatar-target="placeholder"><%= @user.email_address&.first&.upcase %></span>
               <% end %>
-              <span class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-[:not(:disabled)]:group-hover:opacity-100">
+              <span class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-[:not(:disabled):hover]:opacity-100">
                 <svg class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
               </span>
             </button>
 
             <% if @user.avatar.attached? %>
               <div class="mt-2 text-center">
-                <%= button_to "Remove", remove_avatar_profile_path, method: :delete, class: "text-xs text-destructive/70 transition-colors hover:text-destructive" %>
+                <%= link_to "Remove", remove_avatar_profile_path, data: { turbo_method: :delete }, class: "text-xs text-destructive/70 transition-colors hover:text-destructive" %>
               </div>
             <% end %>
           </div>
