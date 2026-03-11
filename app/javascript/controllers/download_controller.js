@@ -41,6 +41,7 @@ export default class extends Controller {
       this.showError(err.message || "Something went wrong.")
     } finally {
       this.toggleState(false)
+      document.dispatchEvent(new CustomEvent("usage:updated"))
     }
   }
 

@@ -2,6 +2,7 @@ class Api::ProfilePicturesController < Api::BaseController
   def create
     username = params[:username]
     return render json: { message: "Username is required" }, status: :bad_request unless username.present?
+    return unless track_usage!("profile_picture")
 
     result = instagram_service.get_profile_picture(username)
     return render json: { message: "Profile not found or is private" }, status: :not_found unless result

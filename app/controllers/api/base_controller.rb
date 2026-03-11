@@ -1,6 +1,7 @@
 class Api::BaseController < ApplicationController
   allow_unauthenticated_access
   skip_forgery_protection
+  include UsageTracking
 
   private
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_11_030002) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_11_061049) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -60,6 +60,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_11_030002) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "usage_logs", force: :cascade do |t|
+    t.string "action_type", null: false
+    t.datetime "created_at", null: false
+    t.string "ip_address", null: false
+    t.json "metadata", default: {}
+    t.string "session_token"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["action_type", "ip_address", "created_at"], name: "index_usage_logs_on_action_type_and_ip_address_and_created_at"
+    t.index ["action_type", "user_id", "created_at"], name: "index_usage_logs_on_action_type_and_user_id_and_created_at"
+    t.index ["created_at"], name: "index_usage_logs_on_created_at"
+    t.index ["user_id"], name: "index_usage_logs_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "avatar_url"
     t.text "bio"
@@ -81,4 +95,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_11_030002) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "passkey_credentials", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "usage_logs", "users"
 end

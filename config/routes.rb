@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     post "analyze",         to: "analyzers#create"
     post "hashtags",        to: "hashtags#create"
     get  "proxy",           to: "proxy#show"
+    get  "usage",           to: "usage#show"
   end
 
   get "up" => "rails/health#show", as: :rails_health_check

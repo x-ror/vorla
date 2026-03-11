@@ -1,0 +1,19 @@
+download:
+  guest: 15
+  user: 30
+
+stories:
+  guest: 10
+  user: 20
+
+profile_picture:
+  guest: 15
+  user: 40
+
+analyze:
+  guest: 1
+  user: 5
+
+hashtags:
+  guest: 1
+  user: 5

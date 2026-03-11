@@ -2,6 +2,7 @@ class Api::StoriesController < Api::BaseController
   def create
     username = params[:username]
     return render json: { message: "Username is required" }, status: :bad_request unless username.present?
+    return unless track_usage!("stories")
 
     story_url = "https://www.instagram.com/stories/#{username}/0"
     result = instagram_service.process_url(story_url)

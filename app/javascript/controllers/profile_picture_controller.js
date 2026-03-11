@@ -49,6 +49,7 @@ export default class extends Controller {
       this.showError(err.message || "Could not find that profile.")
     } finally {
       this.submitBtnTarget.disabled = false
+      document.dispatchEvent(new CustomEvent("usage:updated"))
     }
   }
 

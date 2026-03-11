@@ -90,6 +90,7 @@ export default class extends Controller {
       this.showError(err.message || "Failed to fetch stories")
     } finally {
       this.submitBtnTarget.disabled = false
+      document.dispatchEvent(new CustomEvent("usage:updated"))
     }
   }
 

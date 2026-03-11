@@ -54,6 +54,7 @@ export default class extends Controller {
       this.showError(err.message || "Failed to generate hashtags")
     } finally {
       this.submitBtnTarget.disabled = false
+      document.dispatchEvent(new CustomEvent("usage:updated"))
     }
   }
 
