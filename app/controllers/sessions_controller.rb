@@ -7,10 +7,10 @@ class SessionsController < ApplicationController
 
   def create
     if (user = User.authenticate_by(params.permit(:email_address, :password)))
-      unless user.verified?
-        redirect_to verification_pending_path(email: user.email_address), alert: "Please verify your email address first."
-        return
-      end
+      # unless user.verified?
+      #   redirect_to verification_pending_path(email: user.email_address), alert: "Please verify your email address first."
+      #   return
+      # end
 
       start_new_session_for user
       redirect_to after_authentication_url
