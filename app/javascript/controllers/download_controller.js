@@ -110,7 +110,7 @@ export default class extends Controller {
 
       const dlLink = document.createElement("a")
       dlLink.href = item.url
-      dlLink.download = `vorla-${i + 1}`
+      dlLink.download = `x-ror-${i + 1}`
       dlLink.target = "_blank"
       dlLink.className = "dl-btn"
       dlLink.textContent = "Download"
@@ -213,7 +213,7 @@ export default class extends Controller {
       if (!item) continue
       const link = document.createElement("a")
       link.href = item.url
-      link.download = `vorla-${i + 1}`
+      link.download = `x-ror-${i + 1}`
       link.target = "_blank"
       link.click()
       await new Promise(r => setTimeout(r, 600))

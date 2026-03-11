@@ -6,5 +6,5 @@ WebAuthn.configure do |config|
     config.allowed_origins = %w[http://localhost:3000]
     config.rp_id = "localhost"
   end
-  config.rp_name = "Vorla"
+  config.rp_name = "X-ROR"
 end

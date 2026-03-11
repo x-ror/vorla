@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   get "analyzer",        to: "pages#analyzer"
   get "hashtags",        to: "pages#hashtags"
   get "influencers",     to: "pages#influencers"
-  get "pricing",         to: "pages#pricing"
+  # get "pricing",         to: "pages#pricing"
 
   # API
   namespace :api do

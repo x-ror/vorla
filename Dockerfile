@@ -2,8 +2,8 @@
 # check=error=true
 
 # This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
-# docker build -t vorla_rails .
-# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name vorla_rails vorla_rails
+# docker build -t x_ror_rails .
+# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name x_ror_rails x_ror_rails
 
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 

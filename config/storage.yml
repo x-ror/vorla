@@ -4,4 +4,4 @@ local:
 
 cloudinary:
   service: Cloudinary
-  folder: vorla/<%= Rails.env %>
+  folder: x-ror/<%= Rails.env %>
