@@ -23,8 +23,8 @@
 
         <div class="p-6">
           <%# Avatar row %>
-          <div class="mb-8 flex items-start gap-6">
-            <%= form_with url: update_avatar_profile_path, method: :patch, multipart: true, data: { controller: "avatar" }, class: "contents" do %>
+          <div class="mb-8 flex items-start gap-6" data-controller="avatar">
+            <%= form_with url: update_avatar_profile_path, method: :patch, multipart: true, data: { avatar_target: "form" }, class: "contents" do %>
               <input type="file" name="avatar" accept="image/*" class="sr-only" data-avatar-target="input" data-action="change->avatar#preview">
 
               <button type="button" data-action="click->avatar#pick" class="group relative h-24 w-24 shrink-0 cursor-pointer overflow-hidden rounded-full border-2 border-border transition-colors hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
