@@ -17,7 +17,14 @@ export default class extends Controller {
   }
 
   connect() {
+    this._transitionEnd = (e) => { e.target.style.height = "" }
     this.init();
+  }
+
+  disconnect() {
+    this.contents.forEach((content) => {
+      content.removeEventListener("transitionend", this._transitionEnd)
+    })
   }
 
   init() {
@@ -62,8 +69,8 @@ export default class extends Controller {
   show(toggler, content, transition = true) {
     if (transition) {
       content.style.height = "0px";
-      content.removeEventListener("transitionend", this.transitionEnd);
-      content.addEventListener("transitionend", this.transitionEnd);
+      content.removeEventListener("transitionend", this._transitionEnd);
+      content.addEventListener("transitionend", this._transitionEnd);
       setTimeout(() => {
         content.style.height = content.scrollHeight + "px";
       });
@@ -76,8 +83,8 @@ export default class extends Controller {
   hide(toggler, content, transition = true) {
     if (transition) {
       content.style.height = content.scrollHeight + "px";
-      content.removeEventListener("transitionend", this.transitionEnd);
-      content.addEventListener("transitionend", this.transitionEnd);
+      content.removeEventListener("transitionend", this._transitionEnd);
+      content.addEventListener("transitionend", this._transitionEnd);
       setTimeout(() => {
         content.style.height = "0px";
       });
@@ -85,10 +92,6 @@ export default class extends Controller {
 
     this.toggleClass(toggler, content, false);
     this.toggleText(toggler, false);
-  }
-
-  transitionEnd(e) {
-    e.target.style.height = "";
   }
 
   toggleClass(toggler, content, opened) {
@@ -110,7 +113,7 @@ export default class extends Controller {
     } else {
       text = toggler.getAttribute("data-accordion-closed-text-param");
     }
-    if (text) toggler.innerHTML = text;
+    if (text) toggler.textContent = text;
   }
 
   isOpened(toggler) {

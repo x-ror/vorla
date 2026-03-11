@@ -3,12 +3,19 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["username", "submitBtn", "error", "result"]
 
+  connect() {
+    this._abortController = null
+  }
+
+  disconnect() {
+    this._abortController?.abort()
+  }
+
   async fetch(event) {
     event.preventDefault()
     let username = this.usernameTarget.value.trim().replace(/^@/, "")
     if (!username) return
 
-    // Handle URLs
     if (username.includes("instagram.com")) {
       try {
         const url = new URL(username.startsWith("http") ? username : `https://${username}`)
@@ -21,11 +28,15 @@ export default class extends Controller {
     this.resultTarget.style.display = "none"
     this.submitBtnTarget.disabled = true
 
+    this._abortController?.abort()
+    this._abortController = new AbortController()
+
     try {
       const response = await fetch("/api/stories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username })
+        body: JSON.stringify({ username }),
+        signal: this._abortController.signal
       })
 
       const data = await response.json()
@@ -38,21 +49,44 @@ export default class extends Controller {
       }
 
       this.resultTarget.style.display = "block"
-      let html = `<div class="stories-grid animate-slide-up">`
+      this.resultTarget.innerHTML = ""
+
+      const grid = document.createElement("div")
+      grid.className = "stories-grid animate-slide-up"
+
       stories.forEach((story, i) => {
-        html += `
-          <div class="story-card">
-            <div class="story-preview">
-              ${story.thumbnail ? `<img src="${story.thumbnail}" alt="Story ${i + 1}">` : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);">Story</div>`}
-            </div>
-            <a href="${story.url}" download="story-${i + 1}" target="_blank" class="dl-btn" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:10px;font-size:0.8rem;font-weight:600;color:var(--teal);">
-              Download
-            </a>
-          </div>`
+        const card = document.createElement("div")
+        card.className = "story-card"
+
+        const preview = document.createElement("div")
+        preview.className = "story-preview"
+
+        if (story.thumbnail) {
+          const img = document.createElement("img")
+          img.src = story.thumbnail
+          img.alt = `Story ${i + 1}`
+          preview.appendChild(img)
+        } else {
+          const placeholder = document.createElement("div")
+          placeholder.className = "story-placeholder"
+          placeholder.textContent = "Story"
+          preview.appendChild(placeholder)
+        }
+
+        const link = document.createElement("a")
+        link.href = story.url
+        link.download = `story-${i + 1}`
+        link.target = "_blank"
+        link.className = "dl-btn"
+        link.textContent = "Download"
+
+        card.append(preview, link)
+        grid.appendChild(card)
       })
-      html += `</div>`
-      this.resultTarget.innerHTML = html
+
+      this.resultTarget.appendChild(grid)
     } catch (err) {
+      if (err.name === "AbortError") return
       this.showError(err.message || "Failed to fetch stories")
     } finally {
       this.submitBtnTarget.disabled = false
