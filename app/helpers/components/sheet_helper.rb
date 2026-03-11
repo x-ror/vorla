@@ -20,8 +20,8 @@ module Components::SheetHelper
 
   def direction_class(direction)
     mappings = {
-      "left": 'left-0',
-      "right": 'right-0'
+      "left": "left-0",
+      "right": "right-0"
     }
 
     mappings[direction.to_sym]
