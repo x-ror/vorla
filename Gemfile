@@ -70,3 +70,5 @@ gem "tailwind_merge"
 gem "cloudinary"
 gem "image_processing"
 gem "webauthn"
+
+gem "lucide-ruby", "~> 0.1.101"
