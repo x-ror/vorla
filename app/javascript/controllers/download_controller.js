@@ -36,6 +36,7 @@ export default class extends Controller {
       const data = await response.json()
       if (!response.ok) throw new Error(data.message || "Download failed")
 
+      this._meta = { author: data.author, caption: data.caption, postedAt: data.taken_at }
       this.render(data)
     } catch (err) {
       if (err.name === "AbortError") return
@@ -121,7 +122,8 @@ export default class extends Controller {
       dlLink.className = "dl-btn"
       dlLink.textContent = "Download"
 
-      btnRow.append(dlLink, buildBookmarkBtn(this._sourceUrl, `Item ${i + 1}`))
+      const bookmarkTitle = this._meta?.author ? `@${this._meta.author}` : `${item.type} ${i + 1}`
+      btnRow.append(dlLink, buildBookmarkBtn({ sourceUrl: this._sourceUrl, mediaUrl: item.url, title: bookmarkTitle, mediaType: item.type, ...this._meta }))
       card.append(preview, btnRow)
       grid.appendChild(card)
     })
@@ -191,7 +193,8 @@ export default class extends Controller {
     link.target = "_blank"
     link.textContent = "Download"
 
-    info.append(meta, link, buildBookmarkBtn(this._sourceUrl, data.filename || ""))
+    const bookmarkTitle = this._meta?.author ? `@${this._meta.author}` : (data.filename || "")
+    info.append(meta, link, buildBookmarkBtn({ sourceUrl: this._sourceUrl, mediaUrl: data.url, title: bookmarkTitle, mediaType: "video", ...this._meta }))
     card.appendChild(info)
     return card
   }

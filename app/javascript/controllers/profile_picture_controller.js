@@ -91,7 +91,7 @@ export default class extends Controller {
     link.textContent = "Download HD"
 
     const accountUrl = `https://www.instagram.com/${data.username}/`
-    wrapper.append(previewWrap, info, link, buildBookmarkBtn(accountUrl, `@${data.username}`))
+    wrapper.append(previewWrap, info, link, buildBookmarkBtn({ sourceUrl: accountUrl, mediaUrl: data.hdUrl, title: `@${data.username} profile pic`, mediaType: "photo" }))
     return wrapper
   }
 

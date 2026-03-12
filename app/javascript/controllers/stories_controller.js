@@ -84,8 +84,7 @@ export default class extends Controller {
         link.className = "dl-btn"
         link.textContent = "Download"
 
-        const storyUrl = `https://www.instagram.com/stories/${username}/`
-        btnRow.append(link, buildBookmarkBtn(storyUrl, `${username} story ${i + 1}`))
+        btnRow.append(link, buildBookmarkBtn({ sourceUrl: `https://www.instagram.com/stories/${username}/`, mediaUrl: story.url, title: `@${username} story ${i + 1}`, mediaType: story.type || "video", author: username, postedAt: story.timestamp }))
         card.append(preview, btnRow)
         grid.appendChild(card)
       })

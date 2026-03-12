@@ -15,11 +15,10 @@ class Api::StoriesController < Api::BaseController
       stories = result[:picker].map do |item|
         item.merge(
           url: proxy_url(item[:url]),
-          thumbnail: proxy_url(item[:thumb]),
-          timestamp: item[:timestamp]
+          thumbnail: proxy_url(item[:thumb])
         )
       end
-      return render json: { stories: stories }
+      return render json: { stories: stories, author: result[:author] || username }
     end
 
     if result[:url]

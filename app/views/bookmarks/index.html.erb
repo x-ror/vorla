@@ -6,7 +6,7 @@
       <%= lucide_icon("bookmark", class: "h-6 w-6") %>
     </div>
     <h1 class="text-2xl font-extrabold tracking-tight">Bookmarks</h1>
-    <p class="mt-2 text-muted-foreground">Your saved Instagram links and accounts</p>
+    <p class="mt-2 text-muted-foreground">Your saved Instagram media</p>
     <% if @bookmark_limit %>
       <p class="mt-2 text-xs text-muted-foreground"><%= @bookmark_count %>/<%= @bookmark_limit %> bookmarks used</p>
     <% end %>
@@ -22,31 +22,61 @@
     </div>
 
     <% if @bookmarks.any? %>
-      <div class="space-y-2">
+      <div class="space-y-3">
         <% @bookmarks.each do |bookmark| %>
           <%= render_card do %>
-            <div class="flex items-center gap-4 p-4">
-              <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-background">
-                <%= lucide_icon(bookmark_type_icon(bookmark.bookmark_type), class: "h-4 w-4 text-pink-500") %>
-              </div>
-              <div class="min-w-0 flex-1">
-                <p class="text-sm font-medium truncate"><%= bookmark.title.presence || bookmark.url %></p>
-                <p class="text-xs text-muted-foreground">
-                  <span class="rounded bg-muted px-1.5 py-0.5 text-xs font-medium"><%= bookmark.bookmark_type.capitalize %></span>
-                  <% if bookmark.instagram_username.present? %>
-                    &middot; @<%= bookmark.instagram_username %>
+            <div class="p-4">
+              <div class="flex items-center gap-4">
+                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-background">
+                  <%= lucide_icon(bookmark_type_icon(bookmark.bookmark_type), class: "h-4 w-4 text-pink-500") %>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="text-sm font-medium truncate">
+                    <% if bookmark.author.present? %>
+                      <span class="text-primary">@<%= bookmark.author %></span>
+                    <% end %>
+                    <%= bookmark.caption.present? ? truncate(bookmark.caption, length: 60) : (bookmark.title.presence || bookmark.url) %>
+                  </p>
+                  <p class="text-xs text-muted-foreground">
+                    <span class="rounded bg-muted px-1.5 py-0.5 text-xs font-medium"><%= bookmark.bookmark_type.capitalize %></span>
+                    <% if bookmark.items.any? %>
+                      &middot; <%= bookmark.items.size %> <%= "item".pluralize(bookmark.items.size) %>
+                    <% end %>
+                    <% if bookmark.posted_at %>
+                      &middot; posted <%= time_ago_in_words(bookmark.posted_at) %> ago
+                    <% end %>
+                    &middot; saved <%= time_ago_in_words(bookmark.created_at) %> ago
+                  </p>
+                </div>
+                <div class="flex items-center gap-1">
+                  <a href="<%= bookmark.url %>" target="_blank" rel="noopener" class="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground" aria-label="Open on Instagram">
+                    <%= lucide_icon("external-link", class: "h-4 w-4") %>
+                  </a>
+                  <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Remove this bookmark?" }, class: "inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive", aria_label: "Remove bookmark" do %>
+                    <%= lucide_icon("trash-2", class: "h-4 w-4") %>
                   <% end %>
-                  &middot; <%= time_ago_in_words(bookmark.created_at) %> ago
-                </p>
+                </div>
               </div>
-              <div class="flex items-center gap-1">
-                <a href="<%= bookmark.url %>" target="_blank" rel="noopener" class="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground" aria-label="Open in Instagram">
-                  <%= lucide_icon("external-link", class: "h-4 w-4") %>
-                </a>
-                <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Remove this bookmark?" }, class: "inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive", aria_label: "Remove bookmark" do %>
-                  <%= lucide_icon("trash-2", class: "h-4 w-4") %>
-                <% end %>
-              </div>
+              <% if bookmark.items.any? %>
+                <div class="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-4">
+                  <% bookmark.items.each do |item| %>
+                    <a href="<%= item.media_url %>" target="_blank" download class="group relative aspect-square rounded-md border border-border bg-muted overflow-hidden hover:border-primary transition-colors">
+                      <% if item.media_type == "photo" %>
+                        <img src="<%= item.media_url %>" alt="<%= item.title %>" class="h-full w-full object-cover" loading="lazy">
+                      <% else %>
+                        <div class="flex h-full w-full items-center justify-center text-muted-foreground">
+                          <%= lucide_icon("film", class: "h-6 w-6") %>
+                        </div>
+                      <% end %>
+                      <div class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/40 transition-colors">
+                        <span class="hidden group-hover:block text-white">
+                          <%= lucide_icon("download", class: "h-5 w-5") %>
+                        </span>
+                      </div>
+                    </a>
+                  <% end %>
+                </div>
+              <% end %>
             </div>
           <% end %>
         <% end %>

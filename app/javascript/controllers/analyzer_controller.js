@@ -169,7 +169,7 @@ export default class extends Controller {
     })
 
     const accountUrl = `https://www.instagram.com/${data.username}/`
-    wrapper.append(header, statsGrid, insights, buildBookmarkBtn(accountUrl, `@${data.username}`))
+    wrapper.append(header, statsGrid, insights, buildBookmarkBtn({ sourceUrl: accountUrl, mediaUrl: data.profilePic || accountUrl, title: `@${data.username}`, mediaType: "photo" }))
     return wrapper
   }
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_11_160129) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_12_110000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -39,10 +39,24 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_11_160129) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bookmark_items", force: :cascade do |t|
+    t.integer "bookmark_id", null: false
+    t.datetime "created_at", null: false
+    t.string "media_type"
+    t.string "media_url", null: false
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.index ["bookmark_id", "media_url"], name: "index_bookmark_items_on_bookmark_id_and_media_url", unique: true
+    t.index ["bookmark_id"], name: "index_bookmark_items_on_bookmark_id"
+  end
+
   create_table "bookmarks", force: :cascade do |t|
+    t.string "author"
     t.string "bookmark_type", null: false
+    t.text "caption"
     t.datetime "created_at", null: false
     t.string "instagram_username"
+    t.datetime "posted_at"
     t.string "title"
     t.datetime "updated_at", null: false
     t.string "url", null: false
@@ -106,6 +120,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_11_160129) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookmark_items", "bookmarks"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "passkey_credentials", "users"
   add_foreign_key "sessions", "users"

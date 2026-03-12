@@ -3,7 +3,7 @@ const bookmarkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height=
 
 const bookmarkIconFilled = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z"/></svg>`
 
-async function handleBookmark(btn, url, title) {
+async function handleBookmark(btn, { sourceUrl, mediaUrl, title, mediaType, author, caption, postedAt }) {
   if (btn.disabled) return
   btn.disabled = true
 
@@ -15,7 +15,7 @@ async function handleBookmark(btn, url, title) {
         "Accept": "application/json",
         "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')?.content
       },
-      body: JSON.stringify({ url, title })
+      body: JSON.stringify({ source_url: sourceUrl, media_url: mediaUrl, title, media_type: mediaType, author, caption, posted_at: postedAt })
     })
 
     const data = await response.json()
@@ -46,12 +46,14 @@ async function handleBookmark(btn, url, title) {
   }
 }
 
-export function buildBookmarkBtn(url, title = "") {
+// sourceUrl = original Instagram URL (groups items into one collection)
+// mediaUrl  = proxy/download URL for this specific media item
+export function buildBookmarkBtn({ sourceUrl, mediaUrl, title = "", mediaType = "", author = "", caption = "", postedAt = "" }) {
   const btn = document.createElement("button")
   btn.type = "button"
   btn.className = "bookmark-btn"
   btn.title = "Bookmark"
   btn.innerHTML = bookmarkIcon
-  btn.addEventListener("click", () => handleBookmark(btn, url, title))
+  btn.addEventListener("click", () => handleBookmark(btn, { sourceUrl, mediaUrl, title, mediaType, author, caption, postedAt }))
   return btn
 }

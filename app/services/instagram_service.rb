@@ -360,6 +360,12 @@ class InstagramService
   def extract_new_post(data, post_id)
     return nil unless data
 
+    meta = {
+      caption: data.dig("caption", "text"),
+      author: data.dig("user", "username"),
+      taken_at: data["taken_at"] ? Time.at(data["taken_at"]).iso8601 : nil
+    }
+
     # Carousel
     if data["carousel_media"]
       picker = data["carousel_media"].filter_map do |item|
@@ -373,19 +379,19 @@ class InstagramService
       end.select { |i| i[:url] }
 
       return nil if picker.empty?
-      return { status: "picker", picker: picker }
+      return { status: "picker", picker: picker, **meta }
     end
 
     # Single video
     if data["video_versions"]
       best = pick_best_video(data["video_versions"])
-      return { status: "redirect", url: best&.[]("url"), filename: "instagram_#{post_id}.mp4" }
+      return { status: "redirect", url: best&.[]("url"), filename: "instagram_#{post_id}.mp4", **meta }
     end
 
     # Single photo
     candidates = data.dig("image_versions2", "candidates")
     if candidates&.any?
-      return { status: "redirect", url: candidates[0]["url"], filename: "instagram_#{post_id}.jpg" }
+      return { status: "redirect", url: candidates[0]["url"], filename: "instagram_#{post_id}.jpg", **meta }
     end
 
     nil
@@ -395,6 +401,12 @@ class InstagramService
     return nil unless data
 
     media = data["shortcode_media"] || data
+
+    meta = {
+      caption: media.dig("edge_media_to_caption", "edges", 0, "node", "text") || media["caption"]&.[]("text"),
+      author: media.dig("owner", "username") || media.dig("user", "username"),
+      taken_at: media["taken_at_timestamp"] ? Time.at(media["taken_at_timestamp"].to_i).iso8601 : nil
+    }
 
     # Sidecar / carousel
     edges = media.dig("edge_sidecar_to_children", "edges")
@@ -409,17 +421,17 @@ class InstagramService
       end.select { |i| i[:url] }
 
       return nil if picker.empty?
-      return { status: "picker", picker: picker }
+      return { status: "picker", picker: picker, **meta }
     end
 
     # Single video
     if media["is_video"] && media["video_url"]
-      return { status: "redirect", url: media["video_url"], filename: "instagram_#{post_id}.mp4" }
+      return { status: "redirect", url: media["video_url"], filename: "instagram_#{post_id}.mp4", **meta }
     end
 
     # Single photo
     if media["display_url"]
-      return { status: "redirect", url: media["display_url"], filename: "instagram_#{post_id}.jpg" }
+      return { status: "redirect", url: media["display_url"], filename: "instagram_#{post_id}.jpg", **meta }
     end
 
     nil
@@ -555,15 +567,16 @@ class InstagramService
 
     # Return all stories
     picker = stories.filter_map do |story|
+      taken = story["taken_at"] ? Time.at(story["taken_at"]).iso8601 : nil
       if story["video_versions"]&.any?
         best = pick_best_video(story["video_versions"])
-        { type: "video", url: best&.[]("url"), thumb: story.dig("image_versions2", "candidates", 0, "url"), timestamp: story["taken_at"] }
+        { type: "video", url: best&.[]("url"), thumb: story.dig("image_versions2", "candidates", 0, "url"), timestamp: taken }
       else
         url = story.dig("image_versions2", "candidates", 0, "url")
-        { type: "photo", url: url, thumb: url, timestamp: story["taken_at"] }
+        { type: "photo", url: url, thumb: url, timestamp: taken }
       end
     end.select { |i| i[:url] }
 
-    { status: "picker", picker: picker }
+    { status: "picker", picker: picker, author: username }
   end
 end

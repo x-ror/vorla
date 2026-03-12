@@ -1,5 +1,6 @@
 class Bookmark < ApplicationRecord
   belongs_to :user
+  has_many :items, class_name: "BookmarkItem", dependent: :destroy
 
   TYPES = %w[post reel story account].freeze
   FREE_LIMIT = 20
@@ -9,10 +10,27 @@ class Bookmark < ApplicationRecord
   validates :url, uniqueness: { scope: :user_id, message: "is already bookmarked" }
   validate :within_bookmark_limit, on: :create
 
-  before_validation :normalize_url_and_detect_type
+  before_validation :detect_type
 
   scope :by_type, ->(type) { type.present? ? where(bookmark_type: type) : all }
   scope :recent, -> { order(created_at: :desc) }
+
+  # Find or create bookmark for a source URL, then add the media item
+  def self.add_item(user:, source_url:, media_url:, title: nil, media_type: nil, author: nil, caption: nil, posted_at: nil)
+    bookmark = user.bookmarks.find_or_initialize_by(url: source_url)
+    bookmark.title = title if title.present? && bookmark.title.blank?
+    bookmark.author = author if author.present? && bookmark.author.blank?
+    bookmark.caption = caption if caption.present? && bookmark.caption.blank?
+    bookmark.posted_at = posted_at if posted_at.present? && bookmark.posted_at.blank?
+    bookmark.save! if bookmark.new_record? || bookmark.changed?
+
+    item = bookmark.items.find_or_initialize_by(media_url: media_url)
+    item.title = title
+    item.media_type = media_type
+    item.save! if item.new_record? || item.changed?
+
+    bookmark
+  end
 
   private
 
@@ -27,31 +45,23 @@ class Bookmark < ApplicationRecord
     end
   end
 
-  def normalize_url_and_detect_type
-    return if url.blank?
+  def detect_type
+    return if url.blank? || bookmark_type.present?
 
     input = url.strip
 
-    # Plain username (with or without @)
-    if input.match?(/\A@?[\w.]+\z/) && !input.include?("/")
-      username = input.delete_prefix("@")
-      self.url = "https://www.instagram.com/#{username}/"
-      self.bookmark_type = "account"
-      self.instagram_username = username
-      return
-    end
-
-    # Instagram URL patterns
-    if input.match?(%r{instagram\.com/reel/})
-      self.bookmark_type ||= "reel"
-    elsif input.match?(%r{instagram\.com/p/})
-      self.bookmark_type ||= "post"
-    elsif input.match?(%r{instagram\.com/stories/})
-      self.bookmark_type ||= "story"
-      self.instagram_username ||= input.match(%r{/stories/([^/]+)})&.[](1)
+    if input.include?("instagram.com/reel/")
+      self.bookmark_type = "reel"
+    elsif input.include?("instagram.com/stories/")
+      self.bookmark_type = "story"
+      self.instagram_username = input.match(%r{/stories/([^/]+)})&.[](1)
+    elsif input.include?("instagram.com/p/")
+      self.bookmark_type = "post"
     elsif input.match?(%r{instagram\.com/([^/?]+)})
-      self.bookmark_type ||= "account"
-      self.instagram_username ||= input.match(%r{instagram\.com/([^/?]+)})&.[](1)
+      self.bookmark_type = "account"
+      self.instagram_username = input.match(%r{instagram\.com/([^/?]+)})&.[](1)
+    else
+      self.bookmark_type = "post"
     end
   end
 end

@@ -22,7 +22,7 @@ class Api::DownloadsController < Api::BaseController
       end
     end
 
-    render json: result
+    render json: result.slice(:status, :url, :filename, :picker, :caption, :author, :taken_at)
   rescue => e
     Rails.logger.error("Download error: #{e.message}")
     render json: { message: "Internal server error" }, status: :internal_server_error
