@@ -1,4 +1,4 @@
-SitemapGenerator::Sitemap.default_host = ENV.fetch("APP_URL", "https://x-ror.com")
+SitemapGenerator::Sitemap.default_host = ENV.fetch("APP_URL", "https://x-ror.fun")
 
 SitemapGenerator::Sitemap.create do
   # Home page is added automatically with priority 1.0

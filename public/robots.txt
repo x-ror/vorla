@@ -15,4 +15,4 @@ Disallow: /resend_verification
 Disallow: /verification_pending
 
 # Sitemap
-Sitemap: https://x-ror.com/sitemap.xml.gz
+Sitemap: https://x-ror.fun/sitemap.xml.gz
