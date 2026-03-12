@@ -24,4 +24,16 @@ class PagesController < ApplicationController
 
   def pricing
   end
+
+  def privacy
+  end
+
+  def terms
+  end
+
+  def cookies_policy
+  end
+
+  def refund
+  end
 end

@@ -1,0 +1,112 @@
+<% content_for(:title) { "Refund Policy - X-ROR" } %>
+<% content_for(:seo_description) { "X-ROR Refund Policy. Learn about our refund eligibility, process, and timeline for paid subscriptions." } %>
+<%= render "shared/navbar" %>
+<main class="flex-1 pb-16">
+  <div class="mx-auto max-w-3xl px-4 pt-16 sm:px-6">
+    <p class="text-sm text-muted-foreground">Last updated: March 12, 2026</p>
+
+    <h1 class="mt-4 text-3xl font-extrabold tracking-tight">Refund Policy</h1>
+    <p class="mt-4 text-muted-foreground leading-relaxed">
+      We want you to be satisfied with X-ROR. This Refund Policy explains when and how you can
+      request a refund for paid subscriptions purchased through <strong>x-ror.fun</strong>.
+    </p>
+
+    <!-- 1. Refund Eligibility -->
+    <h2 class="mt-10 text-xl font-bold">1. Refund Eligibility</h2>
+    <p class="mt-2 text-muted-foreground">
+      We offer a <strong>14-day money-back guarantee</strong> on your first paid subscription
+      (Basic or Pro plan). If you are not satisfied with the Service within the first 14 days of
+      your initial purchase, you may request a full refund &mdash; no questions asked.
+    </p>
+    <p class="mt-2 text-muted-foreground">To be eligible for a refund:</p>
+    <ul class="mt-2 list-disc pl-6 space-y-1 text-muted-foreground">
+      <li>Your request must be made within 14 days of your first paid subscription purchase.</li>
+      <li>The refund applies only to your first subscription period (not renewals).</li>
+      <li>One refund per user/account.</li>
+    </ul>
+
+    <!-- 2. Non-Refundable Items -->
+    <h2 class="mt-10 text-xl font-bold">2. Non-Refundable Items</h2>
+    <p class="mt-2 text-muted-foreground">The following are not eligible for refunds:</p>
+    <ul class="mt-2 list-disc pl-6 space-y-1 text-muted-foreground">
+      <li><strong>Renewal charges:</strong> monthly or annual renewal payments after your first billing period.</li>
+      <li><strong>Partial months:</strong> we do not provide prorated refunds for unused portions of a billing period after the 14-day window.</li>
+      <li><strong>Account termination for violations:</strong> if your account was terminated for violating our <%= link_to "Terms of Service", terms_path %>, no refund will be issued.</li>
+      <li><strong>Previously refunded accounts:</strong> if you already received a refund and re-subscribed.</li>
+    </ul>
+
+    <!-- 3. How to Request a Refund -->
+    <h2 class="mt-10 text-xl font-bold">3. How to Request a Refund</h2>
+    <p class="mt-2 text-muted-foreground">To request a refund:</p>
+    <ol class="mt-2 list-decimal pl-6 space-y-1 text-muted-foreground">
+      <li>Send an email to <a href="mailto:[SUPPORT_EMAIL]" class="underline hover:text-foreground">[SUPPORT_EMAIL]</a> with the subject line "Refund Request."</li>
+      <li>Include your account email address and the reason for your request (optional but helpful).</li>
+      <li>We will review your request and respond within <strong>5 business days</strong>.</li>
+      <li>If approved, the refund will be processed to your original payment method via LiqPay within <strong>5&ndash;10 business days</strong>.</li>
+    </ol>
+
+    <!-- 4. What Happens After a Refund -->
+    <h2 class="mt-10 text-xl font-bold">4. What Happens After a Refund</h2>
+    <p class="mt-2 text-muted-foreground">Once a refund is processed:</p>
+    <ul class="mt-2 list-disc pl-6 space-y-1 text-muted-foreground">
+      <li>Your paid subscription will be cancelled immediately.</li>
+      <li>Your account will be downgraded to the Free plan.</li>
+      <li>You will lose access to paid features (batch downloads, stories, analyzer, influencer search, hashtag generator, API access).</li>
+      <li>Your account and any saved data (bookmarks, history) will remain intact on the Free plan.</li>
+    </ul>
+
+    <!-- 5. Billing Errors and Exceptions -->
+    <h2 class="mt-10 text-xl font-bold">5. Billing Errors and Exceptions</h2>
+    <p class="mt-2 text-muted-foreground">
+      We will always make it right in the following situations, regardless of the 14-day window:
+    </p>
+    <ul class="mt-2 list-disc pl-6 space-y-1 text-muted-foreground">
+      <li><strong>Duplicate charges:</strong> if you were charged more than once for the same billing period, we will refund the duplicate(s).</li>
+      <li><strong>Billing errors:</strong> if you were charged an incorrect amount, we will refund the difference or the full charge as appropriate.</li>
+      <li><strong>Charges after cancellation:</strong> if you were charged after successfully cancelling your subscription, we will issue a full refund for that charge.</li>
+    </ul>
+    <p class="mt-2 text-muted-foreground">
+      Contact us at <a href="mailto:[SUPPORT_EMAIL]" class="underline hover:text-foreground">[SUPPORT_EMAIL]</a>
+      with details and we will resolve the issue promptly.
+    </p>
+
+    <!-- 6. Chargebacks -->
+    <h2 class="mt-10 text-xl font-bold">6. Chargebacks</h2>
+    <p class="mt-2 text-muted-foreground">
+      We encourage you to contact us before initiating a chargeback (dispute) with your bank or
+      payment provider. We are committed to resolving billing issues quickly and fairly.
+    </p>
+    <p class="mt-2 text-muted-foreground">
+      Filing a chargeback without contacting us first may result in your account being suspended
+      until the dispute is resolved. Fraudulent chargebacks may lead to permanent account termination.
+    </p>
+
+    <!-- 7. EU Consumer Rights -->
+    <h2 class="mt-10 text-xl font-bold">7. EU Consumer Rights</h2>
+    <p class="mt-2 text-muted-foreground">
+      If you are a consumer in the European Union, you may have a statutory right of withdrawal
+      within 14 days of purchase under the Consumer Rights Directive. By using the Service during
+      this period, you acknowledge that you have requested immediate access and that the right of
+      withdrawal may be reduced accordingly. This policy does not limit any rights you have under
+      applicable EU consumer protection laws.
+    </p>
+    <!-- LEGAL FLAG -->
+    <div class="mt-4 rounded-lg border border-yellow-500/30 bg-yellow-500/5 p-4">
+      <p class="text-sm text-muted-foreground">
+        <strong>&#9888; Legal review recommended:</strong> EU consumer withdrawal rights for digital
+        services have specific requirements. Consult a lawyer to ensure your refund policy fully
+        complies with the EU Consumer Rights Directive (2011/83/EU).
+      </p>
+    </div>
+
+    <!-- 8. Contact -->
+    <h2 class="mt-10 text-xl font-bold">8. Contact Us</h2>
+    <p class="mt-2 text-muted-foreground">
+      For refund requests or billing questions, contact us at:
+    </p>
+    <ul class="mt-2 list-disc pl-6 space-y-1 text-muted-foreground">
+      <li>Email: <a href="mailto:[SUPPORT_EMAIL]" class="underline hover:text-foreground">[SUPPORT_EMAIL]</a></li>
+      <li>Website: <a href="https://x-ror.fun" class="underline hover:text-foreground">x-ror.fun</a></li>
+    </ul>
+  </div>
+</main>

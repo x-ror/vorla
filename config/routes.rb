@@ -48,6 +48,10 @@ Rails.application.routes.draw do
   get "hashtags",        to: "pages#hashtags"
   get "influencers",     to: "pages#influencers"
   get "pricing",         to: "pages#pricing"
+  get "privacy",         to: "pages#privacy"
+  get "terms",           to: "pages#terms"
+  get "cookies",         to: "pages#cookies_policy"
+  get "refund",          to: "pages#refund"
 
   # API
   namespace :api do
