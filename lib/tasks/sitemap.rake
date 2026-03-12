@@ -3,7 +3,7 @@ require "net/http"
 namespace :sitemap do
   desc "Generate sitemap and ping search engines"
   task generate_and_ping: :environment do
-    Rake::Task["sitemap:refresh"].invoke
+    Rake::Task["sitemap:refresh:no_ping"].invoke
 
     sitemap_url = "https://x-ror.fun/sitemap.xml.gz"
     ping_urls = [
