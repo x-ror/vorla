@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!--
+    X-ROR "Bolt" Badge — App icon / Favicon
+    White mark on teal rounded-square background
+  -->
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" ry="112" fill="#1A9E8F"/>
+  <!-- Bolt X mark -->
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="52">
+    <!-- Upper-left to lower-right with directional kick -->
+    <path d="M156 152 L290 286 L324 356"/>
+    <!-- Upper-right to lower-left -->
+    <path d="M356 152 L156 340"/>
+  </g>
+</svg>
