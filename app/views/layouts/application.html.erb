@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
-    <title><%= content_for(:title) || "X-ROR" %></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="Download Instagram photos, videos, reels, stories and more. The fastest and cleanest Instagram downloader.">
     <meta name="application-name" content="X-ROR">
     <meta name="theme-color" content="hsl(174,58%,39%)" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="hsl(224,71%,4%)" media="(prefers-color-scheme: dark)">
+    <meta name="google-site-verification" content="d-s1iDr8R-MMGdMjq9P6FydS5K_qMxnFzp-22Wh5SxQ">
+    <%= render "shared/seo" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= yield :head %>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
     <script>
       if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark')
       }
     </script>
   </head>
-
   <body class="flex min-h-screen flex-col bg-background text-foreground antialiased" data-controller="theme">
     <%= yield %>
-
     <% if notice.present? %>
       <div class="fixed top-4 left-1/2 z-[60] w-full max-w-md -translate-x-1/2 px-4" role="status">
         <%= render_alert title: "Success", description: notice, variant: :success %>

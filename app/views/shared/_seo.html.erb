@@ -1,0 +1,21 @@
+<%# Core meta tags - all tracked by Turbo for proper updates on navigation %>
+<title><%= seo_title %></title>
+<meta name="description" content="<%= seo_description %>" data-turbo-track="reload">
+<meta name="keywords" content="<%= seo_keywords %>" data-turbo-track="reload">
+<link rel="canonical" href="<%= canonical_url %>" data-turbo-track="reload">
+
+<%# Open Graph %>
+<%= og_tags %>
+
+<%# Twitter Cards %>
+<%= twitter_card_tags %>
+
+<%# JSON-LD: always include WebSite schema, plus any page-specific schema %>
+<%= website_json_ld %>
+<%= content_for(:json_ld) %>
+
+<%# Pagination %>
+<%= pagination_links(
+  prev_url: content_for(:prev_url).presence,
+  next_url: content_for(:next_url).presence
+) %>

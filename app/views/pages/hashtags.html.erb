@@ -1,7 +1,19 @@
-<% content_for(:title) { "Hashtag Generator - X-ROR" } %>
+<% content_for(:title) { "Instagram Hashtag Generator - X-ROR" } %>
+<% content_for(:seo_description) { "Generate trending Instagram hashtags for maximum reach. AI-powered hashtag suggestions by niche and popularity level." } %>
+<% content_for(:seo_keywords) { "instagram hashtag generator, best instagram hashtags, trending hashtags, hashtag suggestions, instagram reach" } %>
+<% content_for(:json_ld) do %>
+  <%= web_application_json_ld(
+    name: "Instagram Hashtag Generator",
+    description: "AI-powered Instagram hashtag generator for maximum reach.",
+    url: hashtags_url
+  ) %>
+<% end %>
 <%= render "shared/navbar" %>
 <main class="flex-1 pb-10" data-controller="hashtags">
-  <div class="mx-auto max-w-2xl px-4 pt-16 text-center">
+  <div class="mx-auto max-w-2xl px-4 pt-6">
+    <%= breadcrumbs({ name: "Hashtag Generator", url: hashtags_url }) %>
+  </div>
+  <div class="mx-auto max-w-2xl px-4 pt-10 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400" aria-hidden="true">
       <%= lucide_icon("hash", class: "h-6 w-6") %>
     </div>

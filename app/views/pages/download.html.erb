@@ -1,7 +1,18 @@
 <% content_for(:title) { "Download Instagram Content - X-ROR" } %>
+<% content_for(:seo_description) { "Download Instagram posts, reels, and carousels in full quality. Paste any Instagram URL and save photos and videos instantly." } %>
+<% content_for(:json_ld) do %>
+  <%= web_application_json_ld(
+    name: "Instagram Downloader",
+    description: "Download Instagram posts, reels, and carousels in full quality.",
+    url: download_url
+  ) %>
+<% end %>
 <%= render "shared/navbar" %>
 <main class="flex-1 pb-10" data-controller="download lightbox" data-lightbox-index-value="-1">
-  <div class="mx-auto max-w-2xl px-4 pt-16 text-center">
+  <div class="mx-auto max-w-2xl px-4 pt-6">
+    <%= breadcrumbs({ name: "Download", url: download_url }) %>
+  </div>
+  <div class="mx-auto max-w-2xl px-4 pt-10 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
       <%= lucide_icon("download", class: "h-6 w-6") %>
     </div>

@@ -1,7 +1,19 @@
-<% content_for(:title) { "Influencer Search - X-ROR" } %>
+<% content_for(:title) { "Instagram Influencer Search - X-ROR" } %>
+<% content_for(:seo_description) { "Find Instagram influencers by niche and engagement rate. Discover creators for your marketing campaigns." } %>
+<% content_for(:seo_keywords) { "instagram influencer search, find influencers, influencer marketing, instagram creators, instagram influencer discovery" } %>
+<% content_for(:json_ld) do %>
+  <%= web_application_json_ld(
+    name: "Instagram Influencer Search",
+    description: "Find Instagram influencers by niche and engagement rate.",
+    url: influencers_url
+  ) %>
+<% end %>
 <%= render "shared/navbar" %>
 <main class="flex-1 pb-10" data-controller="influencers">
-  <div class="mx-auto max-w-2xl px-4 pt-16 text-center">
+  <div class="mx-auto max-w-2xl px-4 pt-6">
+    <%= breadcrumbs({ name: "Influencer Search", url: influencers_url }) %>
+  </div>
+  <div class="mx-auto max-w-2xl px-4 pt-10 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400" aria-hidden="true">
       <%= lucide_icon("circle-plus", class: "h-6 w-6") %>
     </div>

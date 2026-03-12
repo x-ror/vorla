@@ -1,7 +1,19 @@
-<% content_for(:title) { "Profile Analyzer - X-ROR" } %>
+<% content_for(:title) { "Instagram Profile Analyzer - X-ROR" } %>
+<% content_for(:seo_description) { "Analyze any public Instagram profile. Get engagement rate, follower stats, posting frequency, and detailed insights." } %>
+<% content_for(:seo_keywords) { "instagram profile analyzer, instagram engagement rate, instagram analytics, instagram account analyzer, instagram insights" } %>
+<% content_for(:json_ld) do %>
+  <%= web_application_json_ld(
+    name: "Instagram Profile Analyzer",
+    description: "Analyze any public Instagram profile with engagement rate and detailed insights.",
+    url: analyzer_url
+  ) %>
+<% end %>
 <%= render "shared/navbar" %>
 <main class="flex-1 pb-10" data-controller="analyzer">
-  <div class="mx-auto max-w-2xl px-4 pt-16 text-center">
+  <div class="mx-auto max-w-2xl px-4 pt-6">
+    <%= breadcrumbs({ name: "Profile Analyzer", url: analyzer_url }) %>
+  </div>
+  <div class="mx-auto max-w-2xl px-4 pt-10 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
       <%= lucide_icon("chart-bar", class: "h-6 w-6") %>
     </div>

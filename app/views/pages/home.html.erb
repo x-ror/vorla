@@ -1,4 +1,18 @@
 <% content_for(:title) { "X-ROR — Download Instagram Content Instantly" } %>
+<% content_for(:seo_description) { "Download Instagram photos, videos, reels, stories and profile pictures for free. Fast, clean, no login required. 2M+ downloads served." } %>
+<% content_for(:seo_keywords) { "instagram downloader, download instagram videos, instagram reels downloader, instagram story downloader, save instagram photos" } %>
+<% content_for(:json_ld) do %>
+  <%= web_application_json_ld(
+    name: "X-ROR Instagram Downloader",
+    description: "Download Instagram photos, videos, reels, stories and more for free.",
+    url: root_url
+  ) %>
+  <%= faq_json_ld([
+    { question: "Is X-ROR free to use?", answer: "Yes, X-ROR offers a free tier with basic quality downloads and profile picture downloads. Premium plans start at $4/month." },
+    { question: "Do I need to log in to download?", answer: "No, you can start downloading Instagram content immediately without creating an account." },
+    { question: "What content can I download?", answer: "You can download Instagram posts, reels, carousel images, stories, and full-size profile pictures." }
+  ]) %>
+<% end %>
 <%= render "shared/navbar" %>
 <main>
   <!-- Hero -->

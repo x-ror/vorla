@@ -1,1 +1,18 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+User-agent: *
+Allow: /
+
+# Block admin, auth, and API routes
+Disallow: /api/
+Disallow: /passwords
+Disallow: /session
+Disallow: /active_sessions
+Disallow: /passkeys/
+Disallow: /profile
+Disallow: /bookmarks
+Disallow: /history
+Disallow: /verify_email
+Disallow: /resend_verification
+Disallow: /verification_pending
+
+# Sitemap
+Sitemap: https://x-ror.com/sitemap.xml.gz
