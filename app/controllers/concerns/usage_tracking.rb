@@ -3,7 +3,7 @@ module UsageTracking
 
   private
 
-  def track_usage!(action_type, query: nil)
+  def track_usage!(action_type)
     if UsageLog.limit_reached?(action_type: action_type, user: Current.user, ip_address: request.remote_ip)
       limit = UsageLog.limit_for(action_type, user: Current.user)
       render json: {
@@ -15,15 +15,12 @@ module UsageTracking
       return false
     end
 
-    meta = { user_agent: request.user_agent }
-    meta[:query] = query if query.present?
-
     UsageLog.create!(
       user: Current.user,
       action_type: action_type,
       ip_address: request.remote_ip,
       session_token: cookies.signed[:session_id],
-      metadata: meta
+      metadata: {}
     )
     true
   end
