@@ -3,13 +3,14 @@ module SetLocale
 
   included do
     around_action :switch_locale
-    helper_method :available_locales, :locale_name
+    helper_method :available_locales, :locale_name, :locale_switch_path
   end
 
   private
 
   def switch_locale(&action)
     locale = extract_locale
+    save_locale_preference(locale)
     I18n.with_locale(locale, &action)
   end
 
@@ -55,6 +56,10 @@ module SetLocale
     nil
   end
 
+  def save_locale_preference(locale)
+    Current.session&.user&.update_column(:locale, locale.to_s) if Current.session&.user&.locale.to_s != locale.to_s
+  end
+
   def default_url_options
     { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
   end
@@ -68,5 +73,23 @@ module SetLocale
       en: "English",
       uk: "Українська"
     }[locale.to_sym] || locale.to_s
+  end
+
+  # Build a path for switching locale by replacing/adding the locale prefix
+  def locale_switch_path(target_locale)
+    # Strip current locale prefix from path if present
+    path = request.path
+    current_prefix = "/#{I18n.locale}"
+    base_path = if path.start_with?(current_prefix + "/")
+                  path.delete_prefix(current_prefix)
+    elsif path == current_prefix
+                  "/"
+    else
+                  path
+    end
+
+    # Always include locale prefix so params[:locale] is set and
+    # locale_from_path wins over locale_from_user_preference
+    "/#{target_locale}#{base_path}"
   end
 end

@@ -1,15 +1,21 @@
-<%# Pure ERB + CSS locale switcher — no JavaScript required, works with Turbo Drive %>
-<div class="relative inline-flex items-center">
-  <% available_locales.each do |loc| %>
-    <% if loc == I18n.locale %>
-      <span class="inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-semibold text-foreground bg-accent">
-        <%= locale_name(loc) %>
-      </span>
-    <% else %>
-      <%= link_to locale_name(loc),
-        url_for(request.query_parameters.merge(locale: loc == I18n.default_locale ? nil : loc)),
-        class: "inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-accent",
-        data: { turbo_action: "replace" } %>
+<div class="relative" data-controller="dropdown">
+  <button type="button" data-action="click->dropdown#toggle"
+    class="inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+    <%= lucide_icon("globe", class: "h-3.5 w-3.5") %>
+    <%= I18n.locale.to_s.upcase %>
+    <%= lucide_icon("chevron-down") %>
+  </button>
+  <div data-dropdown-target="menu" class="hidden absolute right-0 top-full mt-1.5 w-40 rounded-lg border border-border bg-background p-1 shadow-lg z-50">
+    <% available_locales.each do |loc| %>
+      <% active = loc == I18n.locale %>
+      <%= link_to locale_switch_path(loc),
+            class: "flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors #{active ? 'text-foreground font-medium bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-accent'}",
+            data: { turbo_action: "replace" } do %>
+        <span><%= locale_name(loc) %></span>
+        <% if active %>
+          <%= lucide_icon("check", class: "h-3.5 w-3.5 ml-auto text-primary") %>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
