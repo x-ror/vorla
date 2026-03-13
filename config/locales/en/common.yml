@@ -57,3 +57,12 @@ en:
     terms: "Terms"
     cookies: "Cookies"
     refunds: "Refunds"
+    do_not_sell: "Do Not Sell My Info"
+
+  # Cookie consent banner
+  cookie_consent:
+    title: "We use cookies"
+    description_html: "We use essential cookies to make our site work. With your consent, we may also use non-essential cookies to improve your experience. See our %{link}."
+    cookie_policy: "Cookie Policy"
+    reject: "Reject non-essential"
+    accept: "Accept all"

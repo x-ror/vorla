@@ -53,3 +53,11 @@ uk:
     terms: "Умови"
     cookies: "Cookies"
     refunds: "Повернення"
+    do_not_sell: "Не продавати мої дані"
+
+  cookie_consent:
+    title: "Ми використовуємо cookies"
+    description_html: "Ми використовуємо необхідні cookies для роботи сайту. За вашою згодою ми також можемо використовувати необов'язкові cookies для покращення досвіду. Дивіться нашу %{link}."
+    cookie_policy: "Політику cookies"
+    reject: "Відхилити необов'язкові"
+    accept: "Прийняти всі"

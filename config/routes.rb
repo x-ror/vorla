@@ -37,6 +37,11 @@ Rails.application.routes.draw do
     # Bookmarks
     resources :bookmarks, only: %i[index create destroy]
 
+    # Account (data privacy: export + deletion)
+    resource :account, only: %i[show destroy] do
+      get :export, on: :member
+    end
+
     # History
     get "history", to: "history#index"
 

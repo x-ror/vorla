@@ -93,6 +93,23 @@ en:
         analyze: "Analyzer"
         hashtags: "Hashtags"
 
+    account:
+      section: "Account"
+      title: "Data & Privacy"
+      data_export: "Data Export"
+      data_export_description: "Download a copy of all your personal data in JSON format. This includes your profile information, bookmarks, and usage history."
+      export_button: "Export my data"
+      danger_zone: "Danger Zone"
+      delete_title: "Delete your account"
+      delete_description: "Permanently delete your account and all associated data. This includes your profile, bookmarks, usage history, active sessions, and passkeys. This action cannot be undone."
+      delete_button: "Delete my account"
+      delete_confirm_text: "Enter your password to confirm account deletion:"
+      delete_password_placeholder: "Your password"
+      delete_submit: "Permanently delete"
+      delete_turbo_confirm: "Are you absolutely sure? All your data will be permanently deleted."
+      incorrect_password: "Incorrect password. Account not deleted."
+      deleted_successfully: "Your account and all associated data have been permanently deleted."
+
     security:
       section: "Account"
       title: "Security"
