@@ -108,8 +108,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_13_100000) do
     t.string "full_name"
     t.datetime "instagram_connected_at"
     t.string "instagram_id"
-    t.string "locale", limit: 5
     t.string "instagram_username"
+    t.string "locale", limit: 5
     t.string "password_digest", null: false
     t.string "plan"
     t.datetime "terms_accepted_at"
