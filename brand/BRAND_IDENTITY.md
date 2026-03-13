@@ -27,83 +27,93 @@ X-ROR is a comprehensive Instagram content management platform offering download
 
 ---
 
-## 2. Logo Concepts (3 Directions)
+## 2. Logo Concepts — Name-Agnostic (Rebrand-Ready)
 
-### Concept A: "The Bolt"
-**Style:** Icon + Wordmark
+> **Note:** The product name "X-ROR" is being changed. These concepts are designed
+> around the product's *function* (Instagram content capture/download) rather than
+> any specific name or letterform. They will survive any rebrand.
 
-**Visual Idea:** The letter X is constructed from two intersecting strokes. The lower-right stroke extends slightly and terminates with a sharp downward angle, subtly forming a directional arrow. This creates an X that "points" — communicating both the brand initial and the core download action in a single, clean gesture. The strokes have slightly rounded terminals for approachability but remain angular and decisive.
+### Concept A: "The Frame" (Recommended)
+**Style:** Abstract icon
 
-**Typography Direction:** DM Sans Bold (consistent with existing site typography) for the wordmark "X-ROR". The dash is omitted in the icon-only version. Letter-spacing: tight (-0.02em). All caps.
+**Visual Idea:** Four L-shaped brackets arranged as viewfinder crop corners, with a subtle downward chevron at the center. The brackets say "framing visual content" — a direct reference to the product's photo/video capture function. The center chevron communicates the download action without being a generic arrow (it's *inside* the frame, suggesting content being pulled into focus).
 
-**Color Palette:**
-- `#1A9E8F` — Primary teal (existing brand color, hsl 174 58% 36%). Communicates trust, clarity, digital precision.
-- `#0D1117` — Near-black (dark mode background tone). For wordmark text on light backgrounds.
-- `#F0F6F5` — Frost teal (very light tint). For light background applications.
-
-**Why It Works:** The bolt concept merges identity (the X) with function (download direction) without being as literal as a generic arrow icon. The integrated motion gives the mark energy and purpose. It's distinctive enough to trademark because no other download tool uses an X-with-directional-intent.
-
----
-
-### Concept B: "The Aperture"
-**Style:** Icon + Wordmark
-
-**Visual Idea:** The X is formed by four triangular segments arranged with precise, even gaps between them — evoking a camera aperture or lens iris. The negative space at the center creates a small diamond shape. This references the visual/photographic nature of Instagram content while the X remains the dominant letterform. The four segments suggest the four content types X-ROR handles: posts, reels, stories, and profiles.
-
-**Typography Direction:** DM Sans Semi-Bold for the wordmark. Slightly wider letter-spacing (+0.04em) to echo the airy, spaced-apart quality of the aperture segments.
+**Why It Works:**
+- **Name-agnostic** — no letters, works with any brand name
+- **Function-specific** — viewfinder brackets are specific to visual content tools
+- **Scales well** — brackets remain legible even at 16px favicon size
+- **Distinctive** — no competitor in the Instagram download space uses a viewfinder metaphor
+- **Animatable** — brackets can contract/expand for loading states; chevron can pulse for downloads
 
 **Color Palette:**
 - `#1A9E8F` — Primary teal (brand continuity)
-- `#2DD4A8` — Bright mint (secondary accent for hover states and highlights). Adds energy without departing from the teal family.
-- `#1A1F2E` — Deep navy (wordmark on light backgrounds)
-
-**Why It Works:** The aperture metaphor is specific to visual content tools without being as overused as a camera icon. The segmented X is visually interesting at any size and the negative-space diamond creates a memorable secondary shape. The four-part structure also works well for loading animations.
+- `#0D1117` — Near-black (dark mode / wordmark)
+- `#F0F6F5` — Frost teal (light backgrounds)
 
 ---
 
-### Concept C: "The Transfer"
-**Style:** Lettermark
+### Concept B: "The Flow"
+**Style:** Abstract icon
 
-**Visual Idea:** A monogram of the letters X and R overlaid. The X is rendered in medium-weight geometric strokes. The R shares the X's upper-right stroke as its vertical stem, with a compact bowl and a leg that kicks downward. The two letters interlock organically — neither dominates, creating a unified glyph. The overall silhouette is compact and square-proportioned.
+**Visual Idea:** Three strokes converging from above into a single point at the bottom, forming a funnel shape. The outer strokes curve inward organically while the center stroke drops straight down. A solid dot at the convergence point anchors the mark. The overall shape communicates content flowing from a source (Instagram) down to the user — extraction, gathering, channeling.
 
-**Typography Direction:** Custom geometric letterforms — inspired by DM Sans but with sharper joints and flatter curves. The wordmark "X-ROR" uses DM Sans Bold alongside the monogram.
+**Why It Works:**
+- **Name-agnostic** — purely abstract, no letterforms
+- **Metaphor-rich** — "funneling content" is intuitive and memorable
+- **Organic** — the curves add warmth and fluidity (matching the "Fluid" brand personality)
+- **Unique silhouette** — the funnel shape is distinctive in the download tool space
 
 **Color Palette:**
-- `#1A9E8F` — Teal (monogram fill)
-- `#0D1117` — Near-black (standalone applications on light backgrounds)
-- `#E8F5F3` — Pale mint (background accent for cards/badges)
+- `#1A9E8F` — Primary teal
+- `#2DD4A8` — Bright mint (secondary accent)
+- `#0D1117` — Near-black
 
-**Why It Works:** Monograms convey premium quality and maturity. The XR interlock creates a unique glyph that no competitor can replicate. It works well as a standalone app icon because it contains meaningful letterforms rather than abstract geometry. The interlocking communicates the integration of multiple tools into one platform.
+---
+
+### Concept C: "The Lens"
+**Style:** Abstract icon
+
+**Visual Idea:** An outer ring (representing the content source) with an offset inner circle creating a crescent/eclipse effect (representing focus/selection). A short diagonal stroke breaks out from the ring at the bottom-right, suggesting extraction — content being pulled from the source. The overall effect is a magnifying glass or lens that's actively "pulling" something.
+
+**Why It Works:**
+- **Name-agnostic** — geometric, no letters
+- **Precision metaphor** — the lens/focus concept communicates the "Technical" brand personality
+- **Premium feel** — circular marks convey polish and sophistication
+- **Versatile** — works as both an outlined and filled mark
+
+**Color Palette:**
+- `#1A9E8F` — Primary teal
+- `#0D1117` — Near-black
+- `#E8F5F3` — Pale mint
 
 ---
 
 ## 3. Favicon / App Icon Concept
 
-### Recommended: Concept A — "The Bolt"
+### Recommended: Concept A — "The Frame"
 
-The Bolt X is the strongest candidate for small-size reproduction because:
-- It's a single, continuous mark (no small gaps like the Aperture)
-- The directional stroke creates asymmetry that aids recognition even at 16px
-- It doesn't rely on fine details that collapse at small sizes
+The Frame is the strongest candidate for small-size reproduction because:
+- Bracket corners remain distinct even at 16px (simple L-shapes)
+- The center chevron adds recognizable detail without clutter
+- High contrast between brackets and negative space aids recognition
+- No fine curves or thin strokes that collapse at small sizes
 
 ### Size Adaptations
 
 **512x512 (App Icon):**
-- Full Bolt X mark centered on a teal (`#1A9E8F`) rounded-square background
-- White (`#FFFFFF`) icon stroke
+- Full Frame mark centered on a teal (`#1A9E8F`) rounded-square background
+- White (`#FFFFFF`) icon strokes
 - Corner radius: ~22% (matching iOS/Android conventions)
 - Generous padding: icon occupies ~60% of the canvas
 
 **32x32 (Favicon):**
-- Same Bolt X but with slightly thicker strokes (optical compensation)
+- Same Frame but with slightly thicker strokes (optical compensation)
 - Teal rounded-square background maintained
 - Corner radius reduced to ~18% for clarity at small size
-- Padding reduced: icon occupies ~70% of the canvas
 
 **16x16 (Smallest Favicon):**
-- Bolt X simplified: the directional angle on the lower-right stroke is straightened slightly to prevent blur
-- Strokes thickened further for pixel clarity
-- Background shape becomes a simple rounded square
+- Brackets simplified to minimal L-shapes
+- Center chevron may be omitted for clarity at this size
 - Two-color only: white mark on teal background
 
 ### Background Shape
@@ -113,10 +123,18 @@ The Bolt X is the strongest candidate for small-size reproduction because:
 
 ## 4. SVG Implementation
 
-See the following files in this directory:
-- `icon-bolt.svg` — The Bolt X icon (standalone mark, works on any background)
-- `icon-bolt-badge.svg` — The Bolt X on a teal rounded-square badge (favicon/app icon)
-- `icon-bolt-badge-dark.svg` — Dark variant for light backgrounds
+### Name-Agnostic Icons (Current — rebrand-ready)
+- `icon-frame.svg` — The Frame icon (standalone mark)
+- `icon-frame-badge.svg` — The Frame on a teal rounded-square badge (favicon/app icon)
+- `icon-flow.svg` — The Flow icon (standalone mark)
+- `icon-flow-badge.svg` — The Flow on a teal rounded-square badge
+- `icon-lens.svg` — The Lens icon (standalone mark)
+- `icon-lens-badge.svg` — The Lens on a teal rounded-square badge
+
+### Legacy (name-dependent — deprecated)
+- `icon-bolt.svg` — The Bolt X icon (tied to "X-ROR" name)
+- `icon-bolt-badge.svg` — The Bolt X badge
+- `icon-bolt-badge-dark.svg` — Dark variant
 
 ---
 
@@ -128,7 +146,7 @@ See the following files in this directory:
 - **Dark mode:** The icon works in both modes via the badge format (teal bg + white mark)
 
 ### Recommended Updates
-1. Replace the placeholder `icon.svg` (red circle) with the Bolt badge SVG
-2. Update the navbar brand badge from the plain "X" text to the Bolt SVG icon
-3. Use the standalone Bolt mark (no badge) for inline references where the icon appears on colored backgrounds
-4. The wordmark "X-ROR" in the navbar can remain as styled text (DM Sans Extra Bold) alongside the new icon badge
+1. Replace the placeholder `icon.svg` (red circle) with the Frame badge SVG
+2. Update the navbar brand badge from the plain "X" text to the Frame SVG icon
+3. Use the standalone Frame mark (no badge) for inline references where the icon appears on colored backgrounds
+4. The wordmark in the navbar should use the new product name (TBD) alongside the Frame icon badge

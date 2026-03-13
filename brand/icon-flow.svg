@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!--
+    "The Flow" — Name-agnostic concept
+    Three converging strokes that funnel into a single point.
+    Communicates: content extraction, gathering, channeling media from source to user.
+  -->
+  <g fill="none" stroke="#1A9E8F" stroke-linecap="round" stroke-linejoin="round" stroke-width="48">
+    <!-- Left stream: curves from upper-left down to center-bottom -->
+    <path d="M112 128 C112 260, 200 320, 256 380"/>
+    <!-- Center stream: straight vertical descent -->
+    <path d="M256 108 L256 380"/>
+    <!-- Right stream: curves from upper-right down to center-bottom -->
+    <path d="M400 128 C400 260, 312 320, 256 380"/>
+  </g>
+  <!-- Convergence dot at the funnel point -->
+  <circle cx="256" cy="396" r="28" fill="#1A9E8F"/>
+</svg>
