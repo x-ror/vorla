@@ -26,6 +26,16 @@
             <%= render_input name: "password_confirmation", id: "signup-password-confirm", type: :password, placeholder: "Confirm your password", autocomplete: "new-password", required: true %>
           </div>
 
+          <div class="flex items-start gap-2">
+            <input type="checkbox" name="terms_accepted" id="terms-accepted" value="1" required class="mt-0.5 h-4 w-4 shrink-0 rounded border border-input bg-background text-primary shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+            <label for="terms-accepted" class="text-xs text-muted-foreground leading-snug">
+              I agree to the
+              <%= link_to "Terms of Service", terms_path, class: "underline hover:text-foreground", target: "_blank" %>,
+              <%= link_to "Privacy Policy", privacy_path, class: "underline hover:text-foreground", target: "_blank" %>, and
+              <%= link_to "Cookie Policy", cookies_path, class: "underline hover:text-foreground", target: "_blank" %>
+            </label>
+          </div>
+
           <%= render_button "Create Account →", class: "w-full" %>
         <% end %>
 

@@ -5,8 +5,13 @@ class RegistrationsController < ApplicationController
   end
 
   def create
+    unless params[:terms_accepted] == "1"
+      return redirect_to signup_path, alert: "You must agree to the Terms of Service, Privacy Policy, and Cookie Policy."
+    end
+
     user = User.new(user_params)
     user.plan = "free"
+    user.terms_accepted_at = Time.current
 
     if user.save
       # EmailVerificationMailer.verify(user).deliver_later
