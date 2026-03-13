@@ -2,8 +2,9 @@ en:
   site_name: "X-ROR"
   locale_name: "English"
 
-  breadcrumbs:
-    home: "Home"
+  languages:
+    en: "English"
+    uk: "Українська"
 
   # Shared flash messages
   flash:

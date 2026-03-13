@@ -2,8 +2,9 @@ uk:
   site_name: "X-ROR"
   locale_name: "Українська"
 
-  breadcrumbs:
-    home: "Головна"
+  languages:
+    en: "English"
+    uk: "Українська"
 
   flash:
     upgrade_required: "Будь ласка, оновіть план для доступу до цієї функції."

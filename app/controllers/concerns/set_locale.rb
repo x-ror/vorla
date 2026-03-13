@@ -10,54 +10,35 @@ module SetLocale
 
   def switch_locale(&action)
     locale = extract_locale
-    save_locale_preference(locale)
+    # Only update if user is logged in AND the locale actually changed
+    save_locale_preference(locale) if Current.session&.user && Current.session.user.locale != locale.to_s
+
     I18n.with_locale(locale, &action)
   end
 
   def extract_locale
-    locale_from_path ||
-      locale_from_user_preference ||
+    # We validate the locale immediately in each step to keep it DRY
+    validated_locale(params[:locale]) ||
+      validated_locale(Current.session&.user&.locale) ||
       locale_from_header ||
       I18n.default_locale
   end
 
-  # 1. URL path prefix: /uk/download
-  def locale_from_path
-    locale = params[:locale]
+  def validated_locale(locale)
     return nil if locale.blank?
 
-    locale.to_sym if I18n.available_locales.include?(locale.to_sym)
+    parsed = locale.to_sym
+    I18n.available_locales.include?(parsed) ? parsed : nil
   end
 
-  # 2. Logged-in user's saved preference
-  def locale_from_user_preference
-    return nil unless Current.session&.user&.locale.present?
-
-    locale = Current.session.user.locale.to_sym
-    locale if I18n.available_locales.include?(locale)
-  end
-
-  # 3. Accept-Language header
   def locale_from_header
-    header = request.env["HTTP_ACCEPT_LANGUAGE"]
-    return nil if header.blank?
-
-    parsed = header.split(",").filter_map { |lang|
-      parts = lang.strip.split(";")
-      code = parts[0].strip.split("-").first.downcase
-      quality = parts[1] ? parts[1].split("=").last.to_f : 1.0
-      [ code.to_sym, quality ]
-    }.sort_by { |_, q| -q }
-
-    parsed.each do |code, _|
-      return code if I18n.available_locales.include?(code)
-    end
-
+    http_accept_language.compatible_language_from(I18n.available_locales)
+  rescue
     nil
   end
 
   def save_locale_preference(locale)
-    Current.session&.user&.update_column(:locale, locale.to_s) if Current.session&.user&.locale.to_s != locale.to_s
+    Current.session.user.update_column(:locale, locale.to_s)
   end
 
   def default_url_options
@@ -69,27 +50,10 @@ module SetLocale
   end
 
   def locale_name(locale)
-    {
-      en: "English",
-      uk: "Українська"
-    }[locale.to_sym] || locale.to_s
+    I18n.t("languages.#{locale}", default: locale.to_s.upcase)
   end
 
-  # Build a path for switching locale by replacing/adding the locale prefix
   def locale_switch_path(target_locale)
-    # Strip current locale prefix from path if present
-    path = request.path
-    current_prefix = "/#{I18n.locale}"
-    base_path = if path.start_with?(current_prefix + "/")
-                  path.delete_prefix(current_prefix)
-    elsif path == current_prefix
-                  "/"
-    else
-                  path
-    end
-
-    # Always include locale prefix so params[:locale] is set and
-    # locale_from_path wins over locale_from_user_preference
-    "/#{target_locale}#{base_path}"
+    url_for(request.params.merge(locale: target_locale))
   end
 end
