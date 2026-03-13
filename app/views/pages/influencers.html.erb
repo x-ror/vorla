@@ -1,44 +1,44 @@
-<% content_for(:title) { "Instagram Influencer Search - X-ROR" } %>
-<% content_for(:seo_description) { "Find Instagram influencers by niche and engagement rate. Discover creators for your marketing campaigns." } %>
-<% content_for(:seo_keywords) { "instagram influencer search, find influencers, influencer marketing, instagram creators, instagram influencer discovery" } %>
+<% content_for(:title) { t("pages.influencers.title") } %>
+<% content_for(:seo_description) { t("pages.influencers.description") } %>
+<% content_for(:seo_keywords) { t("pages.influencers.keywords") } %>
 <% content_for(:json_ld) do %>
   <%= web_application_json_ld(
     name: "Instagram Influencer Search",
-    description: "Find Instagram influencers by niche and engagement rate.",
+    description: t("pages.influencers.description"),
     url: influencers_url
   ) %>
 <% end %>
 <%= render "shared/navbar" %>
 <main class="flex-1 pb-10" data-controller="influencers">
   <div class="mx-auto max-w-2xl px-4 pt-6">
-    <%= breadcrumbs({ name: "Influencer Search", url: influencers_url }) %>
+    <%= breadcrumbs({ name: t("pages.influencers.breadcrumb"), url: influencers_url }) %>
   </div>
   <div class="mx-auto max-w-2xl px-4 pt-10 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400" aria-hidden="true">
       <%= lucide_icon("circle-plus", class: "h-6 w-6") %>
     </div>
-    <h1 class="text-2xl font-extrabold tracking-tight">Influencer Search</h1>
-    <p class="mt-2 text-muted-foreground">Find influencers by niche, engagement rate, and follower count</p>
+    <h1 class="text-2xl font-extrabold tracking-tight"><%= t("pages.influencers.heading") %></h1>
+    <p class="mt-2 text-muted-foreground"><%= t("pages.influencers.subheading") %></p>
   </div>
   <div class="mx-auto max-w-3xl px-4 mt-8">
-    <form data-action="submit->influencers#search" aria-label="Search for influencers" class="flex w-full items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 mb-5">
+    <form data-action="submit->influencers#search" aria-label="<%= t("pages.influencers.heading") %>" class="flex w-full items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 mb-5">
       <span class="pl-3 text-muted-foreground" aria-hidden="true">
         <%= lucide_icon("search", class: "h-5 w-5") %>
       </span>
-      <label for="influencer-query" class="sr-only">Search keyword, niche, or username</label>
-      <input id="influencer-query" type="text" data-influencers-target="query" placeholder="Search by keyword, niche, or username..." autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
-      <button type="submit" data-influencers-target="submitBtn" class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">Search</button>
+      <label for="influencer-query" class="sr-only"><%= t("pages.influencers.placeholder") %></label>
+      <input id="influencer-query" type="text" data-influencers-target="query" placeholder="<%= t("pages.influencers.placeholder") %>" autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
+      <button type="submit" data-influencers-target="submitBtn" class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"><%= t("common.search") %></button>
     </form>
     <div class="flex flex-wrap gap-2 mb-5" role="group" aria-label="Category filters">
-      <% %w[All Fashion Fitness Food Travel Tech Beauty Lifestyle].each_with_index do |cat, i| %>
-        <button type="button" class="cat-pill <%= 'active' if i == 0 %>" data-action="click->influencers#selectCategory" data-category="<%= cat.downcase %>"><%= cat %></button>
+      <% %w[all fashion fitness food travel tech beauty lifestyle].each_with_index do |cat, i| %>
+        <button type="button" class="cat-pill <%= 'active' if i == 0 %>" data-action="click->influencers#selectCategory" data-category="<%= cat %>"><%= t("pages.influencers.categories.#{cat}") %></button>
       <% end %>
     </div>
     <div data-influencers-target="result" role="region" aria-live="polite">
       <div class="empty-state">
         <%= lucide_icon("circle-plus", class: "h-10 w-10", stroke_width: 1.5, aria_hidden: true) %>
-        <h3>Search for influencers</h3>
-        <p>Enter a keyword or select a category to find relevant influencers</p>
+        <h3><%= t("pages.influencers.empty_title") %></h3>
+        <p><%= t("pages.influencers.empty_desc") %></p>
       </div>
     </div>
   </div>

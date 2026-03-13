@@ -1,20 +1,20 @@
-<% content_for(:title) { "Search History - X-ROR" } %>
+<% content_for(:title) { "#{t("user_pages.history.title")} - X-ROR" } %>
 <%= render "shared/navbar" %>
 <main class="flex-1 pb-10">
   <div class="mx-auto max-w-2xl px-4 pt-16 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
       <%= lucide_icon("clock", class: "h-6 w-6") %>
     </div>
-    <h1 class="text-2xl font-extrabold tracking-tight">Search History</h1>
-    <p class="mt-2 text-muted-foreground">Your recent searches and downloads</p>
+    <h1 class="text-2xl font-extrabold tracking-tight"><%= t("user_pages.history.title") %></h1>
+    <p class="mt-2 text-muted-foreground"><%= t("user_pages.history.description") %></p>
   </div>
 
   <div class="mx-auto max-w-xl px-4 mt-8">
     <%# Action type filter tabs %>
     <div class="flex gap-1 mb-6">
-      <%= link_to "All", history_path, class: "rounded-md px-3 py-1.5 text-xs font-medium transition-colors #{params[:type].blank? ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}" %>
+      <%= link_to t("common.all"), history_path, class: "rounded-md px-3 py-1.5 text-xs font-medium transition-colors #{params[:type].blank? ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}" %>
       <% %w[download stories profile_picture analyze hashtags].each do |type| %>
-        <%= link_to history_action_label(type), history_path(type: type), class: "rounded-md px-3 py-1.5 text-xs font-medium transition-colors #{params[:type] == type ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}" %>
+        <%= link_to t("user_pages.history.actions.#{type}"), history_path(type: type), class: "rounded-md px-3 py-1.5 text-xs font-medium transition-colors #{params[:type] == type ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}" %>
       <% end %>
     </div>
 
@@ -31,7 +31,7 @@
                 <p class="text-sm font-medium truncate"><%= query.presence || log.action_type.humanize %></p>
                 <p class="text-xs text-muted-foreground">
                   <span class="rounded bg-muted px-1.5 py-0.5 text-xs font-medium"><%= history_action_label(log.action_type) %></span>
-                  &middot; <%= time_ago_in_words(log.created_at) %> ago
+                  &middot; <%= time_ago_in_words(log.created_at) %> <%= t("common.ago") %>
                 </p>
               </div>
               <% if query.present? && (path = history_action_path(log.action_type, query)) %>
@@ -46,7 +46,7 @@
     <% else %>
       <div class="text-center py-12">
         <%= lucide_icon("clock", class: "mx-auto h-10 w-10 text-muted-foreground/30 mb-3") %>
-        <p class="text-sm text-muted-foreground">No history yet. Start using the tools and your activity will appear here.</p>
+        <p class="text-sm text-muted-foreground"><%= t("user_pages.history.empty") %></p>
       </div>
     <% end %>
   </div>

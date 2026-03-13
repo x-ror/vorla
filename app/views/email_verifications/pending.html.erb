@@ -1,32 +1,31 @@
-<% content_for(:title) { "Verify Your Email - X-ROR" } %>
+<% content_for(:title) { t("auth.email_pending.title") } %>
 <main class="flex min-h-screen items-center justify-center px-4 py-10">
   <div class="w-full max-w-sm animate-slide-up">
     <%= render_card(class: "w-full") do %>
       <div class="p-8">
         <div class="mb-8 text-center">
-          <a href="/" class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-extrabold text-xl mb-6" aria-label="X-ROR home">X</a>
-          <h1 class="text-xl font-extrabold tracking-tight">Check your email</h1>
+          <a href="<%= root_path %>" class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-extrabold text-xl mb-6" aria-label="X-ROR home">X</a>
+          <h1 class="text-xl font-extrabold tracking-tight"><%= t("auth.email_pending.heading") %></h1>
           <p class="mt-1 text-sm text-muted-foreground">
-            We sent a verification link to
             <% if @email.present? %>
-              <strong class="text-foreground"><%= @email %></strong>
+              <%= t("auth.email_pending.sent_to_html", email: @email).html_safe %>
             <% else %>
-              your email address
+              <%= t("auth.email_pending.sent_generic") %>
             <% end %>
           </p>
         </div>
         <div class="space-y-4">
           <div class="rounded-lg border border-border bg-muted/50 p-4 text-center">
             <%= lucide_icon("mail", class: "mx-auto mb-3 h-10 w-10 text-muted-foreground", stroke_width: 1.5) %>
-            <p class="text-sm text-muted-foreground">Click the link in the email to activate your account. Check your spam folder if you don't see it.</p>
+            <p class="text-sm text-muted-foreground"><%= t("auth.email_pending.instructions") %></p>
           </div>
           <%= form_with url: resend_verification_path, class: "mt-4" do |f| %>
             <input type="hidden" name="email_address" value="<%= @email %>">
-            <%= render_button "Resend verification email", variant: :outline, class: "w-full" %>
+            <%= render_button t("auth.email_pending.resend"), variant: :outline, class: "w-full" %>
           <% end %>
         </div>
         <div class="mt-6 text-center text-sm text-muted-foreground">
-          Already verified? <a href="<%= login_path %>" class="font-semibold text-primary hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Sign in</a>
+          <%= t("auth.email_pending.already_verified") %> <a href="<%= login_path %>" class="font-semibold text-primary hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"><%= t("auth.email_pending.sign_in_link") %></a>
         </div>
       </div>
     <% end %>

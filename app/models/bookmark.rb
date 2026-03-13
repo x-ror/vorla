@@ -7,7 +7,7 @@ class Bookmark < ApplicationRecord
 
   validates :url, presence: true
   validates :bookmark_type, presence: true, inclusion: { in: TYPES }
-  validates :url, uniqueness: { scope: :user_id, message: "is already bookmarked" }
+  validates :url, uniqueness: { scope: :user_id }
   validate :within_bookmark_limit, on: :create
 
   before_validation :detect_type
@@ -41,7 +41,7 @@ class Bookmark < ApplicationRecord
     return unless limit
 
     if user.bookmarks.count >= limit
-      errors.add(:base, "You've reached the maximum of #{limit} bookmarks. Upgrade your plan for unlimited bookmarks.")
+      errors.add(:base, :bookmark_limit, limit: limit)
     end
   end
 

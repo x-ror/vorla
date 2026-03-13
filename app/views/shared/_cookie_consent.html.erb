@@ -7,23 +7,23 @@
     <div class="rounded-xl border border-border bg-card p-5 shadow-lg">
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div class="flex-1">
-          <p class="text-sm font-medium">We use cookies</p>
+          <p class="text-sm font-medium"><%= t("cookie_consent.title") %></p>
           <p class="mt-1 text-xs text-muted-foreground leading-relaxed">
-            We use essential cookies to make our site work. With your consent, we may also use
-            non-essential cookies to improve your experience. See our
-            <%= link_to "Cookie Policy", cookies_path, class: "underline hover:text-foreground" %>.
+            <%= t("cookie_consent.description_html",
+              link: link_to(t("cookie_consent.cookie_policy"), cookies_path, class: "underline hover:text-foreground")
+            ).html_safe %>
           </p>
         </div>
         <div class="flex shrink-0 items-center gap-2">
           <button type="button"
             data-action="click->cookie-consent#rejectAll"
             class="rounded-lg border border-border px-4 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground">
-            Reject non-essential
+            <%= t("cookie_consent.reject") %>
           </button>
           <button type="button"
             data-action="click->cookie-consent#acceptAll"
             class="rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
-            Accept all
+            <%= t("cookie_consent.accept") %>
           </button>
         </div>
       </div>

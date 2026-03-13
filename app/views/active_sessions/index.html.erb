@@ -1,17 +1,17 @@
-<% content_for(:title) { "Security - X-ROR" } %>
+<% content_for(:title) { "#{t("user_pages.security.title")} - X-ROR" } %>
 <%= render "shared/navbar" %>
 <main class="flex-1 bg-muted/50 pb-16 dark:bg-background">
   <div class="mx-auto max-w-3xl px-6 pt-12">
-    <p class="text-xs font-medium uppercase tracking-widest text-muted-foreground">Account</p>
-    <h1 class="mt-1 text-3xl font-normal tracking-tight">Security</h1>
+    <p class="text-xs font-medium uppercase tracking-widest text-muted-foreground"><%= t("user_pages.security.section") %></p>
+    <h1 class="mt-1 text-3xl font-normal tracking-tight"><%= t("user_pages.security.title") %></h1>
     <%# ══ Card 1 — Active Sessions ══ %>
     <div class="mt-10 rounded-xl border border-border/80 bg-card shadow-md dark:shadow-none">
       <div class="flex items-center justify-between border-b border-border px-6 py-4">
-        <span class="text-xs font-medium uppercase tracking-widest text-muted-foreground">Active sessions</span>
+        <span class="text-xs font-medium uppercase tracking-widest text-muted-foreground"><%= t("user_pages.security.active_sessions") %></span>
         <% if @sessions.size > 1 %>
-          <%= button_to "Revoke all others", destroy_all_active_sessions_path, method: :delete,
+          <%= button_to t("user_pages.security.revoke_all"), destroy_all_active_sessions_path, method: :delete,
             class: "text-xs font-medium text-destructive transition-opacity hover:opacity-70",
-            data: { turbo_confirm: "Revoke all other sessions?" } %>
+            data: { turbo_confirm: t("user_pages.security.revoke_all_confirm") } %>
         <% end %>
       </div>
       <div class="divide-y divide-border">
@@ -30,19 +30,19 @@
               <div class="flex items-center gap-2">
                 <p class="text-sm font-medium"><%= sess.browser_name %> on <%= sess.device_name %></p>
                 <% if sess == @current_session %>
-                  <span class="rounded bg-primary/10 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-primary">This device</span>
+                  <span class="rounded bg-primary/10 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-primary"><%= t("user_pages.security.this_device") %></span>
                 <% end %>
               </div>
-              <p class="text-xs text-muted-foreground"><%= sess.ip_address %> &middot; <%= sess == @current_session ? "Active now" : "#{time_ago_in_words(sess.created_at)} ago" %></p>
+              <p class="text-xs text-muted-foreground"><%= sess.ip_address %> &middot; <%= sess == @current_session ? t("user_pages.security.active_now") : "#{time_ago_in_words(sess.created_at)} #{t("common.ago")}" %></p>
             </div>
             <%# Action %>
             <% if sess == @current_session %>
-              <span class="rounded bg-primary/10 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-primary">Active</span>
+              <span class="rounded bg-primary/10 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-primary"><%= t("common.active") %></span>
             <% else %>
               <%= button_to active_session_path(sess), method: :delete,
                 class: "text-xs font-medium text-destructive/70 transition-colors hover:text-destructive",
-                data: { turbo_confirm: "Revoke this session?" } do %>
-                Revoke
+                data: { turbo_confirm: t("user_pages.security.revoke_confirm") } do %>
+                <%= t("user_pages.security.revoke") %>
               <% end %>
             <% end %>
           </div>
@@ -53,11 +53,11 @@
     <div class="mt-8 flex flex-wrap items-center gap-3" data-controller="passkey">
       <button type="button" data-action="click->passkey#register" class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-xs font-medium text-muted-foreground shadow-sm transition-colors hover:text-foreground">
         <%= lucide_icon("fingerprint-pattern", class: "h-4 w-4") %>
-        Add a passkey
+        <%= t("user_pages.security.add_passkey") %>
       </button>
       <%= link_to new_password_path, class: "inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-xs font-medium text-muted-foreground shadow-sm transition-colors hover:text-foreground" do %>
         <%= lucide_icon("lock", class: "h-4 w-4") %>
-        Reset password
+        <%= t("user_pages.security.reset_password") %>
       <% end %>
       <p class="text-xs text-muted-foreground" data-passkey-target="status"></p>
     </div>
@@ -69,10 +69,10 @@
               <%= lucide_icon("fingerprint-pattern", class: "h-4 w-4 text-muted-foreground") %>
             </div>
             <span class="flex-1 text-sm font-medium"><%= cred.nickname %></span>
-            <span class="shrink-0 text-xs text-muted-foreground"><%= time_ago_in_words(cred.created_at) %> ago</span>
-            <%= link_to "Remove", passkey_path(cred),
+            <span class="shrink-0 text-xs text-muted-foreground"><%= time_ago_in_words(cred.created_at) %> <%= t("common.ago") %></span>
+            <%= link_to t("user_pages.security.remove_passkey"), passkey_path(cred),
               class: "shrink-0 text-xs font-medium text-destructive/70 transition-colors hover:text-destructive",
-              data: { turbo_method: :delete, turbo_confirm: "Remove this passkey?" } %>
+              data: { turbo_method: :delete, turbo_confirm: t("user_pages.security.remove_passkey_confirm") } %>
           </div>
         <% end %>
       </div>

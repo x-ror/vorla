@@ -1,34 +1,34 @@
-<% content_for(:title) { "Instagram Stories Downloader - X-ROR" } %>
-<% content_for(:seo_description) { "Download and save Instagram stories before they disappear. View and download stories anonymously from any public profile." } %>
-<% content_for(:seo_keywords) { "instagram stories downloader, save instagram stories, download instagram stories, view stories anonymously" } %>
+<% content_for(:title) { t("pages.stories.title") } %>
+<% content_for(:seo_description) { t("pages.stories.description") } %>
+<% content_for(:seo_keywords) { t("pages.stories.keywords") } %>
 <% content_for(:json_ld) do %>
   <%= web_application_json_ld(
     name: "Instagram Stories Downloader",
-    description: "Download and save Instagram stories before they disappear.",
+    description: t("pages.stories.description"),
     url: stories_url
   ) %>
 <% end %>
 <%= render "shared/navbar" %>
 <main class="flex-1 pb-10" data-controller="stories">
   <div class="mx-auto max-w-2xl px-4 pt-6">
-    <%= breadcrumbs({ name: "Stories", url: stories_url }) %>
+    <%= breadcrumbs({ name: t("pages.stories.breadcrumb"), url: stories_url }) %>
   </div>
   <div class="mx-auto max-w-2xl px-4 pt-10 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
       <%= lucide_icon("book-open", class: "h-6 w-6") %>
     </div>
-    <h1 class="text-2xl font-extrabold tracking-tight">Stories Downloader</h1>
-    <p class="mt-2 text-muted-foreground">Download Instagram stories before they disappear forever</p>
+    <h1 class="text-2xl font-extrabold tracking-tight"><%= t("pages.stories.heading") %></h1>
+    <p class="mt-2 text-muted-foreground"><%= t("pages.stories.subheading") %></p>
     <p class="mt-2 text-xs text-muted-foreground" data-controller="usage-counter" data-usage-counter-action-value="stories">
-      <span data-usage-counter-target="count"></span> remaining today
+      <span data-usage-counter-target="count"></span> <%= t("common.remaining_today") %>
     </p>
   </div>
   <div class="mx-auto mt-8 flex max-w-2xl flex-col items-center gap-6 px-4">
-    <form data-action="submit->stories#fetch" aria-label="Search stories by username" class="flex w-full max-w-xl items-center gap-2 rounded-lg border-2 border-input bg-card p-1 transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
+    <form data-action="submit->stories#fetch" aria-label="<%= t("pages.stories.heading") %>" class="flex w-full max-w-xl items-center gap-2 rounded-lg border-2 border-input bg-card p-1 transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
       <span class="pl-4 font-semibold text-muted-foreground" aria-hidden="true">@</span>
       <label for="stories-username" class="sr-only">Instagram username</label>
-      <input id="stories-username" type="text" data-stories-target="username" placeholder="username" autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
-      <button type="submit" data-stories-target="submitBtn" aria-label="Search" class="flex h-11 w-11 items-center justify-center rounded-md bg-primary text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+      <input id="stories-username" type="text" data-stories-target="username" placeholder="<%= t("pages.stories.placeholder") %>" autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
+      <button type="submit" data-stories-target="submitBtn" aria-label="<%= t("common.search") %>" class="flex h-11 w-11 items-center justify-center rounded-md bg-primary text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
         <%= lucide_icon("search", class: "h-5 w-5", aria_hidden: true) %>
       </button>
     </form>

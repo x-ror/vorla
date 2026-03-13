@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_13_002040) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_13_100000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -108,6 +108,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_13_002040) do
     t.string "full_name"
     t.datetime "instagram_connected_at"
     t.string "instagram_id"
+    t.string "locale", limit: 5
     t.string "instagram_username"
     t.string "password_digest", null: false
     t.string "plan"

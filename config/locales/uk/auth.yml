@@ -1,0 +1,105 @@
+uk:
+  auth:
+    sign_in:
+      title: "Увійти - X-ROR"
+      heading: "З поверненням"
+      subheading: "Увійдіть до свого акаунту"
+      email_label: "Електронна пошта"
+      email_placeholder: "you@example.com"
+      password_label: "Пароль"
+      password_placeholder: "Ваш пароль"
+      forgot_password: "Забули пароль?"
+      submit: "Увійти →"
+      passkey: "Увійти за допомогою passkey"
+      no_account: "Немає акаунту?"
+      sign_up_link: "Зареєструватися"
+    sign_up:
+      title: "Реєстрація - X-ROR"
+      heading: "Створіть акаунт"
+      subheading: "Почніть користуватися X-ROR безкоштовно"
+      email_label: "Електронна пошта"
+      email_placeholder: "you@example.com"
+      password_label: "Пароль"
+      password_placeholder: "Створіть пароль"
+      confirm_label: "Підтвердження пароля"
+      confirm_placeholder: "Підтвердіть пароль"
+      terms_html: "Я погоджуюся з %{terms_link}, %{privacy_link} та %{cookie_link}"
+      terms_of_service: "Умовами використання"
+      privacy_policy: "Політикою конфіденційності"
+      cookie_policy: "Політикою cookies"
+      submit: "Створити акаунт →"
+      has_account: "Вже маєте акаунт?"
+      sign_in_link: "Увійти"
+    forgot_password:
+      title: "Забули пароль - X-ROR"
+      heading: "Забули пароль?"
+      subheading: "Введіть email і ми надішлемо інструкції"
+      email_label: "Електронна пошта"
+      email_placeholder: "you@example.com"
+      submit: "Надіслати інструкції →"
+      remember: "Згадали пароль?"
+      sign_in_link: "Увійти"
+    update_password:
+      title: "Оновити пароль - X-ROR"
+      heading: "Оновіть пароль"
+      subheading: "Введіть новий пароль"
+      new_password_label: "Новий пароль"
+      new_password_placeholder: "Введіть новий пароль"
+      confirm_label: "Підтвердження пароля"
+      confirm_placeholder: "Повторіть новий пароль"
+      submit: "Зберегти →"
+    email_pending:
+      title: "Підтвердіть email - X-ROR"
+      heading: "Перевірте пошту"
+      sent_to_html: "Ми надіслали посилання для верифікації на <strong class=\"text-foreground\">%{email}</strong>"
+      sent_generic: "Ми надіслали посилання для верифікації на вашу пошту"
+      instructions: "Натисніть посилання в листі для активації акаунту. Перевірте папку спам."
+      resend: "Надіслати повторно"
+      already_verified: "Вже підтверджено?"
+      sign_in_link: "Увійти"
+
+  sessions:
+    create:
+      rate_limited: "Спробуйте пізніше."
+      invalid: "Спробуйте іншу адресу email або пароль."
+      unverified: "Будь ласка, підтвердіть свою адресу email."
+    destroy:
+      success: "Ви вийшли."
+  registrations:
+    create:
+      terms_required: "Ви повинні погодитися з Умовами використання, Політикою конфіденційності та Політикою cookies."
+      welcome: "Ласкаво просимо до X-ROR!"
+      verify_email: "Перевірте email для підтвердження акаунту."
+  passwords:
+    create:
+      rate_limited: "Спробуйте пізніше."
+      sent: "Інструкції для скидання пароля надіслано (якщо користувач з такою адресою існує)."
+    update:
+      success: "Пароль скинуто."
+      mismatch: "Паролі не збігаються."
+      invalid_token: "Посилання для скидання пароля недійсне або застаріло."
+  email_verifications:
+    show:
+      success: "Email підтверджено! Будь ласка, увійдіть."
+      invalid: "Посилання для верифікації недійсне або застаріло."
+    create:
+      rate_limited: "Спробуйте пізніше."
+      sent: "Якщо акаунт існує, лист для верифікації надіслано."
+  active_sessions:
+    destroy:
+      cannot_revoke_current: "Ви не можете відкликати поточну сесію."
+      success: "Сесію відкликано."
+    destroy_all:
+      success: "Усі інші сесії відкликано."
+  profiles:
+    update_avatar:
+      invalid_image: "Будь ласка, оберіть дійсне зображення."
+    connect_instagram:
+      blank_username: "Будь ласка, введіть ім'я користувача Instagram."
+  bookmarks:
+    create:
+      success: "Закладку збережено!"
+      bookmarked: "Додано до закладок!"
+      removed_json: "Видалено."
+    destroy:
+      success: "Закладку видалено."

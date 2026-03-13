@@ -1,36 +1,36 @@
-<% content_for(:title) { "Download Instagram Content - X-ROR" } %>
-<% content_for(:seo_description) { "Download Instagram posts, reels, and carousels in full quality. Paste any Instagram URL and save photos and videos instantly." } %>
+<% content_for(:title) { t("pages.download.title") } %>
+<% content_for(:seo_description) { t("pages.download.description") } %>
 <% content_for(:json_ld) do %>
   <%= web_application_json_ld(
     name: "Instagram Downloader",
-    description: "Download Instagram posts, reels, and carousels in full quality.",
+    description: t("pages.download.description"),
     url: download_url
   ) %>
 <% end %>
 <%= render "shared/navbar" %>
 <main class="flex-1 pb-10" data-controller="download lightbox" data-lightbox-index-value="-1">
   <div class="mx-auto max-w-2xl px-4 pt-6">
-    <%= breadcrumbs({ name: "Download", url: download_url }) %>
+    <%= breadcrumbs({ name: t("pages.download.breadcrumb"), url: download_url }) %>
   </div>
   <div class="mx-auto max-w-2xl px-4 pt-10 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
       <%= lucide_icon("download", class: "h-6 w-6") %>
     </div>
-    <h1 class="text-2xl font-extrabold tracking-tight">Instagram Downloader</h1>
-    <p class="mt-2 text-muted-foreground">Paste any Instagram post, reel, or carousel URL to download</p>
+    <h1 class="text-2xl font-extrabold tracking-tight"><%= t("pages.download.heading") %></h1>
+    <p class="mt-2 text-muted-foreground"><%= t("pages.download.subheading") %></p>
     <p class="mt-2 text-xs text-muted-foreground" data-controller="usage-counter" data-usage-counter-action-value="download">
-      <span data-usage-counter-target="count"></span> remaining today
+      <span data-usage-counter-target="count"></span> <%= t("common.remaining_today") %>
     </p>
   </div>
   <div class="mx-auto max-w-xl px-4 mt-8">
-    <form data-action="submit->download#process" aria-label="Download Instagram content" class="flex w-full items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 mb-5">
+    <form data-action="submit->download#process" aria-label="<%= t("pages.download.heading") %>" class="flex w-full items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 mb-5">
       <span class="pl-3 text-muted-foreground" aria-hidden="true">
         <%= lucide_icon("link", class: "h-5 w-5") %>
       </span>
       <label for="download-url" class="sr-only">Instagram URL</label>
-      <input id="download-url" type="url" data-download-target="url" placeholder="Paste Instagram URL here..." autocomplete="off" value="<%= params[:url] %>" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
+      <input id="download-url" type="url" data-download-target="url" placeholder="<%= t("pages.download.placeholder") %>" autocomplete="off" value="<%= params[:url] %>" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
       <button type="submit" data-download-target="submitBtn" class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-        <span data-download-target="submitText">Download</span>
+        <span data-download-target="submitText"><%= t("common.download") %></span>
         <span data-download-target="spinner" class="spinner" style="display:none;" aria-hidden="true"></span>
       </button>
     </form>
@@ -39,27 +39,27 @@
   </div>
   <!-- How it works -->
   <section class="mx-auto max-w-3xl px-4 mt-20" aria-labelledby="how-it-works">
-    <h2 id="how-it-works" class="text-center text-xl font-extrabold tracking-tight mb-8">How it works</h2>
+    <h2 id="how-it-works" class="text-center text-xl font-extrabold tracking-tight mb-8"><%= t("pages.download.how_it_works") %></h2>
     <div class="grid gap-6 sm:grid-cols-3">
       <%= render_card do %>
         <div class="p-6 text-center">
           <%= render_badge "1", class: "mb-3" %>
-          <h3 class="font-semibold">Copy URL</h3>
-          <p class="mt-1 text-sm text-muted-foreground">Copy the Instagram post, reel, or carousel URL</p>
+          <h3 class="font-semibold"><%= t("pages.download.step_1") %></h3>
+          <p class="mt-1 text-sm text-muted-foreground"><%= t("pages.download.step_1_desc") %></p>
         </div>
       <% end %>
       <%= render_card do %>
         <div class="p-6 text-center">
           <%= render_badge "2", class: "mb-3" %>
-          <h3 class="font-semibold">Paste & Go</h3>
-          <p class="mt-1 text-sm text-muted-foreground">Paste the URL above and click download</p>
+          <h3 class="font-semibold"><%= t("pages.download.step_2") %></h3>
+          <p class="mt-1 text-sm text-muted-foreground"><%= t("pages.download.step_2_desc") %></p>
         </div>
       <% end %>
       <%= render_card do %>
         <div class="p-6 text-center">
           <%= render_badge "3", class: "mb-3" %>
-          <h3 class="font-semibold">Download</h3>
-          <p class="mt-1 text-sm text-muted-foreground">Click download and save to your device</p>
+          <h3 class="font-semibold"><%= t("pages.download.step_3") %></h3>
+          <p class="mt-1 text-sm text-muted-foreground"><%= t("pages.download.step_3_desc") %></p>
         </div>
       <% end %>
     </div>

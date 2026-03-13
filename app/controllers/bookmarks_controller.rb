@@ -18,9 +18,9 @@ class BookmarksController < ApplicationController
   def destroy
     @bookmark.destroy
     if json_request?
-      render json: { message: "Removed." }
+      render json: { message: t("bookmarks.create.removed_json") }
     else
-      redirect_to bookmarks_path, notice: "Bookmark removed."
+      redirect_to bookmarks_path, notice: t("bookmarks.destroy.success")
     end
   end
 
@@ -41,7 +41,7 @@ class BookmarksController < ApplicationController
       caption: params[:caption],
       posted_at: params[:posted_at]
     )
-    render json: { message: "Bookmarked!", id: bookmark.id, items: bookmark.items.count }, status: :created
+    render json: { message: t("bookmarks.create.bookmarked"), id: bookmark.id, items: bookmark.items.count }, status: :created
   rescue ActiveRecord::RecordInvalid => e
     render json: { message: e.record.errors.full_messages.to_sentence }, status: :unprocessable_entity
   end
@@ -49,7 +49,7 @@ class BookmarksController < ApplicationController
   def create_from_form
     @bookmark = Current.user.bookmarks.build(params.require(:bookmark).permit(:url, :title))
     if @bookmark.save
-      redirect_to bookmarks_path, notice: "Bookmark saved!"
+      redirect_to bookmarks_path, notice: t("bookmarks.create.success")
     else
       @bookmarks = Current.user.bookmarks.includes(:items).by_type(params[:type]).recent
       @bookmark_count = Current.user.bookmarks.count

@@ -1,40 +1,40 @@
-<% content_for(:title) { "Instagram Hashtag Generator - X-ROR" } %>
-<% content_for(:seo_description) { "Generate trending Instagram hashtags for maximum reach. AI-powered hashtag suggestions by niche and popularity level." } %>
-<% content_for(:seo_keywords) { "instagram hashtag generator, best instagram hashtags, trending hashtags, hashtag suggestions, instagram reach" } %>
+<% content_for(:title) { t("pages.hashtags.title") } %>
+<% content_for(:seo_description) { t("pages.hashtags.description") } %>
+<% content_for(:seo_keywords) { t("pages.hashtags.keywords") } %>
 <% content_for(:json_ld) do %>
   <%= web_application_json_ld(
     name: "Instagram Hashtag Generator",
-    description: "AI-powered Instagram hashtag generator for maximum reach.",
+    description: t("pages.hashtags.description"),
     url: hashtags_url
   ) %>
 <% end %>
 <%= render "shared/navbar" %>
 <main class="flex-1 pb-10" data-controller="hashtags">
   <div class="mx-auto max-w-2xl px-4 pt-6">
-    <%= breadcrumbs({ name: "Hashtag Generator", url: hashtags_url }) %>
+    <%= breadcrumbs({ name: t("pages.hashtags.breadcrumb"), url: hashtags_url }) %>
   </div>
   <div class="mx-auto max-w-2xl px-4 pt-10 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400" aria-hidden="true">
       <%= lucide_icon("hash", class: "h-6 w-6") %>
     </div>
-    <h1 class="text-2xl font-extrabold tracking-tight">Hashtag Generator</h1>
-    <p class="mt-2 text-muted-foreground">Generate optimized hashtags for maximum reach and engagement</p>
+    <h1 class="text-2xl font-extrabold tracking-tight"><%= t("pages.hashtags.heading") %></h1>
+    <p class="mt-2 text-muted-foreground"><%= t("pages.hashtags.subheading") %></p>
     <p class="mt-2 text-xs text-muted-foreground" data-controller="usage-counter" data-usage-counter-action-value="hashtags">
-      <span data-usage-counter-target="count"></span> remaining today
+      <span data-usage-counter-target="count"></span> <%= t("common.remaining_today") %>
     </p>
   </div>
   <div class="mx-auto mt-8 flex max-w-2xl flex-col items-center gap-6 px-4">
-    <form data-action="submit->hashtags#generate" aria-label="Generate hashtags" class="flex w-full max-w-lg items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
+    <form data-action="submit->hashtags#generate" aria-label="<%= t("pages.hashtags.heading") %>" class="flex w-full max-w-lg items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
       <span class="pl-3 text-muted-foreground" aria-hidden="true">
         <%= lucide_icon("sparkles", class: "h-5 w-5") %>
       </span>
-      <label for="hashtag-topic" class="sr-only">Topic or keyword</label>
-      <input id="hashtag-topic" type="text" data-hashtags-target="topic" placeholder="Enter a topic or keyword..." autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
-      <button type="submit" data-hashtags-target="submitBtn" class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">Generate</button>
+      <label for="hashtag-topic" class="sr-only"><%= t("pages.hashtags.placeholder") %></label>
+      <input id="hashtag-topic" type="text" data-hashtags-target="topic" placeholder="<%= t("pages.hashtags.placeholder") %>" autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
+      <button type="submit" data-hashtags-target="submitBtn" class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"><%= t("common.generate") %></button>
     </form>
     <div class="flex flex-wrap justify-center gap-2 max-w-lg" role="group" aria-label="Quick topic suggestions">
-      <% %w[Fashion Food Travel Fitness Photography Tech Beauty Art].each do |t| %>
-        <button type="button" class="topic-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-card border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" data-action="click->hashtags#selectTopic" data-topic="<%= t %>"><%= t %></button>
+      <% %w[fashion food travel fitness photography tech beauty art].each do |topic| %>
+        <button type="button" class="topic-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-card border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" data-action="click->hashtags#selectTopic" data-topic="<%= t("pages.hashtags.topics.#{topic}") %>"><%= t("pages.hashtags.topics.#{topic}") %></button>
       <% end %>
     </div>
     <div data-hashtags-target="error" style="display:none;" role="alert"></div>

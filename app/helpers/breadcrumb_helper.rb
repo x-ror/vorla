@@ -1,6 +1,6 @@
 module BreadcrumbHelper
   def breadcrumbs(*crumbs)
-    items = [ { name: "Home", url: root_url } ] + crumbs
+    items = [ { name: I18n.t("breadcrumbs.home", default: "Home"), url: root_url } ] + crumbs
 
     nav = content_tag(:nav, aria: { label: "breadcrumb" }, class: "text-sm text-muted-foreground") do
       content_tag(:ol, class: "flex items-center gap-1.5 flex-wrap") do

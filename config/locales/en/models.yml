@@ -1,0 +1,132 @@
+en:
+  activerecord:
+    models:
+      user: "User"
+      bookmark: "Bookmark"
+      bookmark_item: "Bookmark item"
+      session: "Session"
+      usage_log: "Usage log"
+      passkey_credential: "Passkey"
+    attributes:
+      user:
+        email_address: "Email address"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        full_name: "Full name"
+        bio: "Bio"
+        locale: "Language"
+        plan: "Plan"
+        verified: "Verified"
+      bookmark:
+        url: "URL"
+        bookmark_type: "Type"
+        title: "Title"
+        author: "Author"
+        caption: "Caption"
+      bookmark_item:
+        media_url: "Media URL"
+        media_type: "Media type"
+    errors:
+      models:
+        user:
+          attributes:
+            email_address:
+              blank: "can't be blank"
+              taken: "has already been taken"
+            password:
+              blank: "can't be blank"
+              too_short: "is too short (minimum is %{count} characters)"
+            password_confirmation:
+              confirmation: "doesn't match Password"
+        bookmark:
+          attributes:
+            url:
+              blank: "can't be blank"
+              taken: "is already bookmarked"
+            bookmark_type:
+              blank: "can't be blank"
+              inclusion: "is not a valid type"
+            base:
+              bookmark_limit: "You've reached the maximum of %{limit} bookmarks. Upgrade your plan for unlimited bookmarks."
+
+  # User-facing labels for profile, bookmarks, history, security pages
+  user_pages:
+    profile:
+      section: "Account"
+      title: "Profile"
+      identity: "Identity"
+      full_name_label: "Full name"
+      full_name_optional: "— optional"
+      email_label: "Email address"
+      edit_profile: "Edit profile"
+      save_changes: "Save changes"
+      connected_accounts: "Connected accounts"
+      instagram: "Instagram"
+      connected_as: "Connected as @%{username}"
+      not_connected: "Not connected"
+      instagram_username_label: "Instagram username"
+      instagram_username_placeholder: "username"
+
+    bookmarks:
+      title: "Bookmarks"
+      description: "Your saved Instagram media"
+      usage: "%{count}/%{limit} bookmarks used"
+      empty: "No bookmarks yet. Use the bookmark button on any result to save it here."
+      remove_confirm: "Remove this bookmark?"
+      item:
+        one: "%{count} item"
+        other: "%{count} items"
+      types:
+        post: "Post"
+        reel: "Reel"
+        story: "Story"
+        account: "Account"
+
+    history:
+      title: "Search History"
+      description: "Your recent searches and downloads"
+      empty: "No history yet. Start using the tools and your activity will appear here."
+      actions:
+        download: "Download"
+        stories: "Stories"
+        profile_picture: "Profile Pic"
+        analyze: "Analyzer"
+        hashtags: "Hashtags"
+
+    account:
+      section: "Account"
+      title: "Data & Privacy"
+      data_export: "Data Export"
+      data_export_description: "Download a copy of all your personal data in JSON format. This includes your profile information, bookmarks, and usage history."
+      export_button: "Export my data"
+      danger_zone: "Danger Zone"
+      delete_title: "Delete your account"
+      delete_description: "Permanently delete your account and all associated data. This includes your profile, bookmarks, usage history, active sessions, and passkeys. This action cannot be undone."
+      delete_button: "Delete my account"
+      delete_confirm_text: "Enter your password to confirm account deletion:"
+      delete_password_placeholder: "Your password"
+      delete_submit: "Permanently delete"
+      delete_turbo_confirm: "Are you absolutely sure? All your data will be permanently deleted."
+      incorrect_password: "Incorrect password. Account not deleted."
+      deleted_successfully: "Your account and all associated data have been permanently deleted."
+
+    security:
+      section: "Account"
+      title: "Security"
+      active_sessions: "Active sessions"
+      revoke_all: "Revoke all others"
+      revoke_all_confirm: "Revoke all other sessions?"
+      this_device: "This device"
+      active_now: "Active now"
+      revoke: "Revoke"
+      revoke_confirm: "Revoke this session?"
+      add_passkey: "Add a passkey"
+      reset_password: "Reset password"
+      remove_passkey: "Remove"
+      remove_passkey_confirm: "Remove this passkey?"
+
+  # Layout
+  layout:
+    flash:
+      success: "Success"
+      error: "Error"

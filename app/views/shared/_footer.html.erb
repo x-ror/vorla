@@ -1,21 +1,21 @@
 <footer class="mt-auto border-t border-border bg-background" role="contentinfo">
   <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 sm:flex-row">
-    <a href="/" class="flex items-center gap-2 font-semibold" aria-label="X-ROR home">
+    <a href="<%= root_path %>" class="flex items-center gap-2 font-semibold" aria-label="X-ROR home">
       <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-primary text-primary-foreground text-xs font-extrabold" aria-hidden="true">X</span>
       X-ROR
     </a>
     <nav class="flex items-center gap-4 text-sm text-muted-foreground" aria-label="Footer navigation">
-      <%= link_to "Download", download_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
-      <%= link_to "Stories", stories_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
-      <%# link_to "Pricing", pricing_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
+      <%= link_to t("nav.download"), download_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
+      <%= link_to t("nav.stories"), stories_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
+      <%# link_to t("nav.pricing"), pricing_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
     </nav>
     <nav class="flex items-center gap-4 text-sm text-muted-foreground" aria-label="Legal links">
-      <%= link_to "Privacy", privacy_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
-      <%= link_to "Terms", terms_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
-      <%= link_to "Cookies", cookies_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
-      <%= link_to "Refunds", refund_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
-      <%= link_to "Do Not Sell My Info", privacy_path(anchor: "ccpa"), class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
+      <%= link_to t("footer.privacy"), privacy_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
+      <%= link_to t("footer.terms"), terms_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
+      <%= link_to t("footer.cookies"), cookies_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
+      <%= link_to t("footer.refunds"), refund_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
+      <%= link_to t("footer.do_not_sell"), privacy_path(anchor: "ccpa"), class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
     </nav>
-    <p class="text-sm text-muted-foreground">&copy; <%= Date.current.year %> X-ROR. All rights reserved.</p>
+    <p class="text-sm text-muted-foreground"><%= t("footer.copyright_html", year: Date.current.year).html_safe %></p>
   </div>
 </footer>

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Authentication
+  include SetLocale
   allow_browser versions: :modern
   stale_when_importmap_changes
 
@@ -17,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def require_feature!(feature)
     unless can_access?(feature)
-      redirect_to pricing_path, alert: "Please upgrade to access this feature."
+      redirect_to pricing_path, alert: t("flash.upgrade_required")
     end
   end
 end

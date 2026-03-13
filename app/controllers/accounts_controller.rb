@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
 
   def destroy
     unless Current.user.authenticate(params[:password])
-      redirect_to account_path, alert: "Incorrect password. Account not deleted."
+      redirect_to account_path, alert: t("user_pages.account.incorrect_password")
       return
     end
 
@@ -20,7 +20,7 @@ class AccountsController < ApplicationController
     cookies.delete(:session_id)
     reset_session
 
-    redirect_to root_path, notice: "Your account and all associated data have been permanently deleted."
+    redirect_to root_path, notice: t("user_pages.account.deleted_successfully")
   end
 
   def export

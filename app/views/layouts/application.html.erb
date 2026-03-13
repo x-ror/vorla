@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="<%= I18n.locale %>" class="scroll-smooth">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -29,12 +29,12 @@
     <%= render "shared/cookie_consent" %>
     <% if notice.present? %>
       <div class="fixed top-4 left-1/2 z-[60] w-full max-w-md -translate-x-1/2 px-4" role="status">
-        <%= render_alert title: "Success", description: notice, variant: :success %>
+        <%= render_alert title: t("layout.flash.success"), description: notice, variant: :success %>
       </div>
     <% end %>
     <% if alert.present? %>
       <div class="fixed top-4 left-1/2 z-[60] w-full max-w-md -translate-x-1/2 px-4" role="alert">
-        <%= render_alert title: "Error", description: alert, variant: :destructive %>
+        <%= render_alert title: t("layout.flash.error"), description: alert, variant: :destructive %>
       </div>
     <% end %>
   </body>

@@ -1,23 +1,23 @@
-<% content_for(:title) { "Bookmarks - X-ROR" } %>
+<% content_for(:title) { "#{t("user_pages.bookmarks.title")} - X-ROR" } %>
 <%= render "shared/navbar" %>
 <main class="flex-1 pb-10">
   <div class="mx-auto max-w-2xl px-4 pt-16 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
       <%= lucide_icon("bookmark", class: "h-6 w-6") %>
     </div>
-    <h1 class="text-2xl font-extrabold tracking-tight">Bookmarks</h1>
-    <p class="mt-2 text-muted-foreground">Your saved Instagram media</p>
+    <h1 class="text-2xl font-extrabold tracking-tight"><%= t("user_pages.bookmarks.title") %></h1>
+    <p class="mt-2 text-muted-foreground"><%= t("user_pages.bookmarks.description") %></p>
     <% if @bookmark_limit %>
-      <p class="mt-2 text-xs text-muted-foreground"><%= @bookmark_count %>/<%= @bookmark_limit %> bookmarks used</p>
+      <p class="mt-2 text-xs text-muted-foreground"><%= t("user_pages.bookmarks.usage", count: @bookmark_count, limit: @bookmark_limit) %></p>
     <% end %>
   </div>
 
   <div class="mx-auto max-w-xl px-4 mt-8">
     <%# Type filter tabs %>
     <div class="flex gap-1 mb-6">
-      <%= link_to "All", bookmarks_path, class: "rounded-md px-3 py-1.5 text-xs font-medium transition-colors #{params[:type].blank? ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}" %>
+      <%= link_to t("common.all"), bookmarks_path, class: "rounded-md px-3 py-1.5 text-xs font-medium transition-colors #{params[:type].blank? ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}" %>
       <% Bookmark::TYPES.each do |type| %>
-        <%= link_to type.capitalize, bookmarks_path(type: type), class: "rounded-md px-3 py-1.5 text-xs font-medium transition-colors #{params[:type] == type ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}" %>
+        <%= link_to t("user_pages.bookmarks.types.#{type}"), bookmarks_path(type: type), class: "rounded-md px-3 py-1.5 text-xs font-medium transition-colors #{params[:type] == type ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}" %>
       <% end %>
     </div>
 
@@ -38,21 +38,21 @@
                     <%= bookmark.caption.present? ? truncate(bookmark.caption, length: 60) : (bookmark.title.presence || bookmark.url) %>
                   </p>
                   <p class="text-xs text-muted-foreground">
-                    <span class="rounded bg-muted px-1.5 py-0.5 text-xs font-medium"><%= bookmark.bookmark_type.capitalize %></span>
+                    <span class="rounded bg-muted px-1.5 py-0.5 text-xs font-medium"><%= t("user_pages.bookmarks.types.#{bookmark.bookmark_type}") %></span>
                     <% if bookmark.items.any? %>
-                      &middot; <%= bookmark.items.size %> <%= "item".pluralize(bookmark.items.size) %>
+                      &middot; <%= t("user_pages.bookmarks.item", count: bookmark.items.size) %>
                     <% end %>
                     <% if bookmark.posted_at %>
-                      &middot; posted <%= time_ago_in_words(bookmark.posted_at) %> ago
+                      &middot; <%= t("common.posted") %> <%= time_ago_in_words(bookmark.posted_at) %> <%= t("common.ago") %>
                     <% end %>
-                    &middot; saved <%= time_ago_in_words(bookmark.created_at) %> ago
+                    &middot; <%= t("common.saved") %> <%= time_ago_in_words(bookmark.created_at) %> <%= t("common.ago") %>
                   </p>
                 </div>
                 <div class="flex items-center gap-1">
                   <a href="<%= bookmark.url %>" target="_blank" rel="noopener" class="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground" aria-label="Open on Instagram">
                     <%= lucide_icon("external-link", class: "h-4 w-4") %>
                   </a>
-                  <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Remove this bookmark?" }, class: "inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive", aria_label: "Remove bookmark" do %>
+                  <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: t("user_pages.bookmarks.remove_confirm") }, class: "inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive", aria_label: t("common.remove") do %>
                     <%= lucide_icon("trash-2", class: "h-4 w-4") %>
                   <% end %>
                 </div>
@@ -84,7 +84,7 @@
     <% else %>
       <div class="text-center py-12">
         <%= lucide_icon("bookmark", class: "mx-auto h-10 w-10 text-muted-foreground/30 mb-3") %>
-        <p class="text-sm text-muted-foreground">No bookmarks yet. Use the bookmark button on any result to save it here.</p>
+        <p class="text-sm text-muted-foreground"><%= t("user_pages.bookmarks.empty") %></p>
       </div>
     <% end %>
   </div>

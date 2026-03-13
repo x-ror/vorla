@@ -1,0 +1,16 @@
+en:
+  mailers:
+    email_verification:
+      verify:
+        subject: "Verify your email address"
+        greeting: "Welcome to X-ROR!"
+        instructions: "Please verify your email address by clicking the link below:"
+        action: "Verify my email"
+        expiry: "This link will expire in 2 days."
+    passwords:
+      reset:
+        subject: "Reset your password"
+        instructions_html: "You can reset your password on %{link}."
+        link_text: "this password reset page"
+        instructions_text: "You can reset your password on"
+        expiry: "This link will expire in %{duration}."
