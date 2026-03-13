@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!--
+    "The Frame" Badge — App icon / Favicon
+    White mark on teal rounded-square background
+  -->
+  <rect width="512" height="512" rx="112" ry="112" fill="#1A9E8F"/>
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="44">
+    <!-- Top-left bracket -->
+    <path d="M128 208 L128 128 L208 128"/>
+    <!-- Top-right bracket -->
+    <path d="M304 128 L384 128 L384 208"/>
+    <!-- Bottom-left bracket -->
+    <path d="M128 304 L128 384 L208 384"/>
+    <!-- Bottom-right bracket -->
+    <path d="M304 384 L384 384 L384 304"/>
+    <!-- Center capture chevron -->
+    <path d="M212 244 L256 296 L300 244"/>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!--
+    X-ROR "Bolt" Icon — Standalone mark
+    The X letterform with a directional lower-right stroke
+    Works on both light and dark backgrounds (use currentColor or override fill)
+  -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Upper-left to lower-right stroke (with directional bolt) -->
+    <path d="M148 148 L296 296 L332 364" stroke="#1A9E8F" stroke-width="56"/>
+    <!-- Upper-right to lower-left stroke -->
+    <path d="M364 148 L148 348" stroke="#1A9E8F" stroke-width="56"/>
+  </g>
+</svg>
