@@ -45,7 +45,7 @@ module SetLocale
       parts = lang.strip.split(";")
       code = parts[0].strip.split("-").first.downcase
       quality = parts[1] ? parts[1].split("=").last.to_f : 1.0
-      [code.to_sym, quality]
+      [ code.to_sym, quality ]
     }.sort_by { |_, q| -q }
 
     parsed.each do |code, _|

@@ -82,17 +82,6 @@ en:
         story: "Story"
         account: "Account"
 
-    history:
-      title: "Search History"
-      description: "Your recent searches and downloads"
-      empty: "No history yet. Start using the tools and your activity will appear here."
-      actions:
-        download: "Download"
-        stories: "Stories"
-        profile_picture: "Profile Pic"
-        analyze: "Analyzer"
-        hashtags: "Hashtags"
-
     account:
       section: "Account"
       title: "Data & Privacy"

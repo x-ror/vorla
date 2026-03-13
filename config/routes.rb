@@ -42,9 +42,6 @@ Rails.application.routes.draw do
       get :export, on: :member
     end
 
-    # History
-    get "history", to: "history#index"
-
     # Pages
     root "pages#home"
     get "download",        to: "pages#download"

@@ -14,5 +14,5 @@ namespace :privacy do
   end
 
   desc "Run all privacy data retention tasks"
-  task purge_all: [:purge_usage_logs, :purge_old_sessions]
+  task purge_all: [ :purge_usage_logs, :purge_old_sessions ]
 end
