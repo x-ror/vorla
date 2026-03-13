@@ -25,6 +25,11 @@ Rails.application.routes.draw do
     delete ":id", to: "passkey_registrations#destroy", as: :passkey
   end
 
+  # Account (data privacy: export + deletion)
+  resource :account, only: %i[show destroy] do
+    get :export, on: :member
+  end
+
   # Profile
   resource :profile, only: %i[show update] do
     patch  :update_avatar

@@ -26,6 +26,7 @@
   </head>
   <body class="flex min-h-screen flex-col bg-background text-foreground antialiased" data-controller="theme">
     <%= yield %>
+    <%= render "shared/cookie_consent" %>
     <% if notice.present? %>
       <div class="fixed top-4 left-1/2 z-[60] w-full max-w-md -translate-x-1/2 px-4" role="status">
         <%= render_alert title: "Success", description: notice, variant: :success %>

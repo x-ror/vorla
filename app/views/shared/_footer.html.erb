@@ -14,6 +14,7 @@
       <%= link_to "Terms", terms_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
       <%= link_to "Cookies", cookies_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
       <%= link_to "Refunds", refund_path, class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
+      <%= link_to "Do Not Sell My Info", privacy_path(anchor: "ccpa"), class: "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground" %>
     </nav>
     <p class="text-sm text-muted-foreground">&copy; <%= Date.current.year %> X-ROR. All rights reserved.</p>
   </div>

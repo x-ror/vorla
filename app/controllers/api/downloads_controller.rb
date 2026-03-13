@@ -2,7 +2,7 @@ class Api::DownloadsController < Api::BaseController
   def create
     url = params[:url]
     return render json: { message: "URL is required" }, status: :bad_request unless url.present?
-    return unless track_usage!("download", query: url)
+    return unless track_usage!("download")
 
     result = instagram_service.process_url(url, quality: params[:videoQuality] || "1080")
 
