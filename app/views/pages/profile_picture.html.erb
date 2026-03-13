@@ -1,33 +1,33 @@
-<% content_for(:title) { "Instagram Profile Picture Downloader - X-ROR" } %>
-<% content_for(:seo_description) { "Download full-size Instagram profile pictures in HD. Get any public Instagram profile photo in original quality instantly." } %>
-<% content_for(:seo_keywords) { "instagram profile picture downloader, download instagram profile photo, full size instagram dp, instagram dp viewer" } %>
+<% content_for(:title) { t("pages.profile_picture.title") } %>
+<% content_for(:seo_description) { t("pages.profile_picture.description") } %>
+<% content_for(:seo_keywords) { t("pages.profile_picture.keywords") } %>
 <% content_for(:json_ld) do %>
   <%= web_application_json_ld(
     name: "Instagram Profile Picture Downloader",
-    description: "Download full-size Instagram profile pictures in HD quality.",
+    description: t("pages.profile_picture.description"),
     url: profile_picture_url
   ) %>
 <% end %>
 <%= render "shared/navbar" %>
 <main class="flex-1 pb-10" data-controller="profile-picture">
   <div class="mx-auto max-w-2xl px-4 pt-6">
-    <%= breadcrumbs({ name: "Profile Picture", url: profile_picture_url }) %>
+    <%= breadcrumbs({ name: t("pages.profile_picture.breadcrumb"), url: profile_picture_url }) %>
   </div>
   <div class="mx-auto max-w-2xl px-4 pt-10 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
       <%= lucide_icon("user", class: "h-6 w-6") %>
     </div>
-    <h1 class="text-2xl font-extrabold tracking-tight">Profile Picture Downloader</h1>
-    <p class="mt-2 text-muted-foreground">Get any Instagram profile picture in full HD resolution</p>
+    <h1 class="text-2xl font-extrabold tracking-tight"><%= t("pages.profile_picture.heading") %></h1>
+    <p class="mt-2 text-muted-foreground"><%= t("pages.profile_picture.subheading") %></p>
     <p class="mt-2 text-xs text-muted-foreground" data-controller="usage-counter" data-usage-counter-action-value="profile_picture">
-      <span data-usage-counter-target="count"></span> remaining today
+      <span data-usage-counter-target="count"></span> <%= t("common.remaining_today") %>
     </p>
   </div>
   <div class="mx-auto mt-8 flex max-w-2xl flex-col items-center gap-6 px-4">
-    <form data-action="submit->profile-picture#fetch" aria-label="Download profile picture" class="flex w-full max-w-xl items-center gap-2 rounded-lg border-2 border-input bg-card p-1 transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
+    <form data-action="submit->profile-picture#fetch" aria-label="<%= t("pages.profile_picture.heading") %>" class="flex w-full max-w-xl items-center gap-2 rounded-lg border-2 border-input bg-card p-1 transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
       <span class="pl-4 font-semibold text-muted-foreground" aria-hidden="true">@</span>
       <label for="pfp-username" class="sr-only">Instagram username or URL</label>
-      <input id="pfp-username" type="text" data-profile-picture-target="username" placeholder="username or Instagram URL" autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
+      <input id="pfp-username" type="text" data-profile-picture-target="username" placeholder="<%= t("pages.profile_picture.placeholder") %>" autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
       <button type="submit" data-profile-picture-target="submitBtn" aria-label="Fetch" class="flex h-11 w-11 items-center justify-center rounded-md bg-primary text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
         <%= lucide_icon("search", class: "h-5 w-5", aria_hidden: true) %>
       </button>

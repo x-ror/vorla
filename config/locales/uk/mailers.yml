@@ -1,0 +1,16 @@
+uk:
+  mailers:
+    email_verification:
+      verify:
+        subject: "Підтвердіть вашу адресу email"
+        greeting: "Ласкаво просимо до X-ROR!"
+        instructions: "Будь ласка, підтвердіть адресу email, натиснувши на посилання:"
+        action: "Підтвердити email"
+        expiry: "Це посилання діятиме 2 дні."
+    passwords:
+      reset:
+        subject: "Скидання пароля"
+        instructions_html: "Ви можете скинути пароль на %{link}."
+        link_text: "цій сторінці"
+        instructions_text: "Ви можете скинути пароль за посиланням"
+        expiry: "Це посилання діятиме %{duration}."

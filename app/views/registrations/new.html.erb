@@ -1,46 +1,47 @@
-<% content_for(:title) { "Create Account - X-ROR" } %>
+<% content_for(:title) { t("auth.sign_up.title") } %>
 
 <main class="flex min-h-screen items-center justify-center px-4 py-10">
   <div class="w-full max-w-sm animate-slide-up">
     <%= render_card(class: "w-full") do %>
       <div class="p-8">
         <div class="mb-8 text-center">
-          <a href="/" class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-extrabold text-xl mb-6" aria-label="X-ROR home">X</a>
-          <h1 class="text-xl font-extrabold tracking-tight">Create your account</h1>
-          <p class="mt-1 text-sm text-muted-foreground">Get started with X-ROR for free</p>
+          <a href="<%= root_path %>" class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-extrabold text-xl mb-6" aria-label="X-ROR home">X</a>
+          <h1 class="text-xl font-extrabold tracking-tight"><%= t("auth.sign_up.heading") %></h1>
+          <p class="mt-1 text-sm text-muted-foreground"><%= t("auth.sign_up.subheading") %></p>
         </div>
 
         <%= form_with url: signup_path, class: "space-y-5" do |f| %>
           <div class="space-y-1.5">
-            <label for="signup-email" class="text-sm font-medium">Email</label>
-            <%= render_input name: "email_address", id: "signup-email", type: :email, placeholder: "you@example.com", autocomplete: "email", required: true %>
+            <label for="signup-email" class="text-sm font-medium"><%= t("auth.sign_up.email_label") %></label>
+            <%= render_input name: "email_address", id: "signup-email", type: :email, placeholder: t("auth.sign_up.email_placeholder"), autocomplete: "email", required: true %>
           </div>
 
           <div class="space-y-1.5">
-            <label for="signup-password" class="text-sm font-medium">Password</label>
-            <%= render_input name: "password", id: "signup-password", type: :password, placeholder: "Create a password", autocomplete: "new-password", required: true %>
+            <label for="signup-password" class="text-sm font-medium"><%= t("auth.sign_up.password_label") %></label>
+            <%= render_input name: "password", id: "signup-password", type: :password, placeholder: t("auth.sign_up.password_placeholder"), autocomplete: "new-password", required: true %>
           </div>
 
           <div class="space-y-1.5">
-            <label for="signup-password-confirm" class="text-sm font-medium">Confirm Password</label>
-            <%= render_input name: "password_confirmation", id: "signup-password-confirm", type: :password, placeholder: "Confirm your password", autocomplete: "new-password", required: true %>
+            <label for="signup-password-confirm" class="text-sm font-medium"><%= t("auth.sign_up.confirm_label") %></label>
+            <%= render_input name: "password_confirmation", id: "signup-password-confirm", type: :password, placeholder: t("auth.sign_up.confirm_placeholder"), autocomplete: "new-password", required: true %>
           </div>
 
           <div class="flex items-start gap-2">
             <input type="checkbox" name="terms_accepted" id="terms-accepted" value="1" required class="mt-0.5 h-4 w-4 shrink-0 rounded border border-input bg-background text-primary shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
             <label for="terms-accepted" class="text-xs text-muted-foreground leading-snug">
-              I agree to the
-              <%= link_to "Terms of Service", terms_path, class: "underline hover:text-foreground", target: "_blank" %>,
-              <%= link_to "Privacy Policy", privacy_path, class: "underline hover:text-foreground", target: "_blank" %>, and
-              <%= link_to "Cookie Policy", cookies_path, class: "underline hover:text-foreground", target: "_blank" %>
+              <%= t("auth.sign_up.terms_html",
+                terms_link: link_to(t("auth.sign_up.terms_of_service"), terms_path, class: "underline hover:text-foreground", target: "_blank"),
+                privacy_link: link_to(t("auth.sign_up.privacy_policy"), privacy_path, class: "underline hover:text-foreground", target: "_blank"),
+                cookie_link: link_to(t("auth.sign_up.cookie_policy"), cookies_path, class: "underline hover:text-foreground", target: "_blank")
+              ).html_safe %>
             </label>
           </div>
 
-          <%= render_button "Create Account →", class: "w-full" %>
+          <%= render_button t("auth.sign_up.submit"), class: "w-full" %>
         <% end %>
 
         <div class="mt-6 text-center text-sm text-muted-foreground">
-          Already have an account? <a href="<%= login_path %>" class="font-semibold text-primary hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Sign in</a>
+          <%= t("auth.sign_up.has_account") %> <a href="<%= login_path %>" class="font-semibold text-primary hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"><%= t("auth.sign_up.sign_in_link") %></a>
         </div>
       </div>
     <% end %>

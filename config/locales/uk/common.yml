@@ -1,0 +1,55 @@
+uk:
+  site_name: "X-ROR"
+  locale_name: "Українська"
+
+  breadcrumbs:
+    home: "Головна"
+
+  flash:
+    upgrade_required: "Будь ласка, оновіть план для доступу до цієї функції."
+    try_again_later: "Спробуйте пізніше."
+
+  common:
+    sign_in: "Увійти"
+    sign_out: "Вийти"
+    sign_up: "Реєстрація"
+    get_started: "Почати"
+    email: "Електронна пошта"
+    password: "Пароль"
+    save: "Зберегти"
+    cancel: "Скасувати"
+    remove: "Видалити"
+    connect: "Підключити"
+    disconnect: "Відключити"
+    search: "Пошук"
+    download: "Завантажити"
+    generate: "Генерувати"
+    all: "Усі"
+    or: "або"
+    active: "Активний"
+    off: "Вимк"
+    remaining_today: "залишилось сьогодні"
+    ago: "тому"
+    posted: "опубліковано"
+    saved: "збережено"
+
+  nav:
+    download: "Завантажити"
+    stories: "Сторіз"
+    profile_pic: "Аватар"
+    analyzer: "Аналіз"
+    pricing: "Ціни"
+    profile: "Профіль"
+    bookmarks: "Закладки"
+    history: "Історія"
+    security: "Безпека"
+    toggle_theme: "Змінити тему"
+    toggle_menu: "Меню"
+    toggle_dark_mode: "Темний режим"
+
+  footer:
+    copyright_html: "&copy; %{year} X-ROR. Усі права захищені."
+    privacy: "Конфіденційність"
+    terms: "Умови"
+    cookies: "Cookies"
+    refunds: "Повернення"

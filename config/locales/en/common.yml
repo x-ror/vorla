@@ -1,0 +1,59 @@
+en:
+  site_name: "X-ROR"
+  locale_name: "English"
+
+  breadcrumbs:
+    home: "Home"
+
+  # Shared flash messages
+  flash:
+    upgrade_required: "Please upgrade to access this feature."
+    try_again_later: "Try again later."
+
+  # Shared UI
+  common:
+    sign_in: "Sign in"
+    sign_out: "Sign out"
+    sign_up: "Sign up"
+    get_started: "Get Started"
+    email: "Email"
+    password: "Password"
+    save: "Save"
+    cancel: "Cancel"
+    remove: "Remove"
+    connect: "Connect"
+    disconnect: "Disconnect"
+    search: "Search"
+    download: "Download"
+    generate: "Generate"
+    all: "All"
+    or: "or"
+    active: "Active"
+    off: "Off"
+    remaining_today: "remaining today"
+    ago: "ago"
+    posted: "posted"
+    saved: "saved"
+
+  # Navigation
+  nav:
+    download: "Download"
+    stories: "Stories"
+    profile_pic: "Profile Pic"
+    analyzer: "Analyzer"
+    pricing: "Pricing"
+    profile: "Profile"
+    bookmarks: "Bookmarks"
+    history: "History"
+    security: "Security"
+    toggle_theme: "Toggle theme"
+    toggle_menu: "Toggle menu"
+    toggle_dark_mode: "Toggle dark mode"
+
+  # Footer
+  footer:
+    copyright_html: "&copy; %{year} X-ROR. All rights reserved."
+    privacy: "Privacy"
+    terms: "Terms"
+    cookies: "Cookies"
+    refunds: "Refunds"

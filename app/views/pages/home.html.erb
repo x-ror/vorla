@@ -1,10 +1,10 @@
-<% content_for(:title) { "X-ROR — Download Instagram Content Instantly" } %>
-<% content_for(:seo_description) { "Download Instagram photos, videos, reels, stories and profile pictures for free. Fast, clean, no login required. 2M+ downloads served." } %>
-<% content_for(:seo_keywords) { "instagram downloader, download instagram videos, instagram reels downloader, instagram story downloader, save instagram photos" } %>
+<% content_for(:title) { t("pages.home.title") } %>
+<% content_for(:seo_description) { t("pages.home.description") } %>
+<% content_for(:seo_keywords) { t("pages.home.keywords") } %>
 <% content_for(:json_ld) do %>
   <%= web_application_json_ld(
     name: "X-ROR Instagram Downloader",
-    description: "Download Instagram photos, videos, reels, stories and more for free.",
+    description: t("pages.home.description"),
     url: root_url
   ) %>
   <%= faq_json_ld([
@@ -18,41 +18,39 @@
   <!-- Hero -->
   <section class="relative overflow-hidden border-b border-border bg-gradient-to-b from-primary/5 to-background py-20 lg:py-32">
     <div class="mx-auto max-w-4xl px-4 text-center">
-      <%= render_badge "Fast & reliable downloads", class: "mb-6 animate-fade-in" %>
+      <%= render_badge t("pages.home.badge"), class: "mb-6 animate-fade-in" %>
       <h1 class="animate-slide-up text-4xl font-extrabold tracking-tight leading-[1.1] sm:text-5xl lg:text-6xl">
-        Download Instagram<br>
-        content <span class="text-primary">instantly</span>
+        <%= t("pages.home.heading_html").html_safe %>
       </h1>
       <p class="mx-auto mt-6 max-w-2xl animate-slide-up text-lg leading-relaxed text-muted-foreground">
-        Photos, videos, reels, stories and more. No login required.<br class="hidden sm:block">
-        The fastest and cleanest Instagram downloader on the web.
+        <%= t("pages.home.subheading_html").html_safe %>
       </p>
       <div class="mx-auto mt-10 max-w-xl animate-slide-up">
-        <form action="<%= download_path %>" method="get" role="search" aria-label="Download Instagram content" class="flex w-full items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
+        <form action="<%= download_path %>" method="get" role="search" aria-label="<%= t("pages.download.heading") %>" class="flex w-full items-center gap-2 rounded-lg border-2 border-input bg-card p-1 shadow-sm transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
           <span class="pl-3 text-muted-foreground" aria-hidden="true">
             <%= lucide_icon("link", class: "h-5 w-5") %>
           </span>
           <label for="hero-url" class="sr-only">Instagram URL</label>
-          <input id="hero-url" type="url" name="url" placeholder="Paste Instagram URL here..." autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
-          <%= render_button "Download", type: "submit" %>
+          <input id="hero-url" type="url" name="url" placeholder="<%= t("pages.home.placeholder") %>" autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
+          <%= render_button t("common.download"), type: "submit" %>
         </form>
       </div>
       <dl class="mx-auto mt-12 grid max-w-lg grid-cols-2 gap-6 animate-fade-in sm:grid-cols-4">
         <div class="text-center">
-          <dt class="text-sm text-muted-foreground order-2">Downloads</dt>
-          <dd class="text-2xl font-extrabold">2M+</dd>
+          <dt class="text-sm text-muted-foreground order-2"><%= t("pages.home.stats.downloads") %></dt>
+          <dd class="text-2xl font-extrabold"><%= t("pages.home.stats.downloads_value") %></dd>
         </div>
         <div class="text-center">
-          <dt class="text-sm text-muted-foreground order-2">Users</dt>
-          <dd class="text-2xl font-extrabold">150K+</dd>
+          <dt class="text-sm text-muted-foreground order-2"><%= t("pages.home.stats.users") %></dt>
+          <dd class="text-2xl font-extrabold"><%= t("pages.home.stats.users_value") %></dd>
         </div>
         <div class="text-center">
-          <dt class="text-sm text-muted-foreground order-2">Uptime</dt>
-          <dd class="text-2xl font-extrabold">99.9%</dd>
+          <dt class="text-sm text-muted-foreground order-2"><%= t("pages.home.stats.uptime") %></dt>
+          <dd class="text-2xl font-extrabold"><%= t("pages.home.stats.uptime_value") %></dd>
         </div>
         <div class="text-center">
-          <dt class="text-sm text-muted-foreground order-2">Avg Speed</dt>
-          <dd class="text-2xl font-extrabold">&lt;2s</dd>
+          <dt class="text-sm text-muted-foreground order-2"><%= t("pages.home.stats.speed") %></dt>
+          <dd class="text-2xl font-extrabold"><%= t("pages.home.stats.speed_value") %></dd>
         </div>
       </dl>
     </div>
@@ -61,8 +59,8 @@
   <section class="py-20" id="features" aria-labelledby="features-heading">
     <div class="mx-auto max-w-6xl px-4">
       <div class="mx-auto max-w-2xl text-center">
-        <h2 id="features-heading" class="text-3xl font-extrabold tracking-tight">Everything you need</h2>
-        <p class="mt-2 text-muted-foreground">One platform for all your Instagram download and analysis needs</p>
+        <h2 id="features-heading" class="text-3xl font-extrabold tracking-tight"><%= t("pages.home.features.heading") %></h2>
+        <p class="mt-2 text-muted-foreground"><%= t("pages.home.features.subheading") %></p>
       </div>
       <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <%= render_card(class: "text-center") do %>
@@ -70,8 +68,8 @@
             <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
               <%= lucide_icon("download", class: "h-6 w-6") %>
             </div>
-            <h3 class="text-lg font-semibold">Photo & Video</h3>
-            <p class="mt-1 text-sm text-muted-foreground">Download posts, reels, carousels in full quality</p>
+            <h3 class="text-lg font-semibold"><%= t("pages.home.features.photo_video") %></h3>
+            <p class="mt-1 text-sm text-muted-foreground"><%= t("pages.home.features.photo_video_desc") %></p>
           </div>
         <% end %>
         <%= render_card(class: "text-center") do %>
@@ -79,8 +77,8 @@
             <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
               <%= lucide_icon("user", class: "h-6 w-6") %>
             </div>
-            <h3 class="text-lg font-semibold">Profile Pictures</h3>
-            <p class="mt-1 text-sm text-muted-foreground">Get full-size profile pictures instantly</p>
+            <h3 class="text-lg font-semibold"><%= t("pages.home.features.profile_pictures") %></h3>
+            <p class="mt-1 text-sm text-muted-foreground"><%= t("pages.home.features.profile_pictures_desc") %></p>
           </div>
         <% end %>
         <%= render_card(class: "text-center") do %>
@@ -88,8 +86,8 @@
             <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
               <%= lucide_icon("book-open", class: "h-6 w-6") %>
             </div>
-            <h3 class="text-lg font-semibold">Stories</h3>
-            <p class="mt-1 text-sm text-muted-foreground">Save stories before they disappear</p>
+            <h3 class="text-lg font-semibold"><%= t("pages.home.features.stories") %></h3>
+            <p class="mt-1 text-sm text-muted-foreground"><%= t("pages.home.features.stories_desc") %></p>
           </div>
         <% end %>
         <%= render_card(class: "text-center") do %>
@@ -97,8 +95,8 @@
             <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
               <%= lucide_icon("search", class: "h-6 w-6") %>
             </div>
-            <h3 class="text-lg font-semibold">Profile Analyzer</h3>
-            <p class="mt-1 text-sm text-muted-foreground">Get detailed insights on any public profile</p>
+            <h3 class="text-lg font-semibold"><%= t("pages.home.features.profile_analyzer") %></h3>
+            <p class="mt-1 text-sm text-muted-foreground"><%= t("pages.home.features.profile_analyzer_desc") %></p>
           </div>
         <% end %>
         <%= render_card(class: "text-center") do %>
@@ -106,8 +104,8 @@
             <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400" aria-hidden="true">
               <%= lucide_icon("circle-plus", class: "h-6 w-6") %>
             </div>
-            <h3 class="text-lg font-semibold">Influencer Search</h3>
-            <p class="mt-1 text-sm text-muted-foreground">Find influencers by niche and engagement</p>
+            <h3 class="text-lg font-semibold"><%= t("pages.home.features.influencer_search") %></h3>
+            <p class="mt-1 text-sm text-muted-foreground"><%= t("pages.home.features.influencer_search_desc") %></p>
           </div>
         <% end %>
         <%= render_card(class: "text-center") do %>
@@ -115,8 +113,8 @@
             <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400" aria-hidden="true">
               <%= lucide_icon("hash", class: "h-6 w-6") %>
             </div>
-            <h3 class="text-lg font-semibold">Hashtag Generator</h3>
-            <p class="mt-1 text-sm text-muted-foreground">AI-powered hashtags for maximum reach</p>
+            <h3 class="text-lg font-semibold"><%= t("pages.home.features.hashtag_generator") %></h3>
+            <p class="mt-1 text-sm text-muted-foreground"><%= t("pages.home.features.hashtag_generator_desc") %></p>
           </div>
         <% end %>
       </div>
@@ -126,59 +124,59 @@
   <section class="border-t border-border bg-muted/30 py-20" id="pricing" aria-labelledby="pricing-heading">
     <div class="mx-auto max-w-5xl px-4">
       <div class="mx-auto max-w-2xl text-center">
-        <h2 id="pricing-heading" class="text-3xl font-extrabold tracking-tight">Simple, honest pricing</h2>
-        <p class="mt-2 text-muted-foreground">No hidden fees. Cancel anytime. Start free.</p>
+        <h2 id="pricing-heading" class="text-3xl font-extrabold tracking-tight"><%= t("pages.home.pricing.heading") %></h2>
+        <p class="mt-2 text-muted-foreground"><%= t("pages.home.pricing.subheading") %></p>
       </div>
       <div class="mt-12 grid gap-6 sm:grid-cols-3">
         <%= render_card do %>
           <div class="p-6">
-            <h3 class="text-lg font-semibold">Free</h3>
-            <div class="mt-2 text-3xl font-extrabold">Free</div>
+            <h3 class="text-lg font-semibold"><%= t("pages.home.pricing.free") %></h3>
+            <div class="mt-2 text-3xl font-extrabold"><%= t("pages.home.pricing.free") %></div>
             <ul class="mt-6 space-y-3 text-sm text-muted-foreground" role="list">
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> Basic quality downloads</li>
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> Profile picture download</li>
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> Ad-supported</li>
-              <li class="flex items-center gap-2 opacity-40"><span aria-hidden="true">&#10005;</span><s>Full quality & batch</s></li>
-              <li class="flex items-center gap-2 opacity-40"><span aria-hidden="true">&#10005;</span><s>Stories downloader</s></li>
-              <li class="flex items-center gap-2 opacity-40"><span aria-hidden="true">&#10005;</span><s>Profile analyzer</s></li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.basic_quality") %></li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.profile_picture_download") %></li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.ad_supported") %></li>
+              <li class="flex items-center gap-2 opacity-40"><span aria-hidden="true">&#10005;</span><s><%= t("pages.home.pricing.full_quality_batch") %></s></li>
+              <li class="flex items-center gap-2 opacity-40"><span aria-hidden="true">&#10005;</span><s><%= t("pages.home.pricing.stories_downloader") %></s></li>
+              <li class="flex items-center gap-2 opacity-40"><span aria-hidden="true">&#10005;</span><s><%= t("pages.home.pricing.profile_analyzer_feature") %></s></li>
             </ul>
             <div class="mt-6">
-              <%= render_button "Start Free", as: :a, href: download_path, variant: :outline, class: "w-full justify-center" %>
+              <%= render_button t("pages.home.pricing.start_free"), as: :a, href: download_path, variant: :outline, class: "w-full justify-center" %>
             </div>
           </div>
         <% end %>
         <%= render_card(class: "relative border-primary") do %>
           <div class="p-6">
-            <%= render_badge "Most Popular", class: "absolute -top-3 left-1/2 -translate-x-1/2" %>
-            <h3 class="text-lg font-semibold">Basic</h3>
-            <div class="mt-2"><span class="text-3xl font-extrabold">$4</span><span class="text-muted-foreground">/mo</span></div>
+            <%= render_badge t("pages.home.pricing.most_popular"), class: "absolute -top-3 left-1/2 -translate-x-1/2" %>
+            <h3 class="text-lg font-semibold"><%= t("pages.home.pricing.basic") %></h3>
+            <div class="mt-2"><span class="text-3xl font-extrabold">$4</span><span class="text-muted-foreground"><%= t("pages.home.pricing.per_month") %></span></div>
             <ul class="mt-6 space-y-3 text-sm text-muted-foreground" role="list">
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> Full quality downloads</li>
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> Batch download</li>
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> Profile pictures</li>
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> Stories downloader</li>
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> Profile analyzer</li>
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> No ads</li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.full_quality_downloads") %></li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.batch_download") %></li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.profile_pictures") %></li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.stories_downloader") %></li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.profile_analyzer_feature") %></li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.no_ads") %></li>
             </ul>
             <div class="mt-6">
-              <%= render_button "Get Started", as: :a, href: pricing_path, class: "w-full justify-center" %>
+              <%= render_button t("common.get_started"), as: :a, href: pricing_path, class: "w-full justify-center" %>
             </div>
           </div>
         <% end %>
         <%= render_card do %>
           <div class="p-6">
-            <h3 class="text-lg font-semibold">Pro</h3>
-            <div class="mt-2"><span class="text-3xl font-extrabold">$9</span><span class="text-muted-foreground">/mo</span></div>
+            <h3 class="text-lg font-semibold"><%= t("pages.home.pricing.pro") %></h3>
+            <div class="mt-2"><span class="text-3xl font-extrabold">$9</span><span class="text-muted-foreground"><%= t("pages.home.pricing.per_month") %></span></div>
             <ul class="mt-6 space-y-3 text-sm text-muted-foreground" role="list">
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> Everything in Basic</li>
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> Influencer search</li>
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> Hashtag generator</li>
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> Priority processing</li>
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> API access</li>
-              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> No ads</li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.everything_in_basic") %></li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.influencer_search") %></li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.hashtag_generator") %></li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.priority_processing") %></li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.api_access") %></li>
+              <li class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">&#10003;</span> <%= t("pages.home.pricing.no_ads") %></li>
             </ul>
             <div class="mt-6">
-              <%= render_button "Get Started", as: :a, href: pricing_path, variant: :outline, class: "w-full justify-center" %>
+              <%= render_button t("common.get_started"), as: :a, href: pricing_path, variant: :outline, class: "w-full justify-center" %>
             </div>
           </div>
         <% end %>
@@ -190,10 +188,10 @@
     <div class="mx-auto max-w-3xl px-4 text-center">
       <%= render_card(class: "bg-primary/5 border-primary/20") do %>
         <div class="p-10">
-          <h2 id="cta-heading" class="text-2xl font-extrabold tracking-tight">Ready to download?</h2>
-          <p class="mt-2 text-muted-foreground">Start downloading Instagram content for free. No sign-up required.</p>
+          <h2 id="cta-heading" class="text-2xl font-extrabold tracking-tight"><%= t("pages.home.cta.heading") %></h2>
+          <p class="mt-2 text-muted-foreground"><%= t("pages.home.cta.subheading") %></p>
           <div class="mt-6">
-            <%= render_button "Start Downloading", as: :a, href: download_path, size: :lg %>
+            <%= render_button t("pages.home.cta.button"), as: :a, href: download_path, size: :lg %>
           </div>
         </div>
       <% end %>

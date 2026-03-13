@@ -21,14 +21,14 @@ module ApplicationHelper
   end
 
   def history_action_label(action_type)
-    case action_type
-    when "download" then "Download"
-    when "stories" then "Stories"
-    when "profile_picture" then "Profile Pic"
-    when "analyze" then "Analyzer"
-    when "hashtags" then "Hashtags"
-    else action_type.humanize
-    end
+    key = case action_type
+          when "download" then "download"
+          when "stories" then "stories"
+          when "profile_picture" then "profile_picture"
+          when "analyze" then "analyze"
+          when "hashtags" then "hashtags"
+          end
+    key ? t("user_pages.history.actions.#{key}") : action_type.humanize
   end
 
   def history_action_path(action_type, query)

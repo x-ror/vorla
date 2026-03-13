@@ -1,34 +1,34 @@
-<% content_for(:title) { "Instagram Profile Analyzer - X-ROR" } %>
-<% content_for(:seo_description) { "Analyze any public Instagram profile. Get engagement rate, follower stats, posting frequency, and detailed insights." } %>
-<% content_for(:seo_keywords) { "instagram profile analyzer, instagram engagement rate, instagram analytics, instagram account analyzer, instagram insights" } %>
+<% content_for(:title) { t("pages.analyzer.title") } %>
+<% content_for(:seo_description) { t("pages.analyzer.description") } %>
+<% content_for(:seo_keywords) { t("pages.analyzer.keywords") } %>
 <% content_for(:json_ld) do %>
   <%= web_application_json_ld(
     name: "Instagram Profile Analyzer",
-    description: "Analyze any public Instagram profile with engagement rate and detailed insights.",
+    description: t("pages.analyzer.description"),
     url: analyzer_url
   ) %>
 <% end %>
 <%= render "shared/navbar" %>
 <main class="flex-1 pb-10" data-controller="analyzer">
   <div class="mx-auto max-w-2xl px-4 pt-6">
-    <%= breadcrumbs({ name: "Profile Analyzer", url: analyzer_url }) %>
+    <%= breadcrumbs({ name: t("pages.analyzer.breadcrumb"), url: analyzer_url }) %>
   </div>
   <div class="mx-auto max-w-2xl px-4 pt-10 text-center">
     <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
       <%= lucide_icon("chart-bar", class: "h-6 w-6") %>
     </div>
-    <h1 class="text-2xl font-extrabold tracking-tight">Profile Analyzer</h1>
-    <p class="mt-2 text-muted-foreground">Get detailed insights and stats on any public Instagram profile</p>
+    <h1 class="text-2xl font-extrabold tracking-tight"><%= t("pages.analyzer.heading") %></h1>
+    <p class="mt-2 text-muted-foreground"><%= t("pages.analyzer.subheading") %></p>
     <p class="mt-2 text-xs text-muted-foreground" data-controller="usage-counter" data-usage-counter-action-value="analyze">
-      <span data-usage-counter-target="count"></span> remaining today
+      <span data-usage-counter-target="count"></span> <%= t("common.remaining_today") %>
     </p>
   </div>
   <div class="mx-auto mt-8 flex max-w-2xl flex-col items-center gap-6 px-4">
-    <form data-action="submit->analyzer#analyze" aria-label="Analyze Instagram profile" class="flex w-full max-w-xl items-center gap-2 rounded-lg border-2 border-input bg-card p-1 transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
+    <form data-action="submit->analyzer#analyze" aria-label="<%= t("pages.analyzer.heading") %>" class="flex w-full max-w-xl items-center gap-2 rounded-lg border-2 border-input bg-card p-1 transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
       <span class="pl-4 font-semibold text-muted-foreground" aria-hidden="true">@</span>
       <label for="analyzer-username" class="sr-only">Instagram username</label>
-      <input id="analyzer-username" type="text" data-analyzer-target="username" placeholder="username" autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
-      <button type="submit" data-analyzer-target="submitBtn" aria-label="Analyze" class="flex h-11 w-11 items-center justify-center rounded-md bg-primary text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+      <input id="analyzer-username" type="text" data-analyzer-target="username" placeholder="<%= t("pages.analyzer.placeholder") %>" autocomplete="off" class="flex-1 border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground">
+      <button type="submit" data-analyzer-target="submitBtn" aria-label="<%= t("pages.analyzer.heading") %>" class="flex h-11 w-11 items-center justify-center rounded-md bg-primary text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
         <%= lucide_icon("search", class: "h-5 w-5", aria_hidden: true) %>
       </button>
     </form>

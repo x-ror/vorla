@@ -1,43 +1,43 @@
-<% content_for(:title) { "Sign In - X-ROR" } %>
+<% content_for(:title) { t("auth.sign_in.title") } %>
 <main class="flex min-h-screen items-center justify-center px-4 py-10">
   <div class="w-full max-w-sm animate-slide-up">
     <%= render_card(class: "w-full") do %>
       <div class="p-8">
         <div class="mb-8 text-center">
-          <a href="/" class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-extrabold text-xl mb-6" aria-label="X-ROR home">X</a>
-          <h1 class="text-xl font-extrabold tracking-tight">Welcome back</h1>
-          <p class="mt-1 text-sm text-muted-foreground">Sign in to access your account</p>
+          <a href="<%= root_path %>" class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground font-extrabold text-xl mb-6" aria-label="X-ROR home">X</a>
+          <h1 class="text-xl font-extrabold tracking-tight"><%= t("auth.sign_in.heading") %></h1>
+          <p class="mt-1 text-sm text-muted-foreground"><%= t("auth.sign_in.subheading") %></p>
         </div>
         <%= form_with url: session_path, class: "space-y-5" do |f| %>
           <div class="space-y-1.5">
-            <label for="login-email" class="text-sm font-medium">Email</label>
-            <%= render_input name: "email_address", id: "login-email", type: :email, placeholder: "you@example.com", autocomplete: "email", required: true %>
+            <label for="login-email" class="text-sm font-medium"><%= t("auth.sign_in.email_label") %></label>
+            <%= render_input name: "email_address", id: "login-email", type: :email, placeholder: t("auth.sign_in.email_placeholder"), autocomplete: "email", required: true %>
           </div>
           <div class="space-y-1.5">
             <div class="flex items-center justify-between">
-              <label for="login-password" class="text-sm font-medium">Password</label>
-              <a href="<%= new_password_path %>" class="text-xs font-medium text-primary hover:underline">Forgot password?</a>
+              <label for="login-password" class="text-sm font-medium"><%= t("auth.sign_in.password_label") %></label>
+              <a href="<%= new_password_path %>" class="text-xs font-medium text-primary hover:underline"><%= t("auth.sign_in.forgot_password") %></a>
             </div>
-            <%= render_input name: "password", id: "login-password", type: :password, placeholder: "Your password", autocomplete: "current-password", required: true %>
+            <%= render_input name: "password", id: "login-password", type: :password, placeholder: t("auth.sign_in.password_placeholder"), autocomplete: "current-password", required: true %>
           </div>
-          <%= render_button "Sign In →", class: "w-full" %>
+          <%= render_button t("auth.sign_in.submit"), class: "w-full" %>
         <% end %>
         <div class="relative my-6">
           <div class="absolute inset-0 flex items-center">
             <div class="w-full border-t border-border"></div>
           </div>
-          <div class="relative flex justify-center text-xs"><span class="bg-card px-2 text-muted-foreground">or</span></div>
+          <div class="relative flex justify-center text-xs"><span class="bg-card px-2 text-muted-foreground"><%= t("common.or") %></span></div>
         </div>
         <div data-controller="passkey">
           <button type="button" data-action="click->passkey#authenticate"
             class="inline-flex w-full items-center justify-center gap-2 rounded-md border border-input bg-background px-4 py-2.5 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <%= lucide_icon("fingerprint-pattern", class: "h-4 w-4") %>
-            Sign in with passkey
+            <%= t("auth.sign_in.passkey") %>
           </button>
           <p class="mt-2 text-center text-xs text-muted-foreground" data-passkey-target="status"></p>
         </div>
         <div class="mt-6 text-center text-sm text-muted-foreground">
-          Don't have an account? <a href="<%= signup_path %>" class="font-semibold text-primary hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Sign up</a>
+          <%= t("auth.sign_in.no_account") %> <a href="<%= signup_path %>" class="font-semibold text-primary hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"><%= t("auth.sign_in.sign_up_link") %></a>
         </div>
       </div>
     <% end %>

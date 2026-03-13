@@ -1,7 +1,7 @@
-Welcome to X-ROR!
+<%= t("mailers.email_verification.verify.greeting") %>
 
-Please verify your email address by visiting the link below:
+<%= t("mailers.email_verification.verify.instructions") %>
 
 <%= verify_email_url(token: @user.generate_token_for(:email_verification)) %>
 
-This link will expire in 2 days.
+<%= t("mailers.email_verification.verify.expiry") %>

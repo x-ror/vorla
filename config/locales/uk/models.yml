@@ -1,0 +1,115 @@
+uk:
+  activerecord:
+    models:
+      user: "Користувач"
+      bookmark: "Закладка"
+      bookmark_item: "Елемент закладки"
+      session: "Сесія"
+      usage_log: "Журнал використання"
+      passkey_credential: "Passkey"
+    attributes:
+      user:
+        email_address: "Адреса email"
+        password: "Пароль"
+        password_confirmation: "Підтвердження пароля"
+        full_name: "Повне ім'я"
+        bio: "Біо"
+        locale: "Мова"
+        plan: "Тариф"
+        verified: "Підтверджено"
+      bookmark:
+        url: "URL"
+        bookmark_type: "Тип"
+        title: "Назва"
+        author: "Автор"
+        caption: "Опис"
+      bookmark_item:
+        media_url: "URL медіа"
+        media_type: "Тип медіа"
+    errors:
+      models:
+        user:
+          attributes:
+            email_address:
+              blank: "не може бути порожнім"
+              taken: "вже використовується"
+            password:
+              blank: "не може бути порожнім"
+              too_short: "закороткий (мінімум %{count} символів)"
+            password_confirmation:
+              confirmation: "не збігається з паролем"
+        bookmark:
+          attributes:
+            url:
+              blank: "не може бути порожнім"
+              taken: "вже у закладках"
+            bookmark_type:
+              blank: "не може бути порожнім"
+              inclusion: "недійсний тип"
+            base:
+              bookmark_limit: "Ви досягли максимуму %{limit} закладок. Оновіть план для необмеженої кількості."
+
+  user_pages:
+    profile:
+      section: "Акаунт"
+      title: "Профіль"
+      identity: "Ідентичність"
+      full_name_label: "Повне ім'я"
+      full_name_optional: "— необов'язково"
+      email_label: "Адреса email"
+      edit_profile: "Редагувати профіль"
+      save_changes: "Зберегти зміни"
+      connected_accounts: "Підключені акаунти"
+      instagram: "Instagram"
+      connected_as: "Підключено як @%{username}"
+      not_connected: "Не підключено"
+      instagram_username_label: "Ім'я користувача Instagram"
+      instagram_username_placeholder: "ім'я користувача"
+
+    bookmarks:
+      title: "Закладки"
+      description: "Ваші збережені медіа з Instagram"
+      usage: "%{count}/%{limit} закладок використано"
+      empty: "Ще немає закладок. Натисніть кнопку закладки на будь-якому результаті."
+      remove_confirm: "Видалити цю закладку?"
+      item:
+        one: "%{count} елемент"
+        few: "%{count} елементи"
+        many: "%{count} елементів"
+        other: "%{count} елементів"
+      types:
+        post: "Пост"
+        reel: "Рілс"
+        story: "Сторі"
+        account: "Акаунт"
+
+    history:
+      title: "Історія пошуку"
+      description: "Ваші останні пошуки та завантаження"
+      empty: "Історії ще немає. Почніть використовувати інструменти і ваша активність з'явиться тут."
+      actions:
+        download: "Завантаження"
+        stories: "Сторіз"
+        profile_picture: "Аватар"
+        analyze: "Аналіз"
+        hashtags: "Хештеги"
+
+    security:
+      section: "Акаунт"
+      title: "Безпека"
+      active_sessions: "Активні сесії"
+      revoke_all: "Відкликати всі інші"
+      revoke_all_confirm: "Відкликати всі інші сесії?"
+      this_device: "Цей пристрій"
+      active_now: "Активний зараз"
+      revoke: "Відкликати"
+      revoke_confirm: "Відкликати цю сесію?"
+      add_passkey: "Додати passkey"
+      reset_password: "Скинути пароль"
+      remove_passkey: "Видалити"
+      remove_passkey_confirm: "Видалити цей passkey?"
+
+  layout:
+    flash:
+      success: "Успіх"
+      error: "Помилка"

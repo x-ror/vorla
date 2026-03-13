@@ -11,16 +11,16 @@ class ActiveSessionsController < ApplicationController
     session_record = Current.user.sessions.find(params[:id])
 
     if session_record == Current.session
-      redirect_to active_sessions_path, alert: "You cannot revoke your current session."
+      redirect_to active_sessions_path, alert: t("active_sessions.destroy.cannot_revoke_current")
     else
       session_record.destroy
-      redirect_to active_sessions_path, notice: "Session revoked."
+      redirect_to active_sessions_path, notice: t("active_sessions.destroy.success")
     end
   end
 
   # DELETE /active_sessions/destroy_all
   def destroy_all
     Current.user.sessions.where.not(id: Current.session.id).destroy_all
-    redirect_to active_sessions_path, notice: "All other sessions revoked."
+    redirect_to active_sessions_path, notice: t("active_sessions.destroy_all.success")
   end
 end

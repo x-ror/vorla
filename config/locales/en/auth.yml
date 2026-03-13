@@ -1,0 +1,106 @@
+en:
+  auth:
+    sign_in:
+      title: "Sign In - X-ROR"
+      heading: "Welcome back"
+      subheading: "Sign in to access your account"
+      email_label: "Email"
+      email_placeholder: "you@example.com"
+      password_label: "Password"
+      password_placeholder: "Your password"
+      forgot_password: "Forgot password?"
+      submit: "Sign In →"
+      passkey: "Sign in with passkey"
+      no_account: "Don't have an account?"
+      sign_up_link: "Sign up"
+    sign_up:
+      title: "Create Account - X-ROR"
+      heading: "Create your account"
+      subheading: "Get started with X-ROR for free"
+      email_label: "Email"
+      email_placeholder: "you@example.com"
+      password_label: "Password"
+      password_placeholder: "Create a password"
+      confirm_label: "Confirm Password"
+      confirm_placeholder: "Confirm your password"
+      terms_html: "I agree to the %{terms_link}, %{privacy_link}, and %{cookie_link}"
+      terms_of_service: "Terms of Service"
+      privacy_policy: "Privacy Policy"
+      cookie_policy: "Cookie Policy"
+      submit: "Create Account →"
+      has_account: "Already have an account?"
+      sign_in_link: "Sign in"
+    forgot_password:
+      title: "Forgot Password - X-ROR"
+      heading: "Forgot your password?"
+      subheading: "Enter your email and we'll send reset instructions"
+      email_label: "Email"
+      email_placeholder: "you@example.com"
+      submit: "Email reset instructions →"
+      remember: "Remember your password?"
+      sign_in_link: "Sign in"
+    update_password:
+      title: "Update Password - X-ROR"
+      heading: "Update your password"
+      subheading: "Enter your new password below"
+      new_password_label: "New Password"
+      new_password_placeholder: "Enter new password"
+      confirm_label: "Confirm Password"
+      confirm_placeholder: "Repeat new password"
+      submit: "Save →"
+    email_pending:
+      title: "Verify Your Email - X-ROR"
+      heading: "Check your email"
+      sent_to_html: "We sent a verification link to <strong class=\"text-foreground\">%{email}</strong>"
+      sent_generic: "We sent a verification link to your email address"
+      instructions: "Click the link in the email to activate your account. Check your spam folder if you don't see it."
+      resend: "Resend verification email"
+      already_verified: "Already verified?"
+      sign_in_link: "Sign in"
+
+  # Controller flash messages
+  sessions:
+    create:
+      rate_limited: "Try again later."
+      invalid: "Try another email address or password."
+      unverified: "Please verify your email address first."
+    destroy:
+      success: "Signed out."
+  registrations:
+    create:
+      terms_required: "You must agree to the Terms of Service, Privacy Policy, and Cookie Policy."
+      welcome: "Welcome to X-ROR!"
+      verify_email: "Please check your email to verify your account."
+  passwords:
+    create:
+      rate_limited: "Try again later."
+      sent: "Password reset instructions sent (if user with that email address exists)."
+    update:
+      success: "Password has been reset."
+      mismatch: "Passwords did not match."
+      invalid_token: "Password reset link is invalid or has expired."
+  email_verifications:
+    show:
+      success: "Email verified successfully! Please sign in."
+      invalid: "Verification link is invalid or has expired."
+    create:
+      rate_limited: "Try again later."
+      sent: "If an account exists, a verification email has been sent."
+  active_sessions:
+    destroy:
+      cannot_revoke_current: "You cannot revoke your current session."
+      success: "Session revoked."
+    destroy_all:
+      success: "All other sessions revoked."
+  profiles:
+    update_avatar:
+      invalid_image: "Please select a valid image."
+    connect_instagram:
+      blank_username: "Please enter an Instagram username."
+  bookmarks:
+    create:
+      success: "Bookmark saved!"
+      bookmarked: "Bookmarked!"
+      removed_json: "Removed."
+    destroy:
+      success: "Bookmark removed."

@@ -1,6 +1,6 @@
 class EmailVerificationsController < ApplicationController
   allow_unauthenticated_access
-  rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to verification_pending_path, alert: "Try again later." }
+  rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to verification_pending_path, alert: I18n.t("email_verifications.create.rate_limited") }
 
   # GET /verify_email?token=xxx
   def show
@@ -8,9 +8,9 @@ class EmailVerificationsController < ApplicationController
 
     if user
       user.update!(verified: true)
-      redirect_to login_path, notice: "Email verified successfully! Please sign in."
+      redirect_to login_path, notice: t("email_verifications.show.success")
     else
-      redirect_to login_path, alert: "Verification link is invalid or has expired."
+      redirect_to login_path, alert: t("email_verifications.show.invalid")
     end
   end
 
@@ -20,7 +20,7 @@ class EmailVerificationsController < ApplicationController
       EmailVerificationMailer.verify(user).deliver_later unless user.verified?
     end
 
-    redirect_to verification_pending_path(email: params[:email_address]), notice: "If an account exists, a verification email has been sent."
+    redirect_to verification_pending_path(email: params[:email_address]), notice: t("email_verifications.create.sent")
   end
 
   # GET /verification_pending

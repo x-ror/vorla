@@ -1,0 +1,15 @@
+<%# Pure ERB + CSS locale switcher — no JavaScript required, works with Turbo Drive %>
+<div class="relative inline-flex items-center">
+  <% available_locales.each do |loc| %>
+    <% if loc == I18n.locale %>
+      <span class="inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-semibold text-foreground bg-accent">
+        <%= locale_name(loc) %>
+      </span>
+    <% else %>
+      <%= link_to locale_name(loc),
+        url_for(request.query_parameters.merge(locale: loc == I18n.default_locale ? nil : loc)),
+        class: "inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-accent",
+        data: { turbo_action: "replace" } %>
+    <% end %>
+  <% end %>
+</div>

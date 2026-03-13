@@ -1,0 +1,3 @@
+# Master Ukrainian locale — split files are in config/locales/uk/
+uk:
+  hello: "Привіт, світе"

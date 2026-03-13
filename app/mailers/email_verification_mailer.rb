@@ -1,6 +1,6 @@
 class EmailVerificationMailer < ApplicationMailer
   def verify(user)
     @user = user
-    mail subject: "Verify your email address", to: user.email_address
+    mail subject: t("mailers.email_verification.verify.subject"), to: user.email_address
   end
 end

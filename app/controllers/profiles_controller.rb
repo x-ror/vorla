@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
 
   def update_avatar
     unless params[:avatar]&.content_type&.start_with?("image/")
-      redirect_to profile_path, alert: "Please select a valid image."
+      redirect_to profile_path, alert: t("profiles.update_avatar.invalid_image")
       return
     end
 
@@ -31,7 +31,7 @@ class ProfilesController < ApplicationController
     username = params[:instagram_username].to_s.strip.delete_prefix("@")
 
     if username.blank?
-      redirect_to profile_path, alert: "Please enter an Instagram username."
+      redirect_to profile_path, alert: t("profiles.connect_instagram.blank_username")
       return
     end
 
@@ -58,6 +58,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:user).permit(:full_name, :bio, :avatar)
+    params.require(:user).permit(:full_name, :bio, :avatar, :locale)
   end
 end

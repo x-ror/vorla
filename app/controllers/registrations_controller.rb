@@ -6,7 +6,7 @@ class RegistrationsController < ApplicationController
 
   def create
     unless params[:terms_accepted] == "1"
-      return redirect_to signup_path, alert: "You must agree to the Terms of Service, Privacy Policy, and Cookie Policy."
+      return redirect_to signup_path, alert: t("registrations.create.terms_required")
     end
 
     user = User.new(user_params)
@@ -15,9 +15,9 @@ class RegistrationsController < ApplicationController
 
     if user.save
       # EmailVerificationMailer.verify(user).deliver_later
-      # redirect_to verification_pending_path(email: user.email_address), notice: "Please check your email to verify your account."
+      # redirect_to verification_pending_path(email: user.email_address), notice: t("registrations.create.verify_email")
       start_new_session_for user
-      redirect_to after_authentication_url, notice: "Welcome to X-ROR!"
+      redirect_to after_authentication_url, notice: t("registrations.create.welcome")
     else
       redirect_to signup_path, alert: user.errors.full_messages.join(", ")
     end
